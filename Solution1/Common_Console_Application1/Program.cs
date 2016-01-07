@@ -7,6 +7,7 @@ namespace Common_Console_Application1
     {
         static void Main(string[] args)
         {
+
             Capi.WaitForInput();
         }
     }
