@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Creature;
+using System;
 using System.Text;
-using System.Threading.Tasks;
-using Creature;
 
 namespace Render
 {
-    class render
+    internal class render
     {
-
-        public static void initialRender(Mob player, Mob[] monster)
+        public static void initialRender(Mob player, Mob[] monster, int mobCount)
         {
             Console.OutputEncoding = Encoding.GetEncoding(1252);
             Console.SetWindowSize(181, 45);
@@ -87,7 +83,6 @@ namespace Render
 
         public static void renderUI()
         {
-
         }
     }
 }
