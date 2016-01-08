@@ -33,6 +33,7 @@ namespace Common_Console_Application1
         {
             //Initializing variables
             Random random = new Random();
+            ConsoleKeyInfo input;
             Mob player = new Mob(1, 1);
             Mob[] monster = new Mob[mobCount];
 
@@ -45,8 +46,9 @@ namespace Common_Console_Application1
             //Main loop
             while (true)
             {
-                player = playerInput(Console.ReadKey(), player);
+                input = Console.ReadKey();
                 render.clearMobs(player, monster, mobCount);
+                player = playerInput(input, player);
                 for (int i = 0; i <= mobCount - 1; i++)
                 {
                     if (monster[i].isAlive)
