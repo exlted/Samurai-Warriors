@@ -47,7 +47,7 @@ namespace Common_Console_Application1
             while (true)
             {
                 player = playerInput(Console.ReadKey(), player);
-                render.clearMobs(player, monster);
+                render.clearMobs(player, monster, mobCount);
                 for (int i = 0; i <= mobCount - 1; i++)
                 {
                     if (monster[i].isAlive)
@@ -56,7 +56,7 @@ namespace Common_Console_Application1
                         Mob.isKilled(player, monster[i]);
                     }
                 }
-                render.renderMobs(player, monster);   
+                render.renderMobs(player, monster, mobCount);   
             }
         }
     }
