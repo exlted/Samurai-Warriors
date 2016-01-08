@@ -57,7 +57,7 @@ namespace Render
             Console.SetCursorPosition(0, 44);
         }
 
-        public static void clearMobs(Mob player, Mob[] monster)
+        public static void clearMobs(Mob player, Mob[] monster, int mobCount)
         {
             Console.SetCursorPosition(player.x, player.y);
             Console.Write(".");
@@ -70,7 +70,7 @@ namespace Render
             Console.SetCursorPosition(0, 44);
         }
 
-        public static void renderMobs(Mob player, Mob[] monster)
+        public static void renderMobs(Mob player, Mob[] monster, int mobCount)
         {
             for (int i = 0; i <= mobCount - 1; i++)
             {
