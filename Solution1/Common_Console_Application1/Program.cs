@@ -18,6 +18,48 @@ namespace Common_Console_Application1
             public int Lvl;
             public int Exp;
         }
+
+        static PlayerPos MonsterMovement(PlayerPos monster, int rnd)
+        {
+            switch (rnd)
+            {
+                case 1:
+                    if (monster.y > 1)
+                    {
+                        monster.yOld = monster.y;
+                        monster.xOld = monster.x;
+                        monster.y -= 1;
+                    }
+                    return monster;
+                case 2:
+                    if (monster.y < 39)
+                    {
+                        monster.yOld = monster.y;
+                        monster.xOld = monster.x;
+                        monster.y += 1;
+                    }
+                    return monster;
+                case 3:
+                    if (monster.x > 1)
+                    {
+                        monster.xOld = monster.x;
+                        monster.yOld = monster.y;
+                        monster.x -= 1;
+                    }
+                    return monster;
+                case 4:
+                    if (monster.x < 179)
+                    {
+                        monster.xOld = monster.x;
+                        monster.yOld = monster.y;
+                        monster.x += 1;
+                    }
+                    return monster;
+                default:
+                    return monster;
+            }
+        }
+
         static void Main(string[] args)
         {
             //Initializing variables
@@ -26,7 +68,6 @@ namespace Common_Console_Application1
             PlayerPos player;
             PlayerPos[] monster = new PlayerPos[2];
             Random random = new Random();
-            int generated;
             player.x = 1;
             player.y = 1;
             player.xOld = 1;
@@ -123,80 +164,8 @@ namespace Common_Console_Application1
                     default:
                         break;
                 }
-                switch (generated = random.Next(1, 6))
-                {
-                    case 1:
-                        if (monster[0].y > 1)
-                        {
-                            monster[0].yOld = monster[0].y;
-                            monster[0].xOld = monster[0].x;
-                            monster[0].y -= 1;
-                        }
-                        break;
-                    case 2:
-                        if (monster[0].y < 39)
-                        {
-                            monster[0].yOld = monster[0].y;
-                            monster[0].xOld = monster[0].x;
-                            monster[0].y += 1;
-                        }
-                        break;
-                    case 3:
-                        if (monster[0].x > 1)
-                        {
-                            monster[0].xOld = monster[0].x;
-                            monster[0].yOld = monster[0].y;
-                            monster[0].x -= 1;
-                        }
-                        break;
-                    case 4:
-                        if (monster[0].x < 179)
-                        {
-                            monster[0].xOld = monster[0].x;
-                            monster[0].yOld = monster[0].y;
-                            monster[0].x += 1;
-                        }
-                        break;
-                    default:
-                        break;
-                }
-                switch (generated = random.Next(1, 6))
-                {
-                    case 1:
-                        if (monster[1].y > 1)
-                        {
-                            monster[1].yOld = monster[1].y;
-                            monster[1].xOld = monster[1].x;
-                            monster[1].y -= 1;
-                        }
-                        break;
-                    case 2:
-                        if (monster[1].y < 39)
-                        {
-                            monster[1].yOld = monster[1].y;
-                            monster[1].xOld = monster[1].x;
-                            monster[1].y += 1;
-                        }
-                        break;
-                    case 3:
-                        if (monster[1].x > 1)
-                        {
-                            monster[1].xOld = monster[1].x;
-                            monster[1].yOld = monster[1].y;
-                            monster[1].x -= 1;
-                        }
-                        break;
-                    case 4:
-                        if (monster[1].x < 179)
-                        {
-                            monster[1].xOld = monster[1].x;
-                            monster[1].yOld = monster[1].y;
-                            monster[1].x += 1;
-                        }
-                        break;
-                    default:
-                        break;
-                }
+                MonsterMovement(monster[0], random.Next(1, 6));
+                MonsterMovement(monster[1], random.Next(1, 6));
                 Console.SetCursorPosition(monster[0].xOld, monster[0].yOld);
                 Console.Write(".");
                 Console.SetCursorPosition(monster[0].x, monster[0].y);
