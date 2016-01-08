@@ -9,7 +9,7 @@ namespace Common_Console_Application1
     {
         private static int mobCount = 10;
 
-        private static void initialRender()
+        private static void initialRender(Mob player, Mob[] monster)
         {
             Console.OutputEncoding = Encoding.GetEncoding(1252);
             Console.SetWindowSize(181, 45);
@@ -46,6 +46,14 @@ namespace Common_Console_Application1
                     }
                 }
             }
+            Console.SetCursorPosition(player.x, player.y);
+            Console.Write("P");
+            for (int i = 0; i <= mobCount - 1; i++)
+            {
+                Console.SetCursorPosition(monster[i].x, monster[i].y);
+                Console.Write("M");
+            }
+            Console.SetCursorPosition(0, 44);
         }
 
         private static void clearMobs(Mob player, Mob[] monster)
@@ -81,11 +89,31 @@ namespace Common_Console_Application1
 
         }
 
+        private static Mob playerInput(ConsoleKeyInfo input, Mob player)
+        {
+            switch (input.Key)
+            {
+                case ConsoleKey.UpArrow:
+                    return Mob.Movement(player, Mob.moveDirection.up);
+
+                case ConsoleKey.DownArrow:
+                    return Mob.Movement(player, Mob.moveDirection.down);
+
+                case ConsoleKey.LeftArrow:
+                    return Mob.Movement(player, Mob.moveDirection.left);
+
+                case ConsoleKey.RightArrow:
+                    return Mob.Movement(player, Mob.moveDirection.right);
+
+                default:
+                    return player;
+            }
+        }
+
         private static void Main(string[] args)
         {
             //Initializing variables
             Random random = new Random();
-            ConsoleKeyInfo input;
             Mob player = new Mob(1, 1);
             Mob[] monster = new Mob[mobCount];
 
@@ -94,43 +122,13 @@ namespace Common_Console_Application1
                 monster[i] = new Mob(random.Next(1, 179), random.Next(1, 39));
             }
 
-            initialRender();
-
-            Console.SetCursorPosition(player.x, player.y);
-            Console.Write("P");
-            for (int i = 0; i <= mobCount - 1; i++)
-            {
-                Console.SetCursorPosition(monster[i].x, monster[i].y);
-                Console.Write("M");
-            }
-            Console.SetCursorPosition(0, 44);
+            initialRender(player, monster);
 
             //Main loop
             while (true)
             {
-                input = Console.ReadKey();
+                player = playerInput(Console.ReadKey(), player);
                 clearMobs(player, monster);
-                switch (input.Key)
-                {
-                    case ConsoleKey.UpArrow:
-                        player = Mob.Movement(player, Mob.moveDirection.up);
-                        break;
-
-                    case ConsoleKey.DownArrow:
-                        player = Mob.Movement(player, Mob.moveDirection.down);
-                        break;
-
-                    case ConsoleKey.LeftArrow:
-                        player = Mob.Movement(player, Mob.moveDirection.left);
-                        break;
-
-                    case ConsoleKey.RightArrow:
-                        player = Mob.Movement(player, Mob.moveDirection.right);
-                        break;
-
-                    default:
-                        break;
-                }
                 for (int i = 0; i <= mobCount - 1; i++)
                 {
                     if (monster[i].isAlive)
