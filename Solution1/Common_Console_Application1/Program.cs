@@ -76,6 +76,11 @@ namespace Common_Console_Application1
             Console.SetCursorPosition(0, 44);
         }
 
+        private static void renderUI()
+        {
+
+        }
+
         private static void Main(string[] args)
         {
             //Initializing variables
@@ -135,6 +140,7 @@ namespace Common_Console_Application1
                     }
                 }
                 renderMobs(player, monster);
+                
             }
         }
     }
