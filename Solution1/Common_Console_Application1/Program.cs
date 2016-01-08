@@ -65,8 +65,11 @@ namespace Common_Console_Application1
         {
             for (int i = 0; i <= mobCount - 1; i++)
             {
-                Console.SetCursorPosition(monster[i].x, monster[i].y);
-                Console.Write("M");
+                if(monster[i].isAlive)
+                {
+                    Console.SetCursorPosition(monster[i].x, monster[i].y);
+                    Console.Write("M");
+                }
             }
             Console.SetCursorPosition(player.x, player.y);
             Console.Write("P");
@@ -125,7 +128,11 @@ namespace Common_Console_Application1
                 }
                 for (int i = 0; i <= mobCount - 1; i++)
                 {
-                    Mob.Movement(monster[i], random.Next(1, 6));
+                    if (monster[i].isAlive)
+                    {
+                        Mob.Movement(monster[i], random.Next(1, 6));
+                        Mob.isKilled(player, monster[i]);
+                    }
                 }
                 renderMobs(player, monster);
             }
