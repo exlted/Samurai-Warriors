@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Text;
-using API;
 
 namespace Common_Console_Application1
 {
-    class Program
+    internal class Program
     {
-        struct PlayerPos
+        private struct PlayerPos
         {
             public int x;
             public int xOld;
@@ -19,7 +18,7 @@ namespace Common_Console_Application1
             public int Exp;
         }
 
-        static PlayerPos MonsterMovement(PlayerPos monster, int rnd)
+        private static PlayerPos MonsterMovement(PlayerPos monster, int rnd)
         {
             switch (rnd)
             {
@@ -31,6 +30,7 @@ namespace Common_Console_Application1
                         monster.y -= 1;
                     }
                     return monster;
+
                 case 2:
                     if (monster.y < 39)
                     {
@@ -39,6 +39,7 @@ namespace Common_Console_Application1
                         monster.y += 1;
                     }
                     return monster;
+
                 case 3:
                     if (monster.x > 1)
                     {
@@ -47,6 +48,7 @@ namespace Common_Console_Application1
                         monster.x -= 1;
                     }
                     return monster;
+
                 case 4:
                     if (monster.x < 179)
                     {
@@ -55,12 +57,13 @@ namespace Common_Console_Application1
                         monster.x += 1;
                     }
                     return monster;
+
                 default:
                     return monster;
             }
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             //Initializing variables
             char[] ascii = new char[41];
@@ -137,6 +140,7 @@ namespace Common_Console_Application1
                             player.y -= 1;
                         }
                         break;
+
                     case ConsoleKey.DownArrow:
                         if (player.y < 39)
                         {
@@ -145,6 +149,7 @@ namespace Common_Console_Application1
                             player.y += 1;
                         }
                         break;
+
                     case ConsoleKey.LeftArrow:
                         if (player.x > 1)
                         {
@@ -153,6 +158,7 @@ namespace Common_Console_Application1
                             player.x -= 1;
                         }
                         break;
+
                     case ConsoleKey.RightArrow:
                         if (player.x < 179)
                         {
@@ -161,6 +167,7 @@ namespace Common_Console_Application1
                             player.x += 1;
                         }
                         break;
+
                     default:
                         break;
                 }
@@ -183,6 +190,7 @@ namespace Common_Console_Application1
         }
     }
 }
+
 /*
     3 stats - Health, Attack, Defense
     Attack/Defense 1 = 1
