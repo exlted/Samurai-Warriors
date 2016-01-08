@@ -9,20 +9,20 @@ namespace Common_Console_Application1
         struct PlayerPos
         {
             public int x;
+            public int xOld;
             public int y;
+            public int yOld;
         }
         static void Main(string[] args)
         {
-            char[] ascii = new char[43];
+            char[] ascii = new char[41];
 
             Console.OutputEncoding = System.Text.Encoding.GetEncoding(1252);
             Console.SetWindowSize(181, 45);
 
             if (true)
             {
-                ascii[0] = Convert.ToChar(169);
-                ascii[1] = Convert.ToChar(170);
-                int i = 2;
+                int i = 0;
                 for (char c = (char)179; c <= (char)218; ++c)
                 {
                     ascii[i] = c;
@@ -44,15 +44,39 @@ namespace Common_Console_Application1
             //    }
             //}
             //Capi.WaitForInput();
-            Console.SetCursorPosition(1, 1);
-            Console.Write("P");
             while (true)
             {
                 ConsoleKeyInfo input;
                 PlayerPos player;
                 player.x = 1;
                 player.y = 1;
-
+                player.xOld = 1;
+                player.yOld = 1;
+                for (int i = 0; i < Console.WindowHeight - 4; i++)
+                {
+                    for (int j = 0; j < Console.WindowWidth; j++)
+                    {
+                        Console.SetCursorPosition(j, i);
+                        if (i == 0 && j == 0)
+                            Console.Write(ascii[39]);
+                        else if (i == 0 && j == 180)
+                            Console.Write(ascii[12]);
+                        else if (i == 40 && j == 0)
+                            Console.Write(ascii[13]);
+                        else if (i == 40 && j == 180)
+                            Console.Write(ascii[38]);
+                        else if ((i == 0 || i == 40) && (j != 180 || j != 0))
+                            Console.Write(ascii[17]);
+                        else if ((j == 0 || j == 180) && (i != 0 || i != 40))
+                            Console.Write(ascii[0]);
+                        else
+                        {
+                            Console.Write(".");
+                        }
+                    }
+                }
+                Console.SetCursorPosition(1, 1);
+                Console.Write("P");
                 while (true)
                 {
                     input = Console.ReadKey();
@@ -61,41 +85,43 @@ namespace Common_Console_Application1
                         case ConsoleKey.UpArrow:
                             if (player.y > 1)
                             {
+                                player.yOld = player.y;
+                                player.xOld = player.x;
                                 player.y -= 1;
                             }
                             break;
                         case ConsoleKey.DownArrow:
                             if (player.y < 39)
                             {
+                                player.yOld = player.y;
+                                player.xOld = player.x;
                                 player.y += 1;
                             }
                             break;
                         case ConsoleKey.LeftArrow:
                             if (player.x > 1)
                             {
+                                player.xOld = player.x;
+                                player.yOld = player.y;
                                 player.x -= 1;
                             }
                             break;
                         case ConsoleKey.RightArrow:
                             if (player.x < 179)
                             {
+                                player.xOld = player.x;
+                                player.yOld = player.y;
                                 player.x += 1;
                             }
                             break;
                         default:
                             break;
                     }
-                    Console.Clear();
-                    for (int i = 0; i < Console.; i++)
-                    {
-                        for (int i = 0; i < length; i++)
-                        {
-
-                        }
-                    }
+                    Console.SetCursorPosition(player.xOld, player.yOld);
+                    Console.Write(".");
                     Console.SetCursorPosition(player.x, player.y);
-                    Console.Write("p");
-                    Console.SetCursorPosition(0, 45);
+                    Console.Write("P");
+                    Console.SetCursorPosition(0, 44);
                 }
             }
         }
