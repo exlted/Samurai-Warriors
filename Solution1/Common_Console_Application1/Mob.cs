@@ -3,9 +3,7 @@
 namespace Creature
 {
     internal class Mob
-    {
-        private Random random = new Random();
-
+    { 
         public int x;
         public int y;
         public int HP;
