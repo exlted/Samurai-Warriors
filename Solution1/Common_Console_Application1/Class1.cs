@@ -14,7 +14,7 @@ namespace API
         {
             char input;
             Console.SetCursorPosition(0, Console.WindowHeight - 1);
-            Console.WriteLine("Press Any Key to Continue");
+            Console.Write("Press Any Key to Continue");
             try
             {
                 input = Convert.ToChar(Console.ReadKey());
