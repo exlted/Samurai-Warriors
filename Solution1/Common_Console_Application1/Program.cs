@@ -80,6 +80,7 @@ namespace Common_Console_Application1
             Console.Write("M");
             Console.SetCursorPosition(20, 35);
             Console.Write("M");
+            Console.SetCursorPosition(0, 44);
 
             //Main loop
             while (true)
