@@ -1,7 +1,6 @@
 ﻿using Creature;
-using System;
 using Render;
-using API;
+using System;
 
 namespace Common_Console_Application1
 {
@@ -41,7 +40,7 @@ namespace Common_Console_Application1
             {
                 monster[i] = new Mob(random.Next(1, 179), random.Next(1, 39));
             }
-            render.initialRender(player, monster);
+            render.initialRender(player, monster, mobCount);
 
             //Main loop
             while (true)
@@ -56,7 +55,7 @@ namespace Common_Console_Application1
                         Mob.isKilled(player, monster[i]);
                     }
                 }
-                render.renderMobs(player, monster, mobCount);   
+                render.renderMobs(player, monster, mobCount);
             }
         }
     }
