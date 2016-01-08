@@ -1,13 +1,12 @@
 ﻿using Creature;
 using System;
 using System.Text;
-using API;
 
 namespace Common_Console_Application1
 {
     internal class Program
     {
-        static int mobCount = 5;
+        private static int mobCount = 10;
 
         private static void initialRender()
         {
