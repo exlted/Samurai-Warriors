@@ -164,8 +164,8 @@ namespace Common_Console_Application1
                     default:
                         break;
                 }
-                MonsterMovement(monster[0], random.Next(1, 6));
-                MonsterMovement(monster[1], random.Next(1, 6));
+                monster[0] = MonsterMovement(monster[0], random.Next(1, 6));
+                monster[1] = MonsterMovement(monster[1], random.Next(1, 6));
                 Console.SetCursorPosition(monster[0].xOld, monster[0].yOld);
                 Console.Write(".");
                 Console.SetCursorPosition(monster[0].x, monster[0].y);
