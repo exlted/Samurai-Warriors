@@ -126,5 +126,15 @@ namespace Creature
             player.Exp = 0;
             return player;
         }
+
+        public static Mob isKilled(Mob player, Mob monster)
+        {
+            if (player.x == monster.x && player.y == monster.y)
+            {
+                monster.isAlive = false;
+                return monster;
+            }
+            else return monster;
+        }
     }
 }
