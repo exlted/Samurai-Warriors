@@ -39,7 +39,7 @@ namespace Common_Console_Application1
             monster[1].x = 20;
             monster[1].yOld = 35;
             monster[1].y = 35;
-            Console.OutputEncoding = System.Text.Encoding.GetEncoding(1252);
+            Console.OutputEncoding = Encoding.GetEncoding(1252);
             Console.SetWindowSize(181, 45);
 
             if (true)
