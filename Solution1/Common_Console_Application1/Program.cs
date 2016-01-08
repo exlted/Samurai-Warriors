@@ -1,90 +1,19 @@
-﻿using System;
+﻿using Creature;
+using System;
 using System.Text;
+using API;
 
 namespace Common_Console_Application1
 {
     internal class Program
     {
-        private struct PlayerPos
+        static int mobCount = 5;
+
+        private static void initialRender()
         {
-            public int x;
-            public int y;
-            public int HP;
-            public int Str;
-            public int Def;
-            public int Lvl;
-            public int Exp;
-            public bool isAlive;
-        }
-
-        private static PlayerPos MonsterMovement(PlayerPos monster, int rnd)
-        {
-            switch (rnd)
-            {
-                case 1:
-                    if (monster.y > 1)
-                    {
-                        monster.y -= 1;
-                    }
-                    return monster;
-
-                case 2:
-                    if (monster.y < 39)
-                    {
-                        monster.y += 1;
-                    }
-                    return monster;
-
-                case 3:
-                    if (monster.x > 1)
-                    {
-                        monster.x -= 1;
-                    }
-                    return monster;
-
-                case 4:
-                    if (monster.x < 179)
-                    {
-                        monster.x += 1;
-                    }
-                    return monster;
-
-                default:
-                    return monster;
-            }
-        }
-
-        private static bool killCheck(int playerX, int playerY, int monsterX, int monsterY)
-        {
-            bool isAlive = true;
-            if (playerX == monsterX && playerY == monsterY)
-            {
-                isAlive = false;
-                Console.Write("killed monster");
-                return isAlive;
-            }
-            else return isAlive;
-        }
-
-        private static void Main(string[] args)
-        {
-            //Initializing variables
-            char[] ascii = new char[41];
-            ConsoleKeyInfo input;
-            PlayerPos player;
-            PlayerPos[] monster = new PlayerPos[2];
-            Random random = new Random();
-            player.x = 1;
-            player.y = 1;
-            monster[0].x = 5;
-            monster[0].y = 5;
-            monster[0].isAlive = true;
-            monster[1].x = 20;
-            monster[1].y = 35;
-            monster[1].isAlive = true;
             Console.OutputEncoding = Encoding.GetEncoding(1252);
             Console.SetWindowSize(181, 45);
-
+            char[] ascii = new char[41];
             if (true)
             {
                 int i = 0;
@@ -117,89 +46,88 @@ namespace Common_Console_Application1
                     }
                 }
             }
-            Console.SetCursorPosition(1, 1);
+        }
+
+        private static void clearMobs(Mob player, Mob[] monster)
+        {
+            Console.SetCursorPosition(player.x, player.y);
+            Console.Write(".");
+
+            for (int i = 0; i <= mobCount - 1; i++)
+            {
+                Console.SetCursorPosition(monster[i].x, monster[i].y);
+                Console.Write(".");
+            }
+            Console.SetCursorPosition(0, 44);
+        }
+
+        private static void renderMobs(Mob player, Mob[] monster)
+        {
+            for (int i = 0; i <= mobCount - 1; i++)
+            {
+                Console.SetCursorPosition(monster[i].x, monster[i].y);
+                Console.Write("M");
+            }
+            Console.SetCursorPosition(player.x, player.y);
             Console.Write("P");
-            Console.SetCursorPosition(5, 5);
-            Console.Write("M");
-            Console.SetCursorPosition(20, 35);
-            Console.Write("M");
+            Console.SetCursorPosition(0, 44);
+        }
+
+        private static void Main(string[] args)
+        {
+            //Initializing variables
+            Random random = new Random();
+            ConsoleKeyInfo input;
+            Mob player = new Mob(1, 1);
+            Mob[] monster = new Mob[mobCount];
+
+            for (int i = 0; i <= mobCount - 1; i++)
+            {
+                monster[i] = new Mob(random.Next(1, 179), random.Next(1, 39));
+            }
+
+            initialRender();
+
+            Console.SetCursorPosition(player.x, player.y);
+            Console.Write("P");
+            for (int i = 0; i <= mobCount - 1; i++)
+            {
+                Console.SetCursorPosition(monster[i].x, monster[i].y);
+                Console.Write("M");
+            }
             Console.SetCursorPosition(0, 44);
 
             //Main loop
             while (true)
             {
                 input = Console.ReadKey();
-                Console.SetCursorPosition(player.x, player.y);
-                Console.Write(".");
-                Console.SetCursorPosition(monster[0].x, monster[0].y);
-                Console.Write(".");
-                Console.SetCursorPosition(monster[1].x, monster[1].y);
-                Console.Write(".");
-
+                clearMobs(player, monster);
                 switch (input.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        if (player.y > 1)
-                        {
-                            player.y -= 1;
-                        }
+                        player = Mob.Movement(player, Mob.moveDirection.up);
                         break;
 
                     case ConsoleKey.DownArrow:
-                        if (player.y < 39)
-                        {
-                            player.y += 1;
-                        }
+                        player = Mob.Movement(player, Mob.moveDirection.down);
                         break;
 
                     case ConsoleKey.LeftArrow:
-                        if (player.x > 1)
-                        {
-                            player.x -= 1;
-                        }
+                        player = Mob.Movement(player, Mob.moveDirection.left);
                         break;
 
                     case ConsoleKey.RightArrow:
-                        if (player.x < 179)
-                        { 
-                            player.x += 1;
-                        }
+                        player = Mob.Movement(player, Mob.moveDirection.right);
                         break;
 
                     default:
                         break;
                 }
-
-                if (monster[0].isAlive)
+                for (int i = 0; i <= mobCount - 1; i++)
                 {
-                    monster[0] = MonsterMovement(monster[0], random.Next(1, 6));
-                    Console.SetCursorPosition(monster[0].x, monster[0].y);
-                    Console.Write("M");
-                    Console.SetCursorPosition(0, 44);
-                    monster[0].isAlive = killCheck(player.x, player.y, monster[0].x, monster[0].y);
+                    Mob.Movement(monster[i], random.Next(1, 6));
                 }
-                else
-                {
-                    Console.SetCursorPosition(0, 44);
-                    Console.Write("              ");
-                }
-                if (monster[1].isAlive)
-                {
-                    monster[1] = MonsterMovement(monster[1], random.Next(1, 6));
-                    Console.SetCursorPosition(monster[1].x, monster[1].y);
-                    Console.Write("M");
-                    Console.SetCursorPosition(0, 44);
-                    monster[1].isAlive = killCheck(player.x, player.y, monster[1].x, monster[1].y);
-                }
-                else
-                {
-                    Console.SetCursorPosition(0, 44);
-                    Console.Write("              ");
-                }
-                Console.SetCursorPosition(player.x, player.y);
-                Console.Write("P");
-                Console.SetCursorPosition(0, 44);
-
+                renderMobs(player, monster);
             }
         }
     }
@@ -212,5 +140,5 @@ namespace Common_Console_Application1
     Def static
     1 attack not defended = 1 health
     Stat Rolls on level up - Str (3-5) Def (0-3) Health (10-20)
-    Lv 1 Stats - Str (5-15) Def (0-5) Health (48 - 60)S
+    Lv 1 Stats - Str (5-15) Def (0-5) Health (48 - 60)
 */
