@@ -15,7 +15,7 @@ namespace Common_Console_Application1
             Point temp = new Point();
             for (int i = 0; i < 181; i++)
             {
-                for (int j = 0; i < 41; i++)
+                for (int j = 0; i < 40; i++)
                 {
                     temp.X = i;
                     temp.Y = j;

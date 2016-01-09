@@ -86,7 +86,7 @@ namespace render
             Console.Write(ascii[7]);
             for (int i = 0; i < 181; i++)
             {
-                for (int j = 0; j < 41; j++)
+                for (int j = 0; j < 40; j++)
                 {
                     temp.X = i;
                     temp.Y = j;
