@@ -64,6 +64,7 @@ namespace Render
                 Console.Write(".");
             }
             Console.SetCursorPosition(0, 44);
+            Console.Write("                                        ");
         }
 
         public static void renderMobs(Mob player, Mob[] monster, int mobCount)
