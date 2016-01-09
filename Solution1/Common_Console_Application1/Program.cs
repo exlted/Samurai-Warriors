@@ -54,7 +54,7 @@ namespace Common_Console_Application1
                     if (monster[i].isAlive)
                     {
                         Mob.Movement(monster[i], random.Next(1, 6));
-                        Mob.isKilled(player, monster[i]);
+                        Mob.checkDamage(player, monster[i], random.Next(0, 5));
                     }
                 }
                 render.renderMobs(player, monster, mobCount);

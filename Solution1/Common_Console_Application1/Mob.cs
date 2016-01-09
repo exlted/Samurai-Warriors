@@ -112,20 +112,21 @@ namespace Creature
             return player;
         }
 
-        public static Mob isKilled(Mob player, Mob monster)
+        public static Mob checkDamage(Mob attacker, Mob defender, int random)
         {
-            if (player.x == monster.x && player.y == monster.y)
+            if (attacker.x == defender.x && attacker.y == defender.y)
             {
-                monster.isAlive = false;
-                return monster;
+                defender.HP -= ((attacker.Str + (random - 2)) - defender.Def);
+                Console.SetCursorPosition(0, 44);
+                Console.Write("dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage");
+                return defender;
+                if (defender.HP<=0)
+                {
+                    defender.isAlive = false;
+                }
+                return defender;
             }
-            else return monster;
-        }
-
-        public static Mob CheckDamage(Mob attacker, Mob defender)
-        {
-            defender.HP -= (attacker.Str - defender.Def);
-            return defender;
+            else return defender;
         }
 
         //public static Mob CheckCollision(Mob creature, moveDirection moving)
