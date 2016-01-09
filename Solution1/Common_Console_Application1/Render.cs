@@ -43,11 +43,11 @@ namespace Render
                     }
                 }
             }
-            Console.SetCursorPosition(player.x, player.y);
+            Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
             Console.Write("P");
             for (int i = 0; i <= mobCount - 1; i++)
             {
-                Console.SetCursorPosition(monster[i].x, monster[i].y);
+                Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
                 Console.Write("M");
             }
             Console.SetCursorPosition(0, 44);
@@ -55,12 +55,12 @@ namespace Render
 
         public static void clearMobs(Mob player, Mob[] monster, int mobCount)
         {
-            Console.SetCursorPosition(player.x, player.y);
+            Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
             Console.Write(".");
 
             for (int i = 0; i <= mobCount - 1; i++)
             {
-                Console.SetCursorPosition(monster[i].x, monster[i].y);
+                Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
                 Console.Write(".");
             }
             Console.SetCursorPosition(0, 44);
@@ -73,11 +73,11 @@ namespace Render
             {
                 if (monster[i].isAlive)
                 {
-                    Console.SetCursorPosition(monster[i].x, monster[i].y);
+                    Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
                     Console.Write("M");
                 }
             }
-            Console.SetCursorPosition(player.x, player.y);
+            Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
             Console.Write("P");
             Console.SetCursorPosition(0, 44);
         }
