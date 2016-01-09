@@ -15,20 +15,7 @@ namespace Creature
 
         public enum moveDirection { up, down, left, right, none }
 
-        public Mob(int xPos, int yPos)
-        {
-            Random random = new Random();
-            x = xPos;
-            y = yPos;
-            isAlive = true;
-            HP = random.Next(48, 61);
-            Def = random.Next(0, 6);
-            Str = random.Next(5, 16);
-            Lvl = 1;
-            Exp = 0;
-        }
-
-        public Mob(int xPos, int yPos, int Health, int Strength, int Defense, int Level, int Experience)
+        public Mob(int xPos, int yPos, int Health, int Strength, int Defense, int Level = 1, int Experience = 0)
         {
             x = xPos;
             y = yPos;
@@ -134,5 +121,28 @@ namespace Creature
             }
             else return monster;
         }
+
+        public static Mob CheckDamage(Mob attacker, Mob defender)
+        {
+            defender.HP -= (attacker.Str - defender.Def);
+            return defender;
+        }
+
+        //public static Mob CheckCollision(Mob creature, moveDirection moving)
+        //{
+        //    switch (moving)
+        //    {
+        //        case moveDirection.up:
+        //            
+        //        case moveDirection.down:
+        //            
+        //        case moveDirection.left:
+        //           
+        //        case moveDirection.right:
+        //            
+        //        default:
+        //            return creature;
+        //    }
+        //}
     }
 }
