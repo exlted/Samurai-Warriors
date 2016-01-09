@@ -6,11 +6,12 @@ namespace Render
 {
     internal class render
     {
+        static char[] ascii = new char[41];
+
         public static void initialRender(Mob player, Mob[] monster, int mobCount)
         {
             Console.OutputEncoding = Encoding.GetEncoding(1252);
             Console.SetWindowSize(181, 45);
-            char[] ascii = new char[41];
             if (true)
             {
                 int i = 0;
@@ -50,7 +51,7 @@ namespace Render
                 Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
                 Console.Write("M");
             }
-            Console.SetCursorPosition(0, 44);
+            Console.SetCursorPosition(1, 44);
         }
 
         public static void clearMobs(Mob player, Mob[] monster, int mobCount)
@@ -63,7 +64,7 @@ namespace Render
                 Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
                 Console.Write(".");
             }
-            Console.SetCursorPosition(0, 44);
+            Console.SetCursorPosition(1, 44);
             Console.Write("                                        ");
         }
 
@@ -79,11 +80,36 @@ namespace Render
             }
             Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
             Console.Write("P");
-            Console.SetCursorPosition(0, 44);
+            Console.SetCursorPosition(1, 44);
         }
 
         public static void renderUI()
         {
+
+            for(int i = 40; i <= 45; i++)
+            {
+                for(int j = 0; j <= 180; j++)
+                {
+                    Console.SetCursorPosition(j, i);
+                    if (i == 41 && j == 0)
+                        Console.Write(ascii[19]);
+                    else if (i == 45 && j == 0)
+                        Console.Write(ascii[19]);
+                    else if (i == 41 && j == 180)
+                        Console.Write(ascii[2]);
+                    else if (i == 45 && j == 180)
+                        Console.Write(ascii[2]);
+                    else if ((i == 41 || i == 45) && (j != 0 || j != 180))
+                        Console.Write(ascii[26]);
+                    else if ((j == 0 || j == 180) && (i != 41 || i != 45))
+                        Console.Write(ascii[0]);
+                    else if (i == 40 && j == 0)
+                        Console.Write(ascii[0]);
+                    else if (i == 40 && j == 180)
+                        Console.Write(ascii[0]);
+                }
+            }
+
         }
     }
 }
