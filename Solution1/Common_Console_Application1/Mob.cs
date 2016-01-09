@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using World;
 
 namespace Creature
 {
@@ -31,33 +32,33 @@ namespace Creature
             isAlive = true;
         }
 
-        public static Mob Movement(Mob creature, moveDirection moving)
+        public static Mob Movement(Mob creature, moveDirection moving, Dictionary<Point, world> world)
         {
             switch (moving)
             {
                 case moveDirection.up:
-                    if (creature.Coord.Y > 1)
+                    if (world.ContainsKey(creature.Coord) && world[creature.Coord].isPassable)
                     {
                         creature.Coord.Y -= 1;
                     }
                     return creature;
 
                 case moveDirection.down:
-                    if (creature.Coord.Y < 39)
+                    if (world.ContainsKey(creature.Coord) && world[creature.Coord].isPassable)
                     {
                         creature.Coord.Y += 1;
                     }
                     return creature;
 
                 case moveDirection.left:
-                    if (creature.Coord.X > 1)
+                    if (world.ContainsKey(creature.Coord) && world[creature.Coord].isPassable)
                     {
                         creature.Coord.X -= 1;
                     }
                     return creature;
 
                 case moveDirection.right:
-                    if (creature.Coord.X < 179)
+                    if (world.ContainsKey(creature.Coord) && world[creature.Coord].isPassable)
                     {
                         creature.Coord.X += 1;
                     }
