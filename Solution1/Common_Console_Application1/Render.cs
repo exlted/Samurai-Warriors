@@ -60,6 +60,30 @@ namespace render
                     }
                 }
             }
+            Console.SetCursorPosition(5, 41);
+            Console.Write(ascii[7]);
+            Console.SetCursorPosition(5, 42);
+            Console.Write(ascii[7]);
+            Console.SetCursorPosition(5, 43);
+            Console.Write(ascii[7]);
+            Console.SetCursorPosition(62, 41);
+            Console.Write(ascii[7]);
+            Console.SetCursorPosition(62, 42);
+            Console.Write(ascii[7]);
+            Console.SetCursorPosition(62, 43);
+            Console.Write(ascii[7]);
+            Console.SetCursorPosition(120, 41);
+            Console.Write(ascii[7]);
+            Console.SetCursorPosition(120, 42);
+            Console.Write(ascii[7]);
+            Console.SetCursorPosition(120, 43);
+            Console.Write(ascii[7]);
+            Console.SetCursorPosition(175, 41);
+            Console.Write(ascii[7]);
+            Console.SetCursorPosition(175, 42);
+            Console.Write(ascii[7]);
+            Console.SetCursorPosition(175, 43);
+            Console.Write(ascii[7]);
             for (int i = 0; i < 181; i++)
             {
                 for (int j = 0; j < 41; j++)
@@ -76,7 +100,7 @@ namespace render
                 Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
                 Console.Write("M");
             }
-            Console.SetCursorPosition(1, 43);
+            Console.SetCursorPosition(122, 43);
             return world;
         }
 
@@ -90,7 +114,7 @@ namespace render
                 Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
                 Console.Write(".");
             }
-            Console.SetCursorPosition(1, 43);
+            Console.SetCursorPosition(122, 43);
             Console.Write("                                        ");
         }
 
@@ -106,12 +130,20 @@ namespace render
             }
             Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
             Console.Write("P");
-            Console.SetCursorPosition(1, 43);
+            Console.SetCursorPosition(122, 43);
         }
 
         public static void renderUI()
         {
-            
+            Console.SetCursorPosition(10, 41);
+            Console.Write("HP:");
+            Console.SetCursorPosition(10, 43);
+            Console.Write("Str:");
+            Console.SetCursorPosition(24, 43);
+            Console.Write("Def:");
+            Console.SetCursorPosition(67, 41);
+            Console.Write("Exp:");
+
         }
     }
 }
