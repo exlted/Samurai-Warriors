@@ -47,6 +47,12 @@ namespace render
                     {
                         Console.Write(".");
                     }
+                }
+            }
+            for (int i = 0; i < 181; i++)
+            {
+                for (int j = 0; j < 41; j++)
+                {
                     temp.X = i;
                     temp.Y = j;
                     world.Add(temp, tempW);

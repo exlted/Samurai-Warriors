@@ -37,32 +37,52 @@ namespace Creature
             switch (moving)
             {
                 case moveDirection.up:
+                    creature.Coord.Y -= 1;
                     if (world[creature.Coord].isPassable)
                     {
-                        creature.Coord.Y -= 1;
+                        return creature;
                     }
-                    return creature;
-
-                case moveDirection.down:
-                    if (world[creature.Coord].isPassable)
+                    else
                     {
                         creature.Coord.Y += 1;
+                        return creature;
                     }
-                    return creature;
+
+                case moveDirection.down:
+                    creature.Coord.Y += 1;
+                    if (world[creature.Coord].isPassable)
+                    {
+                        return creature;
+                    }
+                    else
+                    {
+                        creature.Coord.Y -= 1;
+                        return creature;
+                    }
 
                 case moveDirection.left:
+                    creature.Coord.X -= 1;
                     if (world[creature.Coord].isPassable)
                     {
-                        creature.Coord.X -= 1;
+                        return creature;
                     }
-                    return creature;
-
-                case moveDirection.right:
-                    if (world[creature.Coord].isPassable)
+                    else
                     {
                         creature.Coord.X += 1;
+                        return creature;
                     }
-                    return creature;
+
+                case moveDirection.right:
+                    creature.Coord.X += 1;
+                    if (world[creature.Coord].isPassable)
+                    {
+                        return creature;
+                    }
+                    else
+                    {
+                        creature.Coord.X -= 1;
+                        return creature;
+                    }
 
                 default:
                     return creature;
@@ -74,32 +94,52 @@ namespace Creature
             switch (moving)
             {
                 case 1:
+                    creature.Coord.Y -= 1;
                     if (world[creature.Coord].isPassable)
                     {
-                        creature.Coord.Y -= 1;
+                        return creature;
                     }
-                    return creature;
-
-                case 2:
-                    if (world[creature.Coord].isPassable)
+                    else
                     {
                         creature.Coord.Y += 1;
+                        return creature;
                     }
-                    return creature;
+
+                case 2:
+                    creature.Coord.Y += 1;
+                    if (world[creature.Coord].isPassable)
+                    {
+                        return creature;
+                    }
+                    else
+                    {
+                        creature.Coord.Y -= 1;
+                        return creature;
+                    }
 
                 case 3:
+                    creature.Coord.X -= 1;
                     if (world[creature.Coord].isPassable)
                     {
-                        creature.Coord.X -= 1;
+                        return creature;
                     }
-                    return creature;
-
-                case 4:
-                    if (world[creature.Coord].isPassable)
+                    else
                     {
                         creature.Coord.X += 1;
+                        return creature;
                     }
-                    return creature;
+
+                case 4:
+                    creature.Coord.X += 1;
+                    if (world[creature.Coord].isPassable)
+                    {
+                        return creature;
+                    }
+                    else
+                    {
+                        creature.Coord.X -= 1;
+                        return creature;
+                    }
 
                 default:
                     return creature;
