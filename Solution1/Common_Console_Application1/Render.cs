@@ -27,7 +27,7 @@ namespace render
                     i++;
                 }
             }
-            for (int i = 0; i < Console.WindowHeight - 5; i++)
+            for (int i = 0; i < Console.WindowHeight - 1; i++)
             {
                 for (int j = 0; j < Console.WindowWidth; j++)
                 {
@@ -37,14 +37,24 @@ namespace render
                     else if (i == 0 && j == 180)
                         Console.Write(ascii[12]);
                     else if (i == 40 && j == 0)
-                        Console.Write(ascii[13]);
+                        Console.Write(ascii[19]);
+                    else if (i == 44 && j == 0)
+                        Console.Write(ascii[19]);
                     else if (i == 40 && j == 180)
-                        Console.Write(ascii[38]);
-                    else if ((i == 0 || i == 40) && (j != 180 || j != 0))
+                        Console.Write(ascii[2]);
+                    else if (i == 44 && j == 180)
+                        Console.Write(ascii[2]);
+                    else if (i == 40 && j == 180)
+                        Console.Write(ascii[0]);
+                    else if ((i == 0) && (j != 180 || j != 0))
                         Console.Write(ascii[17]);
                     else if ((j == 0 || j == 180) && (i != 0 || i != 40))
                         Console.Write(ascii[0]);
-                    else
+                    else if ((i == 40 || i == 44) && (j != 0 || j != 180))
+                        Console.Write(ascii[26]);
+                    else if ((j == 0 || j == 180) && (i != 40 || i != 44))
+                        Console.Write(ascii[0]);
+                    else if(i >= 1 && i <= 39 && j >= 1 && j <= 179)
                     {
                         Console.Write(".");
                     }
@@ -101,31 +111,7 @@ namespace render
 
         public static void renderUI()
         {
-
-            for(int i = 40; i <= 44; i++)
-            {
-                for(int j = 0; j <= 180; j++)
-                {
-                    Console.SetCursorPosition(j, i);
-                    if (i == 40 && j == 0)
-                        Console.Write(ascii[19]);
-                    else if (i == 44 && j == 0)
-                        Console.Write(ascii[19]);
-                    else if (i == 40 && j == 180)
-                        Console.Write(ascii[2]);
-                    else if (i == 44 && j == 180)
-                        Console.Write(ascii[2]);
-                    else if ((i == 40 || i == 44) && (j != 0 || j != 180))
-                        Console.Write(ascii[26]);
-                    else if ((j == 0 || j == 180) && (i != 40 || i != 44))
-                        Console.Write(ascii[0]);
-                    else if (i == 40 && j == 0)
-                        Console.Write(ascii[0]);
-                    else if (i == 40 && j == 180)
-                        Console.Write(ascii[0]);
-                }
-            }
-            Console.SetCursorPosition(1, 43);
+            
         }
     }
 }
