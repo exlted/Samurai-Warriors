@@ -1,6 +1,9 @@
-﻿using Creature;
+﻿using System;
+using System.Drawing;
+using System.Collections.Generic;
+using Creature;
 using Render;
-using System;
+using World;
 
 namespace Common_Console_Application1
 {
@@ -32,6 +35,7 @@ namespace Common_Console_Application1
         private static void Main(string[] args)
         {
             //Initializing variables
+            Dictionary<Point, world> world = new Dictionary<Point, world>();
             Random random = new Random();
             ConsoleKeyInfo input;
             Mob player = new Mob(1, 1, random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));

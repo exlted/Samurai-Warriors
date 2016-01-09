@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Creature
 {
     internal class Mob
-    { 
-        public int x;
-        public int y;
+    {
+        public Point Coord = new Point();
         public int HP;
         public int Str;
         public int Def;
@@ -17,8 +21,8 @@ namespace Creature
 
         public Mob(int xPos, int yPos, int Health, int Strength, int Defense, int Level = 1, int Experience = 0)
         {
-            x = xPos;
-            y = yPos;
+            Coord.X = xPos;
+            Coord.Y = yPos;
             HP = Health;
             Str = Strength;
             Def = Defense;
@@ -32,30 +36,30 @@ namespace Creature
             switch (moving)
             {
                 case moveDirection.up:
-                    if (creature.y > 1)
+                    if (creature.Coord.Y > 1)
                     {
-                        creature.y -= 1;
+                        creature.Coord.Y -= 1;
                     }
                     return creature;
 
                 case moveDirection.down:
-                    if (creature.y < 39)
+                    if (creature.Coord.Y < 39)
                     {
-                        creature.y += 1;
+                        creature.Coord.Y += 1;
                     }
                     return creature;
 
                 case moveDirection.left:
-                    if (creature.x > 1)
+                    if (creature.Coord.X > 1)
                     {
-                        creature.x -= 1;
+                        creature.Coord.X -= 1;
                     }
                     return creature;
 
                 case moveDirection.right:
-                    if (creature.x < 179)
+                    if (creature.Coord.X < 179)
                     {
-                        creature.x += 1;
+                        creature.Coord.X += 1;
                     }
                     return creature;
 
@@ -69,30 +73,30 @@ namespace Creature
             switch (moving)
             {
                 case 1:
-                    if (creature.y > 1)
+                    if (creature.Coord.Y > 1)
                     {
-                        creature.y -= 1;
+                        creature.Coord.Y -= 1;
                     }
                     return creature;
 
                 case 2:
-                    if (creature.y < 39)
+                    if (creature.Coord.Y < 39)
                     {
-                        creature.y += 1;
+                        creature.Coord.Y += 1;
                     }
                     return creature;
 
                 case 3:
-                    if (creature.x > 1)
+                    if (creature.Coord.X > 1)
                     {
-                        creature.x -= 1;
+                        creature.Coord.X -= 1;
                     }
                     return creature;
 
                 case 4:
-                    if (creature.x < 179)
+                    if (creature.Coord.X < 179)
                     {
-                        creature.x += 1;
+                        creature.Coord.X += 1;
                     }
                     return creature;
 
@@ -114,12 +118,11 @@ namespace Creature
 
         public static Mob checkDamage(Mob attacker, Mob defender, int random)
         {
-            if (attacker.x == defender.x && attacker.y == defender.y)
+            if (attacker.Coord == defender.Coord)
             {
                 defender.HP -= ((attacker.Str + (random - 2)) - defender.Def);
                 Console.SetCursorPosition(0, 44);
                 Console.Write("dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage");
-                return defender;
                 if (defender.HP<=0)
                 {
                     defender.isAlive = false;
@@ -134,13 +137,13 @@ namespace Creature
         //    switch (moving)
         //    {
         //        case moveDirection.up:
-        //            
+        //
         //        case moveDirection.down:
-        //            
+        //
         //        case moveDirection.left:
-        //           
+        //
         //        case moveDirection.right:
-        //            
+        //
         //        default:
         //            return creature;
         //    }
