@@ -46,6 +46,7 @@ namespace Common_Console_Application1
                 monster[i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
             }
             world = Render.initialRender(player, monster, mobCount, world);
+            Render.renderUI();
 
             //Main loop
             while (true)

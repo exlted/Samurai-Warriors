@@ -16,7 +16,8 @@ namespace render
             Point temp = new Point();
             world tempW = new world(Convert.ToChar("."), true, false);
             Console.OutputEncoding = Encoding.GetEncoding(1252);
-            Console.SetWindowSize(181, 45);
+            Console.SetWindowSize(181, 46);
+            Console.SetBufferSize(181, 46);
             if (true)
             {
                 int i = 0;
@@ -26,7 +27,7 @@ namespace render
                     i++;
                 }
             }
-            for (int i = 0; i < Console.WindowHeight - 4; i++)
+            for (int i = 0; i < Console.WindowHeight - 5; i++)
             {
                 for (int j = 0; j < Console.WindowWidth; j++)
                 {
@@ -65,7 +66,7 @@ namespace render
                 Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
                 Console.Write("M");
             }
-            Console.SetCursorPosition(1, 44);
+            Console.SetCursorPosition(1, 43);
             return world;
         }
 
@@ -79,7 +80,7 @@ namespace render
                 Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
                 Console.Write(".");
             }
-            Console.SetCursorPosition(1, 44);
+            Console.SetCursorPosition(1, 43);
             Console.Write("                                        ");
         }
 
@@ -95,28 +96,28 @@ namespace render
             }
             Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
             Console.Write("P");
-            Console.SetCursorPosition(1, 44);
+            Console.SetCursorPosition(1, 43);
         }
 
         public static void renderUI()
         {
 
-            for(int i = 40; i <= 45; i++)
+            for(int i = 40; i <= 44; i++)
             {
                 for(int j = 0; j <= 180; j++)
                 {
                     Console.SetCursorPosition(j, i);
-                    if (i == 41 && j == 0)
+                    if (i == 40 && j == 0)
                         Console.Write(ascii[19]);
-                    else if (i == 45 && j == 0)
+                    else if (i == 44 && j == 0)
                         Console.Write(ascii[19]);
-                    else if (i == 41 && j == 180)
+                    else if (i == 40 && j == 180)
                         Console.Write(ascii[2]);
-                    else if (i == 45 && j == 180)
+                    else if (i == 44 && j == 180)
                         Console.Write(ascii[2]);
-                    else if ((i == 41 || i == 45) && (j != 0 || j != 180))
+                    else if ((i == 40 || i == 44) && (j != 0 || j != 180))
                         Console.Write(ascii[26]);
-                    else if ((j == 0 || j == 180) && (i != 41 || i != 45))
+                    else if ((j == 0 || j == 180) && (i != 40 || i != 44))
                         Console.Write(ascii[0]);
                     else if (i == 40 && j == 0)
                         Console.Write(ascii[0]);
@@ -124,7 +125,7 @@ namespace render
                         Console.Write(ascii[0]);
                 }
             }
-
+            Console.SetCursorPosition(1, 43);
         }
     }
 }

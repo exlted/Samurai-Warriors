@@ -162,7 +162,7 @@ namespace Creature
             if (attacker.Coord == defender.Coord)
             {
                 defender.HP -= ((attacker.Str + (random - 2)) - defender.Def);
-                Console.SetCursorPosition(0, 44);
+                Console.SetCursorPosition(1, 43);
                 Console.Write("dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage");
                 if (defender.HP<=0)
                 {
