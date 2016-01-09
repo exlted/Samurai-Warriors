@@ -15,9 +15,11 @@ namespace render
         {
             Point temp = new Point();
             world tempW = new world(Convert.ToChar("."), true, false);
+            world tempW2 = new World.world(Convert.ToChar("."), false, false);
             Console.OutputEncoding = Encoding.GetEncoding(1252);
             Console.SetWindowSize(181, 46);
             Console.SetBufferSize(181, 46);
+            bool tempb = true;
             if (true)
             {
                 int i = 0;
@@ -84,13 +86,16 @@ namespace render
             Console.Write(ascii[7]);
             Console.SetCursorPosition(175, 43);
             Console.Write(ascii[7]);
-            for (int i = 0; i < 181; i++)
+            for (int i = 0; i < 41; i++)
             {
-                for (int j = 0; j < 40; j++)
+                for (int j = 0; j < 181; j++)
                 {
-                    temp.X = i;
-                    temp.Y = j;
-                    world.Add(temp, tempW);
+                    temp.X = j;
+                    temp.Y = i;
+                    if(i == 40)
+                        world.Add(temp, tempW2);
+                    else
+                        world.Add(temp, tempW);
                 }
             }
             Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
