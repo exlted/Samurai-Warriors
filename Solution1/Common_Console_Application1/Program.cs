@@ -40,12 +40,11 @@ namespace Common_Console_Application1
             ConsoleKeyInfo input;
             Mob player = new Mob(1, 1, random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
             Mob[] monster = new Mob[mobCount];
-
             for (int i = 0; i <= mobCount - 1; i++)
             {
                 monster[i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
             }
-            render.initialRender(player, monster, mobCount);
+            render.initialRender(player, monster, mobCount, world);
 
             //Main loop
             while (true)
