@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Collections.Generic;
 using Creature;
-using Render;
+using render;
 using World;
 
 namespace Common_Console_Application1
@@ -11,21 +11,21 @@ namespace Common_Console_Application1
     {
         private static int mobCount = 10;
 
-        private static Mob playerInput(ConsoleKeyInfo input, Mob player)
+        private static Mob playerInput(ConsoleKeyInfo input, Mob player, Dictionary<Point, world> world)
         {
             switch (input.Key)
             {
                 case ConsoleKey.UpArrow:
-                    return Mob.Movement(player, Mob.moveDirection.up);
+                    return Mob.Movement(player, Mob.moveDirection.up, world);
 
                 case ConsoleKey.DownArrow:
-                    return Mob.Movement(player, Mob.moveDirection.down);
+                    return Mob.Movement(player, Mob.moveDirection.down, world);
 
                 case ConsoleKey.LeftArrow:
-                    return Mob.Movement(player, Mob.moveDirection.left);
+                    return Mob.Movement(player, Mob.moveDirection.left, world);
 
                 case ConsoleKey.RightArrow:
-                    return Mob.Movement(player, Mob.moveDirection.right);
+                    return Mob.Movement(player, Mob.moveDirection.right, world);
 
                 default:
                     return player;
@@ -45,23 +45,23 @@ namespace Common_Console_Application1
             {
                 monster[i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
             }
-            render.initialRender(player, monster, mobCount);
+            world = Render.initialRender(player, monster, mobCount, world);
 
             //Main loop
             while (true)
             {
                 input = Console.ReadKey();
-                render.clearMobs(player, monster, mobCount);
-                player = playerInput(input, player);
+                Render.clearMobs(player, monster, mobCount);
+                player = playerInput(input, player, world);
                 for (int i = 0; i <= mobCount - 1; i++)
                 {
                     if (monster[i].isAlive)
                     {
-                        Mob.Movement(monster[i], random.Next(1, 6));
+                        Mob.Movement(monster[i], random.Next(1, 6) ,world);
                         Mob.checkDamage(player, monster[i], random.Next(0, 5));
                     }
                 }
-                render.renderMobs(player, monster, mobCount);
+                Render.renderMobs(player, monster, mobCount);
             }
         }
     }

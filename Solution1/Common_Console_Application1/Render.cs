@@ -1,15 +1,20 @@
 ﻿using Creature;
 using System;
 using System.Text;
+using System.Collections.Generic;
+using System.Drawing;
+using World;
 
-namespace Render
+namespace render
 {
-    internal class render
+    internal class Render
     {
         static char[] ascii = new char[41];
 
-        public static void initialRender(Mob player, Mob[] monster, int mobCount)
+        public static Dictionary<Point, world> initialRender(Mob player, Mob[] monster, int mobCount, Dictionary<Point, world> world)
         {
+            Point temp = new Point();
+            world tempW = new world(Convert.ToChar("."), true, false);
             Console.OutputEncoding = Encoding.GetEncoding(1252);
             Console.SetWindowSize(181, 45);
             if (true)
@@ -42,6 +47,9 @@ namespace Render
                     {
                         Console.Write(".");
                     }
+                    temp.X = i;
+                    temp.Y = j;
+                    world.Add(temp, tempW);
                 }
             }
             Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
@@ -52,6 +60,7 @@ namespace Render
                 Console.Write("M");
             }
             Console.SetCursorPosition(1, 44);
+            return world;
         }
 
         public static void clearMobs(Mob player, Mob[] monster, int mobCount)
