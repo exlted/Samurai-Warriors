@@ -50,7 +50,7 @@ namespace Common_Console_Application1
             world = Render.initialRender(world);
             world = Render.generateWorld(world);
             Render.initRender(world);
-            Render.initMobRender(player, monster, mobCount);
+            Render.renderMobs(player, monster, mobCount);
             Render.renderUI();
 
             //Main loop

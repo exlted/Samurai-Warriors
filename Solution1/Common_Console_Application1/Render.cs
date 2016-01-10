@@ -150,17 +150,6 @@ namespace render
             }
         }
 
-        public static void initMobRender(Mob player, Mob[] monster, int mobCount)
-        {
-            Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
-            Console.Write("P");
-            for (int i = 0; i <= mobCount - 1; i++)
-            {
-                Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
-                Console.Write("M");
-            }
-            Console.SetCursorPosition(122, 43);
-        }
         public static void clearMobs(Mob player, Mob[] monster, int mobCount)
         {
             Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
@@ -182,12 +171,15 @@ namespace render
                 if (monster[i].isAlive)
                 {
                     Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("M");
                 }
             }
             Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("P");
             Console.SetCursorPosition(122, 43);
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         public static void renderUI()

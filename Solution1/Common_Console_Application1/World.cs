@@ -5,16 +5,14 @@
         public bool isPassable;
         public bool updateOnTick;
         public char renderChar;
+        public int colorCode;
 
-        public world(char render, bool passable, bool update)
+        public world(char render, bool passable, bool update, int color)
         {
             isPassable = passable;
             updateOnTick = update;
             renderChar = render;
-        }
-        public static object Clone(world oldWorld)
-        {
-            return new world(oldWorld.renderChar, oldWorld.isPassable, oldWorld.updateOnTick);
+            colorCode = color;
         }
     }
 }
