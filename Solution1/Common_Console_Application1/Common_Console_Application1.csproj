@@ -47,7 +47,7 @@
     <Compile Include="Class1.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="TemporaryRender.cs" />
+    <Compile Include="Global Vars.cs" />
     <Compile Include="World.cs" />
     <Compile Include="Render.cs" />
     <Compile Include="Mob.cs" />

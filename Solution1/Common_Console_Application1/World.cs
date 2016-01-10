@@ -1,6 +1,6 @@
 ﻿namespace World
 {
-    class world
+    internal class world
     {
         public bool isPassable;
         public bool updateOnTick;
