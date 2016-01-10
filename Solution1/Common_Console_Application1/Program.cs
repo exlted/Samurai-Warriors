@@ -9,7 +9,7 @@ namespace Common_Console_Application1
 {
     internal class Program
     {
-        private static int mobCount = 1;
+        private static int mobCount = 10;
 
         private static Mob playerInput(ConsoleKeyInfo input, Mob player, Dictionary<Point, world> world)
         {
@@ -45,7 +45,12 @@ namespace Common_Console_Application1
             {
                 monster[i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
             }
-            world = Render.initialRender(player, monster, mobCount, world);
+
+
+            world = Render.initialRender(world);
+            world = Render.generateWorld(world);
+            Render.initRender(world);
+            Render.initMobRender(player, monster, mobCount);
             Render.renderUI();
 
             //Main loop
@@ -58,7 +63,7 @@ namespace Common_Console_Application1
                 {
                     if (monster[i].isAlive)
                     {
-                        //Mob.Movement(monster[i], random.Next(1, 6) ,world);
+                        Mob.Movement(monster[i], random.Next(1, 6) ,world);
                         Mob.checkDamage(player, monster[i], random.Next(0, 5));
                     }
                 }

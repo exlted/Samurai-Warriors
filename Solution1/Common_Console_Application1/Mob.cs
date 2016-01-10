@@ -84,6 +84,9 @@ namespace Creature
                         return creature;
                     }
 
+                case moveDirection.none:
+                    Console.Write(creature.Coord.X + " " + creature.Coord.Y);
+                    return creature;
                 default:
                     return creature;
             }

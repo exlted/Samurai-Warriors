@@ -25,7 +25,7 @@ namespace Common_Console_Application1
                 }
             }
         }
-        public static Dictionary<Point, world> pass(Dictionary<Point, world> world)
+        public static Dictionary<Point, world> generateWorld(Dictionary<Point, world> world)
         {
                 int e = 0;
                 for (char c = (char)179; c <= (char)218; ++c)
@@ -54,13 +54,13 @@ namespace Common_Console_Application1
                         return world;
                     }
                         //Console.Write(ascii[12]);
-                    
+
                         //Console.Write(ascii[19]);
-                    
+
                         //Console.Write(ascii[19]);
-                    
+
                         //Console.Write(ascii[2]);
-                    
+
                         //Console.Write(ascii[2]);
                     else if (i == 40 && j == 180)
                     {
@@ -83,7 +83,7 @@ namespace Common_Console_Application1
                         return world;
                     }
                         //Console.Write(ascii[0]);
-                    
+
                         //Console.Write(ascii[26]);
                     else if ((j == 0 || j == 180) && (i != 40 || i != 44))
                     {

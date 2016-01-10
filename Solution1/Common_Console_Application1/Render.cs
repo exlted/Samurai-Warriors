@@ -11,15 +11,68 @@ namespace render
     {
         static char[] ascii = new char[41];
 
-        public static Dictionary<Point, world> initialRender(Mob player, Mob[] monster, int mobCount, Dictionary<Point, world> world)
+        public static Dictionary<Point, world> generateWorld(Dictionary<Point, world> world)
+        {
+            int e = 0;
+            for (char c = (char)179; c <= (char)218; ++c)
+            {
+                ascii[e] = c;
+                e++;
+            }
+            Point temp = new Point();
+            for (int i = 0; i < Console.WindowHeight - 5; i++)
+            {
+                for (int j = 0; j < Console.WindowWidth; j++)
+                {
+                    temp.X = j;
+                    temp.Y = i;
+                    if (i == 0 && j == 0)
+                    {
+                        world[temp].renderChar = ascii[39];
+                        world[temp].isPassable = false;
+                    }
+                    else if (i == 0 && j == 180)
+                    {
+                        world[temp].renderChar = ascii[12];
+                        world[temp].isPassable = false;
+                    }
+                    else if (i == 40 && j == 180)
+                    {
+                        world[temp].renderChar = ascii[0];
+                        world[temp].isPassable = false;
+                    }
+                    else if ((i == 0) && (j != 180 || j != 0))
+                    {
+                        world[temp].renderChar = ascii[17];
+                        world[temp].isPassable = false;
+                    }
+                    else if ((j == 0 || j == 180) && (i != 0 || i != 40))
+                    {
+                        world[temp].renderChar = ascii[0];
+                        world[temp].isPassable = false;
+                    }
+                    else if ((j == 0 || j == 180) && (i != 40 || i != 44))
+                    {
+                        world[temp].renderChar = ascii[0];
+                        world[temp].isPassable = false;
+                    }
+                    else if (i >= 1 && i <= 39 && j >= 1 && j <= 179)
+                    {
+                        world[temp].renderChar = Convert.ToChar(".");
+                        world[temp].isPassable = true;
+                    }
+                }
+            }
+            return world;
+        }
+
+        public static Dictionary<Point, world> initialRender(Dictionary<Point, world> World)
         {
             Point temp = new Point();
             world tempW = new world(Convert.ToChar("."), true, false);
-            world tempW2 = new World.world(Convert.ToChar("."), false, false);
             Console.OutputEncoding = Encoding.GetEncoding(1252);
             Console.SetWindowSize(181, 46);
             Console.SetBufferSize(181, 46);
-            bool tempb = true;
             if (true)
             {
                 int i = 0;
@@ -29,37 +82,19 @@ namespace render
                     i++;
                 }
             }
-            for (int i = 0; i < Console.WindowHeight - 1; i++)
+            for (int i = 40; i < Console.WindowHeight - 1; i++)
             {
                 for (int j = 0; j < Console.WindowWidth; j++)
                 {
                     Console.SetCursorPosition(j, i);
-                    if (i == 0 && j == 0)
-                        Console.Write(ascii[39]);
-                    else if (i == 0 && j == 180)
-                        Console.Write(ascii[12]);
-                    else if (i == 40 && j == 0)
-                        Console.Write(ascii[19]);
-                    else if (i == 44 && j == 0)
-                        Console.Write(ascii[19]);
-                    else if (i == 40 && j == 180)
+                    if ((j == 180 && (i == 40 || i == 44)))
                         Console.Write(ascii[2]);
-                    else if (i == 44 && j == 180)
-                        Console.Write(ascii[2]);
-                    else if (i == 40 && j == 180)
-                        Console.Write(ascii[0]);
-                    else if ((i == 0) && (j != 180 || j != 0))
-                        Console.Write(ascii[17]);
-                    else if ((j == 0 || j == 180) && (i != 0 || i != 40))
+                    else if ((j == 0 && (i == 40 || i == 44)))
+                        Console.Write(ascii[19]);
+                    else if (j == 0 || j == 180)
                         Console.Write(ascii[0]);
                     else if ((i == 40 || i == 44) && (j != 0 || j != 180))
                         Console.Write(ascii[26]);
-                    else if ((j == 0 || j == 180) && (i != 40 || i != 44))
-                        Console.Write(ascii[0]);
-                    else if(i >= 1 && i <= 39 && j >= 1 && j <= 179)
-                    {
-                        Console.Write(".");
-                    }
                 }
             }
             Console.SetCursorPosition(5, 41);
@@ -92,12 +127,31 @@ namespace render
                 {
                     temp.X = j;
                     temp.Y = i;
-                    if(i == 40)
-                        world.Add(temp, tempW2);
-                    else
-                        world.Add(temp, tempW);
+                    if (i == 40)
+                        tempW.isPassable = false;
+                    World.Add(temp, new world(tempW.renderChar, tempW.isPassable, tempW.updateOnTick));
                 }
             }
+            return World;
+        }
+
+        public static void initRender(Dictionary<Point, world> world)
+        {
+            Point temp = new Point();
+            for (int i = 0; i < 181; i++)
+            {
+                for (int j = 0; j < 40; j++)
+                {
+                    temp.X = i;
+                    temp.Y = j;
+                    Console.SetCursorPosition(i, j);
+                    Console.Write(world[temp].renderChar);
+                }
+            }
+        }
+
+        public static void initMobRender(Mob player, Mob[] monster, int mobCount)
+        {
             Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
             Console.Write("P");
             for (int i = 0; i <= mobCount - 1; i++)
@@ -106,9 +160,7 @@ namespace render
                 Console.Write("M");
             }
             Console.SetCursorPosition(122, 43);
-            return world;
         }
-
         public static void clearMobs(Mob player, Mob[] monster, int mobCount)
         {
             Console.SetCursorPosition(player.Coord.X, player.Coord.Y);

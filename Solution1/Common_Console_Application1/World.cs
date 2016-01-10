@@ -12,5 +12,9 @@
             updateOnTick = update;
             renderChar = render;
         }
+        public static object Clone(world oldWorld)
+        {
+            return new world(oldWorld.renderChar, oldWorld.isPassable, oldWorld.updateOnTick);
+        }
     }
 }
