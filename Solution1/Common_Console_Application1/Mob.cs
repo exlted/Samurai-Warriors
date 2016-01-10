@@ -169,7 +169,7 @@ namespace Creature
                     global.print("You defeated the enemy!                         ");
                     attacker.Exp += 5;
                 }
-                else global.print("dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage                    ");
+                else global.print("Dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage                    ");
             }
             else if (((attacker.Str + (random - 2)) - defender.Def) <= 0)
             {
