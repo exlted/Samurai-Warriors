@@ -160,8 +160,6 @@ namespace render
                 Console.SetCursorPosition(monster[i].Coord.X, monster[i].Coord.Y);
                 Console.Write(".");
             }
-            Console.SetCursorPosition(122, 43);
-            Console.Write("                                        ");
         }
 
         public static void renderMobs(Mob player, Mob[] monster, int mobCount)
@@ -176,9 +174,9 @@ namespace render
                 }
             }
             Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.Write("P");
-            Console.SetCursorPosition(122, 43);
+            Console.SetCursorPosition(0, 45);
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 

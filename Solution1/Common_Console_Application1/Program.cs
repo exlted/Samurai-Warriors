@@ -40,6 +40,8 @@ namespace Common_Console_Application1
             ConsoleKeyInfo input;
             Mob player = new Mob(1, 1, random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
             Mob[] monster = new Mob[mobCount];
+            int textPos = 0;
+            bool didDamage = false;
 
             for (int i = 0; i <= mobCount - 1; i++)
             {
@@ -64,7 +66,44 @@ namespace Common_Console_Application1
                     if (monster[i].isAlive)
                     {
                         Mob.Movement(monster[i], random.Next(1, 6) ,world);
-                        Mob.checkDamage(player, monster[i], random.Next(0, 5));
+                        
+                        if(Mob.checkDamage(player, monster[i], random.Next(0, 5), textPos))
+                        {
+                            switch (textPos)
+                            {
+                                case 0:
+                                    textPos = 1;
+                                    break;
+                                case 1:
+                                    textPos = 2;
+                                    break;
+                                case 2:
+                                    textPos = 0;
+                                    break;
+                                default:
+                                    textPos = 0;
+                                    break;
+                            }
+                        }
+                        if (player.Exp == 5)
+                        {
+                            Mob.LevelUp(player, textPos, random.Next(3, 6), random.Next(0, 4), random.Next(10, 21));
+                            switch (textPos)
+                            {
+                                case 0:
+                                    textPos = 1;
+                                    break;
+                                case 1:
+                                    textPos = 2;
+                                    break;
+                                case 2:
+                                    textPos = 0;
+                                    break;
+                                default:
+                                    textPos = 0;
+                                    break;
+                            }
+                        }
                     }
                 }
                 Render.renderMobs(player, monster, mobCount);

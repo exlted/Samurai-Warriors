@@ -149,31 +149,68 @@ namespace Creature
             }
         }
 
-        public static Mob LevelUp(Mob player)
+        public static Mob LevelUp(Mob player, int textPos, int StrRand, int DefRand, int HPRand)
         {
             Random random = new Random();
-            player.Str += random.Next(3, 6);
-            player.Def += random.Next(0, 4);
-            player.HP += random.Next(10, 21);
+            player.Str += StrRand;
+            player.Def += DefRand;
+            player.HP += HPRand;
             player.Lvl += 1;
             player.Exp = 0;
+            switch (textPos)
+            {
+                case 0:
+                    Console.SetCursorPosition(122, 41);
+                    break;
+                case 1:
+                    Console.SetCursorPosition(122, 42);
+                    break;
+                case 2:
+                    Console.SetCursorPosition(122, 43);
+                    break;
+                default:
+                    Console.SetCursorPosition(122, 43);
+                    break;
+            }
+            Console.Write("Level up!                         ");
             return player;
         }
 
-        public static Mob checkDamage(Mob attacker, Mob defender, int random)
+        public static bool checkDamage(Mob attacker, Mob defender, int random, int textPos)
         {
-            if (attacker.Coord == defender.Coord)
+            switch (textPos)
+            {
+                case 0:
+                    Console.SetCursorPosition(122, 41);
+                    break;
+                case 1:
+                    Console.SetCursorPosition(122, 42);
+                    break;
+                case 2:
+                    Console.SetCursorPosition(122, 43);
+                    break;
+                default:
+                    Console.SetCursorPosition(122, 43);
+                    break;
+            }
+            if (attacker.Coord == defender.Coord && ((attacker.Str + (random - 2)) - defender.Def) > 0)
             {
                 defender.HP -= ((attacker.Str + (random - 2)) - defender.Def);
-                Console.SetCursorPosition(122, 43);
-                Console.Write("dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage");
                 if (defender.HP<=0)
                 {
                     defender.isAlive = false;
+                    Console.Write("You defeated the enemy!                         ");
+                    attacker.Exp += 5;
                 }
-                return defender;
+                else Console.Write("dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage                    ");
+                return true;
             }
-            else return defender;
+            else if(((attacker.Str + (random - 2)) - defender.Def) <= 0)
+            {
+                Console.Write("You missed...                 ");
+                return true;
+            }
+            else return false;
         }
 
         //public static Mob CheckCollision(Mob creature, moveDirection moving)
