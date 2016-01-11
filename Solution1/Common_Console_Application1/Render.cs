@@ -57,7 +57,7 @@ namespace render
             }
         }
 
-        public static void initialRender(Mob player)
+        public static void initialRender()
         {
             Point temp = new Point();
             world tempW = new world(Convert.ToChar("."), true, false);
@@ -183,8 +183,8 @@ namespace render
             }
             generateWorld();
             initRender();
-            renderMobs(player);
-            renderUI(player);
+            renderMobs();
+            renderUI();
         }
 
         public static void initRender()
@@ -202,9 +202,9 @@ namespace render
             }
         }
 
-        public static void clearMobs(Mob player)
+        public static void clearMobs()
         {
-            Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
+            Console.SetCursorPosition(global.player.Coord.X, global.player.Coord.Y);
             Console.Write(".");
 
             for (int i = 0; i <= global.mobCount - 1; i++)
@@ -214,7 +214,7 @@ namespace render
             }
         }
 
-        public static void renderMobs(Mob player)
+        public static void renderMobs()
         {
             for (int i = 0; i <= global.mobCount - 1; i++)
             {
@@ -225,14 +225,14 @@ namespace render
                     Console.Write("M");
                 }
             }
-            Console.SetCursorPosition(player.Coord.X, player.Coord.Y);
+            Console.SetCursorPosition(global.player.Coord.X, global.player.Coord.Y);
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.Write("P");
             Console.SetCursorPosition(0, 45);
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        public static void renderUI(Mob player)
+        public static void renderUI()
         {
             //static stat identifiers
             Console.SetCursorPosition(10, 41);
@@ -247,19 +247,19 @@ namespace render
             Console.Write("Lvl:");
             //non-static stat numbers (might need to be moved / aren't updating after level up)
             Console.SetCursorPosition(35, 42);
-            Console.Write(player.HP + " / " + player.MaxHP);
+            Console.Write(global.player.HP + " / " + global.player.MaxHP);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(15, 43);
-            Console.Write(player.Str);
+            Console.Write(global.player.Str);
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.SetCursorPosition(29, 43);
-            Console.Write(player.Def);
+            Console.Write(global.player.Def);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.SetCursorPosition(76, 43);
-            Console.Write(player.Lvl);
+            Console.Write(global.player.Lvl);
             //HP bar
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            int percent = (player.HP * 100) / player.MaxHP;
+            int percent = (global.player.HP * 100) / global.player.MaxHP;
             Console.SetCursorPosition(14, 41);
             for(int i = 1; i <= (percent / 2); i++)
             {
@@ -273,7 +273,7 @@ namespace render
             //Exp Bar
             Console.ForegroundColor = ConsoleColor.Green;
             Console.SetCursorPosition(75, 41);
-            percent = (player.Exp * 100) / (5 * player.Lvl);
+            percent = (global.player.Exp * 100) / (5 * global.player.Lvl);
             for (int e = 1; e <= (percent / 2); e++)
             {
                 Console.Write(global.ascii[27]);

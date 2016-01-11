@@ -7,24 +7,24 @@ namespace Common_Console_Application1
 {
     internal class Program
     {
-        private static Mob playerInput(ConsoleKeyInfo input, Mob player)
+        private static Mob playerInput(ConsoleKeyInfo input)
         {
             switch (input.Key)
             {
                 case ConsoleKey.UpArrow:
-                    return Mob.Movement(player, Mob.moveDirection.up);
+                    return Mob.Movement(global.player, Mob.moveDirection.up);
 
                 case ConsoleKey.DownArrow:
-                    return Mob.Movement(player, Mob.moveDirection.down);
+                    return Mob.Movement(global.player, Mob.moveDirection.down);
 
                 case ConsoleKey.LeftArrow:
-                    return Mob.Movement(player, Mob.moveDirection.left);
+                    return Mob.Movement(global.player, Mob.moveDirection.left);
 
                 case ConsoleKey.RightArrow:
-                    return Mob.Movement(player, Mob.moveDirection.right);
+                    return Mob.Movement(global.player, Mob.moveDirection.right);
 
                 default:
-                    return player;
+                    return global.player;
             }
         }
 
@@ -33,36 +33,36 @@ namespace Common_Console_Application1
             //Initializing variables
             Random random = new Random();
             ConsoleKeyInfo input;
-            Mob player = new Mob(1, 1, random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
+           
 
             for (int i = 0; i <= global.mobCount - 1; i++)
             {
                 global.monster[i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
             }
 
-            Render.initialRender(player);
+            Render.initialRender();
 
             //Main loop
             while (true)
             {
                 input = Console.ReadKey();
-                Render.clearMobs(player);
-                player = playerInput(input, player);
+                Render.clearMobs();
+                global.player = playerInput(input);
                 for (int i = 0; i <= global.mobCount - 1; i++)
                 {
                     if (global.monster[i].isAlive)
                     {
                         Mob.Movement(i, random.Next(1, 6));
 
-                        Mob.checkDamage(player, global.monster[i], random.Next(0, 5));
-                        if (player.Exp == 5 * player.Lvl)
+                        Mob.checkDamage(global.player, global.monster[i], random.Next(0, 5));
+                        if (global.player.Exp == 5 * global.player.Lvl)
                         {
-                            Mob.LevelUp(player, random.Next(3, 6), random.Next(0, 4), random.Next(10, 21));
+                            Mob.LevelUp(global.player, random.Next(3, 6), random.Next(0, 4), random.Next(10, 21));
                         }
                     }
                 }
-                Render.renderMobs(player);
-                Render.renderUI(player);
+                Render.renderMobs();
+                Render.renderUI();
             }
         }
     }
