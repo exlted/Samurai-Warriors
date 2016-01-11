@@ -243,6 +243,8 @@ namespace render
             Console.Write("Def:");
             Console.SetCursorPosition(70, 41);
             Console.Write("Exp:");
+            Console.SetCursorPosition(70, 43);
+            Console.Write("Lvl:");
             //non-static stat numbers (might need to be moved / aren't updating after level up)
             Console.SetCursorPosition(35, 42);
             Console.Write(player.HP + " / " + player.MaxHP);
@@ -252,6 +254,9 @@ namespace render
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.SetCursorPosition(29, 43);
             Console.Write(player.Def);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.SetCursorPosition(76, 43);
+            Console.Write(player.Lvl);
             //HP bar
             Console.ForegroundColor = ConsoleColor.DarkRed;
             int percent = (player.HP * 100) / player.MaxHP;
