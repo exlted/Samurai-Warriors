@@ -62,6 +62,7 @@ namespace Common_Console_Application1
                     }
                 }
                 Render.renderMobs(player);
+                Render.renderUI(player);
             }
         }
     }

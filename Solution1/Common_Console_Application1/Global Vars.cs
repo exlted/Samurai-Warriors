@@ -27,19 +27,19 @@ namespace Global
             switch (textPos)
             {
                 case 0:
-                    Console.SetCursorPosition(122, 41);
+                    Console.SetCursorPosition(129, 41);
                     break;
 
                 case 1:
-                    Console.SetCursorPosition(122, 42);
+                    Console.SetCursorPosition(129, 42);
                     break;
 
                 case 2:
-                    Console.SetCursorPosition(122, 43);
+                    Console.SetCursorPosition(129, 43);
                     break;
 
                 default:
-                    Console.SetCursorPosition(122, 43);
+                    Console.SetCursorPosition(129, 43);
                     break;
             }
             Console.Write(message);

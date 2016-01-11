@@ -79,30 +79,97 @@ namespace render
                         Console.Write(global.ascii[26]);
                 }
             }
+            //UI lines
+            Console.SetCursorPosition(5, 40);
+            Console.Write(global.ascii[24]);
             Console.SetCursorPosition(5, 41);
             Console.Write(global.ascii[7]);
             Console.SetCursorPosition(5, 42);
             Console.Write(global.ascii[7]);
             Console.SetCursorPosition(5, 43);
             Console.Write(global.ascii[7]);
-            Console.SetCursorPosition(62, 41);
+            Console.SetCursorPosition(5, 44);
+            Console.Write(global.ascii[23]);
+            Console.SetCursorPosition(66, 40);
+            Console.Write(global.ascii[24]);
+            Console.SetCursorPosition(66, 41);
             Console.Write(global.ascii[7]);
-            Console.SetCursorPosition(62, 42);
+            Console.SetCursorPosition(66, 42);
             Console.Write(global.ascii[7]);
-            Console.SetCursorPosition(62, 43);
+            Console.SetCursorPosition(66, 43);
             Console.Write(global.ascii[7]);
-            Console.SetCursorPosition(120, 41);
+            Console.SetCursorPosition(66, 44);
+            Console.Write(global.ascii[23]);
+            Console.SetCursorPosition(127, 40);
+            Console.Write(global.ascii[24]);
+            Console.SetCursorPosition(127, 41);
             Console.Write(global.ascii[7]);
-            Console.SetCursorPosition(120, 42);
+            Console.SetCursorPosition(127, 42);
             Console.Write(global.ascii[7]);
-            Console.SetCursorPosition(120, 43);
+            Console.SetCursorPosition(127, 43);
             Console.Write(global.ascii[7]);
+            Console.SetCursorPosition(127, 44);
+            Console.Write(global.ascii[23]);
+            Console.SetCursorPosition(175, 40);
+            Console.Write(global.ascii[24]);
             Console.SetCursorPosition(175, 41);
             Console.Write(global.ascii[7]);
             Console.SetCursorPosition(175, 42);
             Console.Write(global.ascii[7]);
             Console.SetCursorPosition(175, 43);
             Console.Write(global.ascii[7]);
+            Console.SetCursorPosition(175, 44);
+            Console.Write(global.ascii[23]);
+            //ascii art in UI left
+            Console.SetCursorPosition(1, 41);
+            Console.Write("/");
+            Console.SetCursorPosition(2, 41);
+            Console.Write("\\");
+            Console.SetCursorPosition(3, 41);
+            Console.Write("/");
+            Console.SetCursorPosition(4, 41);
+            Console.Write("\\");
+            Console.SetCursorPosition(1, 42);
+            Console.Write(global.ascii[0]);
+            Console.SetCursorPosition(2, 42);
+            Console.Write("@");
+            Console.SetCursorPosition(3, 42);
+            Console.Write("#");
+            Console.SetCursorPosition(4, 42);
+            Console.Write(global.ascii[0]);
+            Console.SetCursorPosition(1, 43);
+            Console.Write("\\");
+            Console.SetCursorPosition(2, 43);
+            Console.Write("/");
+            Console.SetCursorPosition(3, 43);
+            Console.Write("\\");
+            Console.SetCursorPosition(4, 43);
+            Console.Write("/");
+            //ascii art of UI right
+            Console.SetCursorPosition(176, 41);
+            Console.Write("/");
+            Console.SetCursorPosition(177, 41);
+            Console.Write("\\");
+            Console.SetCursorPosition(178, 41);
+            Console.Write("/");
+            Console.SetCursorPosition(179, 41);
+            Console.Write("\\");
+            Console.SetCursorPosition(176, 42);
+            Console.Write(global.ascii[0]);
+            Console.SetCursorPosition(177, 42);
+            Console.Write("#");
+            Console.SetCursorPosition(178, 42);
+            Console.Write("@");
+            Console.SetCursorPosition(179, 42);
+            Console.Write(global.ascii[0]);
+            Console.SetCursorPosition(176, 43);
+            Console.Write("\\");
+            Console.SetCursorPosition(177, 43);
+            Console.Write("/");
+            Console.SetCursorPosition(178, 43);
+            Console.Write("\\");
+            Console.SetCursorPosition(179, 43);
+            Console.Write("/");
             for (int i = 0; i < 41; i++)
             {
                 for (int j = 0; j < 181; j++)
@@ -117,7 +184,7 @@ namespace render
             generateWorld();
             initRender();
             renderMobs(player);
-            renderUI();
+            renderUI(player);
         }
 
         public static void initRender()
@@ -165,16 +232,54 @@ namespace render
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        public static void renderUI()
+        public static void renderUI(Mob player)
         {
+            //static stat identifiers
             Console.SetCursorPosition(10, 41);
             Console.Write("HP:");
             Console.SetCursorPosition(10, 43);
             Console.Write("Str:");
             Console.SetCursorPosition(24, 43);
             Console.Write("Def:");
-            Console.SetCursorPosition(67, 41);
+            Console.SetCursorPosition(70, 41);
             Console.Write("Exp:");
+            //non-static stat numbers (might need to be moved / aren't updating after level up)
+            Console.SetCursorPosition(35, 42);
+            Console.Write(player.HP + " / " + player.MaxHP);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.SetCursorPosition(15, 43);
+            Console.Write(player.Str);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.SetCursorPosition(29, 43);
+            Console.Write(player.Def);
+            //HP bar
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            int percent = (player.HP * 100) / player.MaxHP;
+            Console.SetCursorPosition(14, 41);
+            for(int i = 1; i <= (percent / 2); i++)
+            {
+                Console.Write(global.ascii[27]);
+            }
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            for(int j = (percent / 2) + 1; j <= 50; j++)
+            {
+                Console.Write(global.ascii[27]);
+            }
+            //Exp Bar
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.SetCursorPosition(75, 41);
+            percent = (player.Exp * 100) / (5 * player.Lvl);
+            for (int e = 1; e <= (percent / 2); e++)
+            {
+                Console.Write(global.ascii[27]);
+            }
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            for (int a = (percent / 2) + 1; a <= 50; a++)
+            {
+                Console.Write(global.ascii[27]);
+            }
+
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
     }
 }

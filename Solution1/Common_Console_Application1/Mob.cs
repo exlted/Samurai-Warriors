@@ -7,6 +7,7 @@ namespace Creature
     internal class Mob
     {
         public Point Coord = new Point();
+        public int MaxHP;
         public int HP;
         public int Str;
         public int Def;
@@ -20,6 +21,7 @@ namespace Creature
         {
             Coord.X = xPos;
             Coord.Y = yPos;
+            MaxHP = Health;
             HP = Health;
             Str = Strength;
             Def = Defense;
@@ -151,7 +153,8 @@ namespace Creature
             Random random = new Random();
             player.Str += StrRand;
             player.Def += DefRand;
-            player.HP += HPRand;
+            player.MaxHP += HPRand;
+            player.HP = player.MaxHP;
             player.Lvl += 1;
             player.Exp = 0;
             global.print("Level up!                         ");
@@ -166,7 +169,7 @@ namespace Creature
                 if (defender.HP <= 0)
                 {
                     defender.isAlive = false;
-                    global.print("You defeated the enemy!                         ");
+                    global.print("You defeated the enemy!                   ");
                     attacker.Exp += 5;
                 }
                 else global.print("Dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage                    ");
