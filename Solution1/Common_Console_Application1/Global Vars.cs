@@ -70,5 +70,17 @@ namespace Global
                     break;
             }
         }
+
+        public static bool checkWin()
+        {
+            for (int i = 0; i < mobCount; i++)
+            {
+                if(monster[i].isAlive)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

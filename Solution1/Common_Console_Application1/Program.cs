@@ -29,7 +29,7 @@ namespace Common_Console_Application1
                 default:
                     //return Mob.Movement(Mob.moveDirection.none, random.Next(0, 5));
                     //global.player.HP -= 5;
-                    global.print("test");
+                    //global.print("test");
                     return false;
             }
         }
@@ -67,9 +67,14 @@ namespace Common_Console_Application1
                 }
                 Render.renderMobs();
                 Render.renderUI();
-                if(!global.player.isAlive)
+                if (!global.player.isAlive)
                 {
                     global.print("Game Over");
+                    break;
+                }
+                else if (global.checkWin())
+                {
+                    global.print("You Win!");
                     break;
                 }
             }
