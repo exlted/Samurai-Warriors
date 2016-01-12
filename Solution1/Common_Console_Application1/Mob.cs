@@ -174,7 +174,7 @@ namespace Creature
                 }
                 else global.print("Dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage                    ");
             }
-            else if (((attacker.Str + (random - 2)) - defender.Def) <= 0)
+            else if (((attacker.Coord == defender.Coord && ((attacker.Str + (random - 2)) - defender.Def) <= 0)))
             {
                 global.print("You missed...                 ");
             }
