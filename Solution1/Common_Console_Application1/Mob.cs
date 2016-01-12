@@ -30,64 +30,61 @@ namespace Creature
             isAlive = true;
         }
 
-        public static Mob Movement(Mob creature, moveDirection moving)
+        public static bool Movement(Mob.moveDirection moving, int random)
         {
             switch (moving)
             {
-                case moveDirection.up:
-                    creature.Coord.Y -= 1;
-                    if (global.world[creature.Coord].isPassable)
+                case Mob.moveDirection.up:
+                    global.player.Coord.Y -= 1;
+                    if (Collision(random))
                     {
-                        return creature;
+                        global.player.Coord.Y += 1;
+                        return false;
                     }
                     else
                     {
-                        creature.Coord.Y += 1;
-                        return creature;
+                        return true;
                     }
 
-                case moveDirection.down:
-                    creature.Coord.Y += 1;
-                    if (global.world[creature.Coord].isPassable)
+                case Mob.moveDirection.down:
+                    global.player.Coord.Y += 1;
+                    if (Collision(random))
                     {
-                        return creature;
+                        global.player.Coord.Y -= 1;
+                        return false;
                     }
                     else
                     {
-                        creature.Coord.Y -= 1;
-                        return creature;
+                        return true;
                     }
 
-                case moveDirection.left:
-                    creature.Coord.X -= 1;
-                    if (global.world[creature.Coord].isPassable)
+                case Mob.moveDirection.left:
+                    global.player.Coord.X -= 1;
+                    if (Collision(random))
                     {
-                        return creature;
+                        global.player.Coord.X += 1;
+                        return false; ;
                     }
                     else
                     {
-                        creature.Coord.X += 1;
-                        return creature;
+                        return true;
                     }
 
-                case moveDirection.right:
-                    creature.Coord.X += 1;
-                    if (global.world[creature.Coord].isPassable)
+                case Mob.moveDirection.right:
+                    global.player.Coord.X += 1;
+                    if (Collision(random))
                     {
-                        return creature;
+                        global.player.Coord.X -= 1;
+                        return false;
                     }
-                    else
-                    {
-                        creature.Coord.X -= 1;
-                        return creature;
-                    }
+                    else return true;
 
-                case moveDirection.none:
-                    Console.Write(creature.Coord.X + " " + creature.Coord.Y);
-                    return creature;
+                case Mob.moveDirection.none:
+                    Console.Write(global.player.Coord.X + " " + global.player.Coord.Y);
+                    return false;
 
                 default:
-                    return creature;
+                    return false;
             }
         }
 
@@ -178,6 +175,22 @@ namespace Creature
             {
                 global.print("You missed...                 ");
             }
+        }
+
+        private static bool Collision(int random)
+        {
+            if (global.world[global.player.Coord].isPassable)
+            {
+                for (int i = 0; i < global.mobCount; i++)
+                {
+                    if (global.player.Coord == global.monster[i].Coord && global.monster[i].isAlive)
+                    {
+                        Mob.checkDamage(global.player, global.monster[i], random);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

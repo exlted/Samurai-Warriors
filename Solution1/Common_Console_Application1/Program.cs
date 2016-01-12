@@ -7,33 +7,33 @@ namespace Common_Console_Application1
 {
     internal class Program
     {
-        private static Mob playerInput(ConsoleKeyInfo input)
+        private static Random random = new Random();
+
+        private static bool playerInput(ConsoleKeyInfo input)
         {
             switch (input.Key)
             {
                 case ConsoleKey.UpArrow:
-                    return Mob.Movement(global.player, Mob.moveDirection.up);
+                    return Mob.Movement(Mob.moveDirection.up, random.Next(0, 5));
 
                 case ConsoleKey.DownArrow:
-                    return Mob.Movement(global.player, Mob.moveDirection.down);
+                    return Mob.Movement(Mob.moveDirection.down, random.Next(0, 5));
 
                 case ConsoleKey.LeftArrow:
-                    return Mob.Movement(global.player, Mob.moveDirection.left);
+                    return Mob.Movement(Mob.moveDirection.left, random.Next(0, 5));
 
                 case ConsoleKey.RightArrow:
-                    return Mob.Movement(global.player, Mob.moveDirection.right);
+                    return Mob.Movement(Mob.moveDirection.right, random.Next(0, 5));
 
                 default:
-                    return global.player;
+                    return false;
             }
         }
 
         private static void Main(string[] args)
         {
             //Initializing variables
-            Random random = new Random();
             ConsoleKeyInfo input;
-           
 
             for (int i = 0; i <= global.mobCount - 1; i++)
             {
@@ -47,7 +47,7 @@ namespace Common_Console_Application1
             {
                 input = Console.ReadKey();
                 Render.clearMobs();
-                global.player = playerInput(input);
+                playerInput(input);
                 for (int i = 0; i <= global.mobCount - 1; i++)
                 {
                     if (global.monster[i].isAlive)
