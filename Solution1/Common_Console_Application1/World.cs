@@ -4,6 +4,8 @@
     {
         public bool isPassable;
         public bool updateOnTick;
+        public bool isInside;
+        public bool isSeethrough;
         public char renderChar;
         public int colorCode;
 
