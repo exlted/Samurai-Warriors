@@ -192,7 +192,7 @@ namespace Creature
             }
             else if (((attacker.Coord == defender.Coord && ((attacker.Str + (random - 2)) - defender.Def) <= 0)))
             {
-                global.print("You missed...");
+                global.print("Monster missed...");
             }
         }
 
