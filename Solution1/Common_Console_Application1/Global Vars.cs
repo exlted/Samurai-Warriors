@@ -47,6 +47,10 @@ namespace Global
                     break;
             }
             Console.Write(message);
+            for (int i = message.Length; i < 46; i++)
+            {
+                Console.Write(" ");
+            }
             switch (textPos)
             {
                 case 0:

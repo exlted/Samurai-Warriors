@@ -154,7 +154,7 @@ namespace Creature
             player.HP = player.MaxHP;
             player.Lvl += 1;
             player.Exp = 0;
-            global.print("Level up!                         ");
+            global.print("Level up!");
             return player;
         }
 
@@ -166,14 +166,14 @@ namespace Creature
                 if (defender.HP <= 0)
                 {
                     defender.isAlive = false;
-                    global.print("You defeated the enemy!                   ");
+                    global.print("You defeated the enemy!");
                     attacker.Exp += 5;
                 }
-                else global.print("Dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage                    ");
+                else global.print("Dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage");
             }
             else if (((attacker.Coord == defender.Coord && ((attacker.Str + (random - 2)) - defender.Def) <= 0)))
             {
-                global.print("You missed...                 ");
+                global.print("You missed...");
             }
         }
 
@@ -185,14 +185,14 @@ namespace Creature
                 if (defender.HP <= 0)
                 {
                     defender.isAlive = false;
-                    global.print("You defeated the enemy!                   ");
+                    global.print("You defeated the enemy!");
                     attacker.Exp += 5;
                 }
-                else global.print("Monster dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage                    ");
+                else global.print("Monster dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage");
             }
             else if (((attacker.Coord == defender.Coord && ((attacker.Str + (random - 2)) - defender.Def) <= 0)))
             {
-                global.print("You missed...                 ");
+                global.print("You missed...");
             }
         }
 
