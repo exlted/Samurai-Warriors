@@ -265,10 +265,14 @@ namespace render
             {
                 Console.Write(global.ascii[27]);
             }
-            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.ForegroundColor = ConsoleColor.Black;
             for(int j = (percent / 2) + 1; j <= 50; j++)
             {
                 Console.Write(global.ascii[27]);
+                if (global.player.HP <= -5)
+                {
+                    break;
+                }
             }
             //Exp Bar
             Console.ForegroundColor = ConsoleColor.Green;

@@ -28,6 +28,7 @@ namespace Common_Console_Application1
 
                 default:
                     //return Mob.Movement(Mob.moveDirection.none, random.Next(0, 5));
+                    global.player.HP -= 5;
                     return false;
             }
         }
