@@ -2,6 +2,7 @@
 using Global;
 using render;
 using System;
+using API;
 
 namespace Common_Console_Application1
 {
@@ -26,6 +27,7 @@ namespace Common_Console_Application1
                     return Mob.Movement(Mob.moveDirection.right, random.Next(0, 5));
 
                 default:
+                    //return Mob.Movement(Mob.moveDirection.none, random.Next(0, 5));
                     return false;
             }
         }
@@ -52,7 +54,7 @@ namespace Common_Console_Application1
                 {
                     if (global.monster[i].isAlive)
                     {
-                        Mob.Movement(i, random.Next(1, 6));
+                        Mob.Movement(i, random.Next(1, 6), random.Next(0, 5));
 
                         Mob.checkDamage(global.player, global.monster[i], random.Next(0, 5));
                         if (global.player.Exp == 5 * global.player.Lvl)
@@ -63,7 +65,13 @@ namespace Common_Console_Application1
                 }
                 Render.renderMobs();
                 Render.renderUI();
+                if(!global.player.isAlive)
+                {
+                    global.print("Game Over           ");
+                    break;
+                }
             }
+            Capi.WaitForInput();
         }
     }
 }

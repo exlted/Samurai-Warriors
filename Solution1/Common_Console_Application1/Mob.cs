@@ -36,7 +36,7 @@ namespace Creature
             {
                 case Mob.moveDirection.up:
                     global.player.Coord.Y -= 1;
-                    if (Collision(random))
+                    if (PCollision(random))
                     {
                         global.player.Coord.Y += 1;
                         return false;
@@ -48,7 +48,7 @@ namespace Creature
 
                 case Mob.moveDirection.down:
                     global.player.Coord.Y += 1;
-                    if (Collision(random))
+                    if (PCollision(random))
                     {
                         global.player.Coord.Y -= 1;
                         return false;
@@ -60,7 +60,7 @@ namespace Creature
 
                 case Mob.moveDirection.left:
                     global.player.Coord.X -= 1;
-                    if (Collision(random))
+                    if (PCollision(random))
                     {
                         global.player.Coord.X += 1;
                         return false; ;
@@ -72,7 +72,7 @@ namespace Creature
 
                 case Mob.moveDirection.right:
                     global.player.Coord.X += 1;
-                    if (Collision(random))
+                    if (PCollision(random))
                     {
                         global.player.Coord.X -= 1;
                         return false;
@@ -80,7 +80,8 @@ namespace Creature
                     else return true;
 
                 case Mob.moveDirection.none:
-                    Console.Write(global.player.Coord.X + " " + global.player.Coord.Y);
+                    //global.player.isAlive = false;
+                    //Console.Write(global.player.Coord.X + " " + global.player.Coord.Y);
                     return false;
 
                 default:
@@ -88,60 +89,59 @@ namespace Creature
             }
         }
 
-        public static Mob Movement(int i, int moving)
+        public static bool Movement(int i, int moving, int random)
         {
             switch (moving)
             {
                 case 1:
                     global.monster[i].Coord.Y -= 1;
-                    if (global.world[global.monster[i].Coord].isPassable)
+                    if (MCollision(i, random))
                     {
-                        return global.monster[i];
+                        global.monster[i].Coord.Y += 1;
+                        return false;
                     }
                     else
                     {
-                        global.monster[i].Coord.Y += 1;
-                        return global.monster[i];
+                        return true;
                     }
 
                 case 2:
                     global.monster[i].Coord.Y += 1;
-                    if (global.world[global.monster[i].Coord].isPassable)
-                    {
-                        return global.monster[i];
-                    }
-                    else
+                    if (MCollision(i, random))
                     {
                         global.monster[i].Coord.Y -= 1;
-                        return global.monster[i];
-                    }
-
-                case 3:
-                    global.monster[i].Coord.X -= 1;
-                    if (global.world[global.monster[i].Coord].isPassable)
-                    {
-                        return global.monster[i];
+                        return false;
                     }
                     else
                     {
+                        return true;
+                    }
+                case 3:
+                    global.monster[i].Coord.X -= 1;
+                    if (MCollision(i, random))
+                    {
                         global.monster[i].Coord.X += 1;
-                        return global.monster[i];
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
                     }
 
                 case 4:
                     global.monster[i].Coord.X += 1;
-                    if (global.world[global.monster[i].Coord].isPassable)
+                    if (MCollision(i, random))
                     {
-                        return global.monster[i];
+                        global.monster[i].Coord.X -= 1;
+                        return false;
                     }
                     else
                     {
-                        global.monster[i].Coord.X -= 1;
-                        return global.monster[i];
+                        return true;
                     }
 
                 default:
-                    return global.monster[i];
+                    return false;
             }
         }
 
@@ -177,20 +177,60 @@ namespace Creature
             }
         }
 
-        private static bool Collision(int random)
+        public static void checkDamage(Mob attacker, Mob defender, int random, bool meaningless)
         {
-            if (global.world[global.player.Coord].isPassable)
+            if (attacker.Coord == defender.Coord && ((attacker.Str + (random - 2)) - defender.Def) > 0)
             {
-                for (int i = 0; i < global.mobCount; i++)
+                defender.HP -= ((attacker.Str + (random - 2)) - defender.Def);
+                if (defender.HP <= 0)
                 {
-                    if (global.player.Coord == global.monster[i].Coord && global.monster[i].isAlive)
+                    defender.isAlive = false;
+                    global.print("You defeated the enemy!                   ");
+                    attacker.Exp += 5;
+                }
+                else global.print("Monster dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage                    ");
+            }
+            else if (((attacker.Coord == defender.Coord && ((attacker.Str + (random - 2)) - defender.Def) <= 0)))
+            {
+                global.print("You missed...                 ");
+            }
+        }
+
+        private static bool PCollision(int random)
+        {
+            if (!(global.player.Coord.Y >= 40 || global.player.Coord.Y <= 0 || global.player.Coord.X <= 0 || global.player.Coord.X >= 180))
+            {
+                if (global.world[global.player.Coord].isPassable)
+                {
+                    for (int i = 0; i < global.mobCount; i++)
                     {
-                        Mob.checkDamage(global.player, global.monster[i], random);
+                        if (global.player.Coord == global.monster[i].Coord && global.monster[i].isAlive)
+                        {
+                            Mob.checkDamage(global.player, global.monster[i], random);
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            return true;
+        }
+
+        private static bool MCollision(int i, int random)
+        {
+            if (!(global.monster[i].Coord.Y >= 40 || global.monster[i].Coord.Y <= 0 || global.monster[i].Coord.X <= 0 || global.monster[i].Coord.X >= 180))
+            {
+                if (global.world[global.monster[i].Coord].isPassable)
+                {
+                    if (global.monster[i].Coord == global.player.Coord && global.player.isAlive)
+                    {
+                        Mob.checkDamage(global.monster[i], global.player, random, true);
                         return true;
                     }
                 }
+                return false;
             }
-            return false;
+            return true;
         }
     }
 }
