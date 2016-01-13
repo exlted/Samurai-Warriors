@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Text;
 using World;
+using System.Collections.Generic;
 
 namespace render
 {
@@ -60,7 +61,7 @@ namespace render
         public static void initialRender()
         {
             Point temp = new Point();
-            world tempW = new world(Convert.ToChar("."), true, false);
+            world tempW = new world(Convert.ToChar("."), true, false, true, true);
             Console.OutputEncoding = Encoding.GetEncoding(1252);
             Console.SetWindowSize(181, 46);
             Console.SetBufferSize(181, 46);
@@ -178,13 +179,10 @@ namespace render
                     temp.Y = i;
                     if (i == 40)
                         tempW.isPassable = false;
-                    global.world.Add(temp, new world(tempW.renderChar, tempW.isPassable, tempW.updateOnTick));
+                    global.world.Add(temp, new world(tempW.renderChar, tempW.isPassable, tempW.updateOnTick, tempW.isInside, tempW.isSeethrough));
                 }
             }
             generateWorld();
-            initRender();
-            renderMobs();
-            renderUI();
         }
 
         public static void initRender()
@@ -198,6 +196,57 @@ namespace render
                     temp.Y = j;
                     Console.SetCursorPosition(i, j);
                     Console.Write(global.world[temp].renderChar);
+                }
+            }
+        }
+
+        public static void generateRooms(int XCoord, int YCoord, int X, int Y)
+        {
+            Dictionary<Point, world> room = new Dictionary<Point, world>();
+            Point temp = new Point();
+            for (int i = XCoord; i <= XCoord + X; i++)
+            {
+                for (int j = YCoord; j <= YCoord + Y; j++)
+                {
+                    temp.X = i;
+                    temp.Y = j;
+                    if (i == XCoord && j == YCoord)
+                    {
+                        room.Add(temp, new world(global.ascii[39], false, false, false, false));
+                    }
+                    else if (i == XCoord && j == YCoord + Y)
+                    {
+                        room.Add(temp, new world(global.ascii[13], false, false, false, false));
+                    }
+                    else if (i == XCoord + X && j == YCoord)
+                    {
+                        room.Add(temp, new world(global.ascii[12], false, false, false, false));
+                    }
+                    else if (i == XCoord + X && j == YCoord + Y)
+                    {
+                        room.Add(temp, new world(global.ascii[38], false, false, false, false));
+                    }
+                    else if ((i == XCoord || i == XCoord + X) && (j != YCoord + Y || j != YCoord))
+                    {
+                        room.Add(temp, new world(global.ascii[0], false, false, false, false));
+                    }
+                    else if ((j == YCoord || j == YCoord + Y) && (i != XCoord || i != XCoord + X))
+                    {
+                        room.Add(temp, new world(global.ascii[17], false, false, false, false));
+                    }
+                    else if (i >= (XCoord + 1) && i <= (XCoord + X - 1) && j >= (YCoord + 1) && j <= (YCoord + Y - 1))
+                    {
+                        room.Add(temp, new world(Convert.ToChar("."), true, false, true, true));
+                    }
+                }
+            }
+            for(int i = XCoord; i <= XCoord + X; i++)
+            {
+                for(int j = YCoord; j <= YCoord + Y; j++)
+                {
+                    temp.X = i;
+                    temp.Y = j;
+                    global.world[temp] = new world(room[temp].renderChar, room[temp].isPassable, room[temp].updateOnTick, room[temp].isInside, room[temp].isSeethrough, room[temp].colorCode);
                 }
             }
         }
@@ -247,7 +296,7 @@ namespace render
             Console.Write("Lvl:");
             //non-static stat numbers (might need to be moved / aren't updating after level up)
             Console.SetCursorPosition(35, 42);
-            Console.Write(global.player.HP + " / " + global.player.MaxHP);
+            Console.Write(global.player.HP + " / " + global.player.MaxHP + "          ");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(15, 43);
             Console.Write(global.player.Str);
@@ -289,6 +338,12 @@ namespace render
             }
 
             Console.ForegroundColor = ConsoleColor.Gray;
+            Console.SetCursorPosition(0, 45);
+        }
+
+        public static void renderChar()
+        {
+
         }
     }
 }

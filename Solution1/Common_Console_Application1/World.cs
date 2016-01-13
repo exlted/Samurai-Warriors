@@ -9,12 +9,14 @@
         public char renderChar;
         public int colorCode;
 
-        public world(char render, bool passable, bool update, int color = 1)
+        public world(char render, bool passable, bool update, bool inside, bool seethrough, int color = 1)
         {
             isPassable = passable;
             updateOnTick = update;
             renderChar = render;
             colorCode = color;
+            isSeethrough = seethrough;
+            isInside = inside;
         }
     }
 }

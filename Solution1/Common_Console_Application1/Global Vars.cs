@@ -15,6 +15,7 @@ namespace Global
         public static Mob player = new Mob(1, 1, random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
 
         public static Dictionary<Point, world> world = new Dictionary<Point, world>();
+        //world.Add(Point, world)
 
         public static char[] ascii = { Convert.ToChar(179), Convert.ToChar(180), Convert.ToChar(181), Convert.ToChar(182), Convert.ToChar(183), Convert.ToChar(184), Convert.ToChar(185),
             Convert.ToChar(186), Convert.ToChar(187), Convert.ToChar(188), Convert.ToChar(189), Convert.ToChar(190), Convert.ToChar(191), Convert.ToChar(192), Convert.ToChar(193), Convert.ToChar(194),

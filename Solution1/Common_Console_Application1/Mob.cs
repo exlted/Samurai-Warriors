@@ -210,8 +210,9 @@ namespace Creature
                             return true;
                         }
                     }
+                    return false;
                 }
-                return false;
+                return true;
             }
             return true;
         }
@@ -227,8 +228,9 @@ namespace Creature
                         Mob.checkDamage(global.monster[i], global.player, random, true);
                         return true;
                     }
+                    return false;
                 }
-                return false;
+                return true;
             }
             return true;
         }
