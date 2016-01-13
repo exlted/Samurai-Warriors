@@ -200,6 +200,12 @@ namespace render
             }
         }
 
+        public static void randomGen(int roomNum, int roomSize, int seed)
+        {
+
+            //generateRooms(0, 0, 30, 15);
+        }
+
         public static void generateRooms(int XCoord, int YCoord, int X, int Y)
         {
             Dictionary<Point, world> room = new Dictionary<Point, world>();
