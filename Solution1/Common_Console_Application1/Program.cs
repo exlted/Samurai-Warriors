@@ -45,7 +45,7 @@ namespace Common_Console_Application1
             }
 
             Render.initialRender();
-            Render.randomGen(3, 10);
+            Render.randomGen(3, 10,0);
             Render.initRender();
             Render.renderMobs();
             Render.renderUI();
