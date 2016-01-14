@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Global;
+using render;
 
 namespace menu
 {
@@ -62,6 +63,7 @@ namespace menu
 
         public static bool escapeMenu()
         {
+            Console.Clear();
             ConsoleKeyInfo input = new ConsoleKeyInfo();
             Console.Write("1: Resume Game \n2: Exit Game ");
             while (true)
@@ -70,10 +72,18 @@ namespace menu
                 switch (input.Key)
                 {
                     case ConsoleKey.D1:
+                        Render.initialRender(false);
+                        Render.initRender();
+                        Render.renderMobs();
+                        Render.renderUI();
                         return true;
                     case ConsoleKey.D2:
                         return false;
                     case ConsoleKey.NumPad1:
+                        Render.initialRender(false);
+                        Render.initRender();
+                        Render.renderMobs();
+                        Render.renderUI();
                         return true;
                     case ConsoleKey.NumPad2:
                         return false;
