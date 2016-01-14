@@ -16,7 +16,6 @@ namespace render
             if (fullInit)
             {
                 Point temp = new Point();
-                world tempW = new world(Convert.ToChar(219), false, false, false, false, ConsoleColor.DarkGreen);
                 Console.OutputEncoding = Encoding.GetEncoding(1252);
                 Console.SetWindowSize(181, 46);
                 Console.SetBufferSize(181, 46);
@@ -26,9 +25,7 @@ namespace render
                     {
                         temp.X = j;
                         temp.Y = i;
-                        if (i == 40)
-                            tempW.isPassable = false;
-                        global.world.Add(temp, new world(tempW.renderChar, tempW.isPassable, tempW.updateOnTick, tempW.isInside, tempW.isSeethrough));
+                        global.world.Add(temp, new world(Convert.ToChar(219), false, false, false, false, ConsoleColor.DarkGreen));
                     }
                 }
             }
