@@ -44,11 +44,13 @@ namespace menu
                 switch (input.Key)
                 {
                     case ConsoleKey.D1:
+                        Render.initialRender(false);
                         global.reInitPlayer();
                         return true;
                     case ConsoleKey.D2:
                         return false;
                     case ConsoleKey.NumPad1:
+                        Render.initialRender(false);
                         global.reInitPlayer();
                         return true;
                     case ConsoleKey.NumPad2:
