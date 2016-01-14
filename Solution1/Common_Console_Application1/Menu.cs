@@ -13,8 +13,10 @@ namespace menu
         public static bool menu()
         {
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 - 1, "1: Start New Game");
-            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + 1, "2: Exit Game");
+            string[] ascii = { "   _____                                 _  __          __             _                ", @"  / ____|                               (_) \ \        / /            (_)               ", @" | (___   __ _ _ __ ___  _   _ _ __ __ _ _   \ \  /\  / /_ _ _ __ _ __ _  ___  _ __ ___ ", @"  \___ \ / _` | '_ ` _ \| | | | '__/ _` | |   \ \/  \/ / _` | '__| '__| |/ _ \| '__/ __|", @"  ____) | (_| | | | | | | |_| | | | (_| | |    \  /\  / (_| | |  | |  | | (_) | |  \__ \", @" |_____/ \__,_|_| |_| |_|\__,_|_|  \__,_|_|     \/  \/ \__,_|_|  |_|  |_|\___/|_|  |___/" };
+            global.print(Console.WindowWidth/2, 5, ascii);
+            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 - 1, "1: Start New Game", false);
+            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + 1, "2: Exit Game", false);
             Console.SetCursorPosition(0, 45);
             while (true)
             {

@@ -88,10 +88,35 @@ namespace Global
             Mob player = new Mob(1, 1, random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
         }
 
-        public static void print(int horizontal, int vertical, string message)
+        public static void print(int horizontal, int vertical, string message, bool isCentered = true)
         {
-            Console.SetCursorPosition(horizontal, vertical);
-            Console.Write(message);
+            if(isCentered)
+            {
+                Console.SetCursorPosition(horizontal - message.Length/2, vertical);
+                Console.Write(message);
+            }
+            else
+            {
+                Console.SetCursorPosition(horizontal, vertical);
+                Console.Write(message);
+            }
+        }
+
+        public static void print(int horizontal, int vertical, string[] message, bool isCentered = true)
+        {
+            for (int i = 0; i < message.Length; i++)
+            {
+                if(isCentered)
+                {
+                    Console.SetCursorPosition(horizontal - message[i].Length/2, vertical + i);
+                    Console.Write(message[i]);
+                }
+                else
+                {
+                    Console.SetCursorPosition(horizontal - message[i].Length / 2, vertical + i);
+                    Console.Write(message[i]);
+                }
+            }
         }
     }
 }
