@@ -38,7 +38,8 @@ namespace Common_Console_Application1
                         break;
 
                     case ConsoleKey.Escape:
-                        Menu.escapeMenu();
+                        if (!Menu.escapeMenu())
+                            return true;
                         break;
                     default:
                         //return Mob.Movement(Mob.moveDirection.none, random.Next(0, 5));

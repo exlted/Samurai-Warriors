@@ -60,9 +60,27 @@ namespace menu
             }
         }
 
-        public static void escapeMenu()
+        public static bool escapeMenu()
         {
-
+            ConsoleKeyInfo input = new ConsoleKeyInfo();
+            Console.Write("1: Resume Game \n2: Exit Game ");
+            while (true)
+            {
+                input = Console.ReadKey();
+                switch (input.Key)
+                {
+                    case ConsoleKey.D1:
+                        return true;
+                    case ConsoleKey.D2:
+                        return false;
+                    case ConsoleKey.NumPad1:
+                        return true;
+                    case ConsoleKey.NumPad2:
+                        return false;
+                    default:
+                        continue;
+                }
+            }
         }
     }
 }
