@@ -48,7 +48,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Global Vars.cs" />
-    <Compile Include="Junk.cs" />
     <Compile Include="World.cs" />
     <Compile Include="Render.cs" />
     <Compile Include="Mob.cs" />

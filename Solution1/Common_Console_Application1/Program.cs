@@ -69,6 +69,7 @@ namespace Common_Console_Application1
 
             Render.initialRender();
             Render.randomGen(3, 10, 0);
+            //Mob.spawnMonster();
             Render.initRender();
             Render.renderMobs();
             Render.renderUI();
