@@ -66,21 +66,6 @@ namespace render
                 Console.OutputEncoding = Encoding.GetEncoding(1252);
                 Console.SetWindowSize(181, 46);
                 Console.SetBufferSize(181, 46);
-                for (int i = 40; i < Console.WindowHeight - 1; i++)
-                {
-                    for (int j = 0; j < Console.WindowWidth; j++)
-                    {
-                        Console.SetCursorPosition(j, i);
-                        if ((j == 180 && (i == 40 || i == 44)))
-                            Console.Write(global.ascii[2]);
-                        else if ((j == 0 && (i == 40 || i == 44)))
-                            Console.Write(global.ascii[19]);
-                        else if (j == 0 || j == 180)
-                            Console.Write(global.ascii[0]);
-                        else if ((i == 40 || i == 44) && (j != 0 || j != 180))
-                            Console.Write(global.ascii[26]);
-                    }
-                }
                 for (int i = 0; i < 41; i++)
                 {
                     for (int j = 0; j < 181; j++)
@@ -93,6 +78,21 @@ namespace render
                     }
                 }
                 generateWorld();
+            }
+            for (int i = 40; i < Console.WindowHeight - 1; i++)
+            {
+                for (int j = 0; j < Console.WindowWidth; j++)
+                {
+                    Console.SetCursorPosition(j, i);
+                    if ((j == 180 && (i == 40 || i == 44)))
+                        Console.Write(global.ascii[2]);
+                    else if ((j == 0 && (i == 40 || i == 44)))
+                        Console.Write(global.ascii[19]);
+                    else if (j == 0 || j == 180)
+                        Console.Write(global.ascii[0]);
+                    else if ((i == 40 || i == 44) && (j != 0 || j != 180))
+                        Console.Write(global.ascii[26]);
+                }
             }
             //UI lines
             Console.SetCursorPosition(5, 40);
