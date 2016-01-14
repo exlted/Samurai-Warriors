@@ -60,14 +60,12 @@ namespace menu
                 switch (input.Key)
                 {
                     case ConsoleKey.D1:
-                        Render.initialRender(false);
-                        global.reInitPlayer();
+                        Render.initialRender();
                         return true;
                     case ConsoleKey.D2:
                         return false;
                     case ConsoleKey.NumPad1:
-                        Render.initialRender(false);
-                        global.reInitPlayer();
+                        Render.initialRender();
                         return true;
                     case ConsoleKey.NumPad2:
                         return false;
@@ -91,22 +89,24 @@ namespace menu
                 switch (input.Key)
                 {
                     case ConsoleKey.D1:
-                        global.world.Clear();
                         Render.initialRender(false);
                         Render.initRender();
                         Render.renderMobs();
                         Render.renderUI();
                         return true;
                     case ConsoleKey.D2:
+                        global.reInitPlayer();
+                        global.world.Clear();
                         return false;
                     case ConsoleKey.NumPad1:
-                        global.world.Clear();
                         Render.initialRender(false);
                         Render.initRender();
                         Render.renderMobs();
                         Render.renderUI();
                         return true;
                     case ConsoleKey.NumPad2:
+                        global.reInitPlayer();
+                        global.world.Clear();
                         return false;
                     default:
                         continue;
