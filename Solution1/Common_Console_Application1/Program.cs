@@ -82,8 +82,6 @@ namespace Common_Console_Application1
                     {
                         if (Menu.endMenu())
                         {
-                            global.reInitPlayer();
-                            global.world.Clear();
                             continue;
                         }
                         else break;
