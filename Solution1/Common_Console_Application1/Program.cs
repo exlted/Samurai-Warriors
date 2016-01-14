@@ -3,6 +3,8 @@ using Creature;
 using Global;
 using render;
 using System;
+using menu;
+using System.Threading;
 
 namespace Common_Console_Application1
 {
@@ -62,21 +64,33 @@ namespace Common_Console_Application1
         private static void Main(string[] args)
         {
             //Initializing variables
-            for (int i = 0; i <= global.mobCount - 1; i++)
+            if (Menu.menu())
             {
-                global.monster[i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
+                while (true)
+                {
+                    for (int i = 0; i <= global.mobCount - 1; i++)
+                    {
+                        global.monster[i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
+                    }
+                    Render.initialRender();
+                    Render.randomGen(3, 10, 0);
+                    //Mob.spawnMonster();
+                    Render.initRender();
+                    Render.renderMobs();
+                    Render.renderUI();
+                    if (MainLoop())
+                    {
+                        if (Menu.endMenu())
+                        {
+                            global.reInitPlayer();
+                            global.world.Clear();
+                            continue;
+                        }
+                        else break;
+                    }
+                }
             }
-
-            Render.initialRender();
-            Render.randomGen(3, 10, 0);
-            //Mob.spawnMonster();
-            Render.initRender();
-            Render.renderMobs();
-            Render.renderUI();
-
-            //Main loop
-            if (MainLoop())
-                Capi.WaitForInput();
+            Capi.WaitForInput();
         }
     }
 }
