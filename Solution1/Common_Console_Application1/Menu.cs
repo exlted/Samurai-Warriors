@@ -13,7 +13,7 @@ namespace menu
         public static bool menu()
         {
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            global.print(Console.WindowWidth / 2 - 7, Console.WindowHeight / 2 - 1, "1: Start New Game");
+            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 - 1, "1: Start New Game");
             global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + 1, "2: Exit Game");
             Console.SetCursorPosition(0, 45);
             while (true)
@@ -39,7 +39,9 @@ namespace menu
         {
             ConsoleKeyInfo input = new ConsoleKeyInfo();
             Console.Clear();
-            Console.WriteLine("1: Start New Game \n2: Exit Game \n ");
+            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 - 1, "1: Start New Game");
+            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + 1, "2: Exit Game");
+            Console.SetCursorPosition(0, 45);
             while (true)
             {
                 input = Console.ReadKey();
@@ -67,7 +69,9 @@ namespace menu
         {
             Console.Clear();
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            Console.Write("1: Resume Game \n2: Exit To Menu ");
+            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 - 1, "1: Resume Game");
+            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + 1, "2: Exit Game");
+            Console.SetCursorPosition(0, 45);
             while (true)
             {
                 input = Console.ReadKey();
