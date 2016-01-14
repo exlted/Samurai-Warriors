@@ -40,7 +40,7 @@ namespace Common_Console_Application1
                     case ConsoleKey.Escape:
                         if (!Menu.escapeMenu())
                             return true;
-                        break;
+                        continue;
                     default:
                         //return Mob.Movement(Mob.moveDirection.none, random.Next(0, 5));
                         //global.player.HP -= 5;
@@ -77,8 +77,8 @@ namespace Common_Console_Application1
                     {
                         global.monster[i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
                     }
-                    Render.randomGen(3, 10, 0);
-                    //Mob.spawnMonster();
+                    Render.randomGen(20, 10, 0);
+                    Mob.spawnMonster();
                     Render.initRender();
                     Render.renderMobs();
                     Render.renderUI();

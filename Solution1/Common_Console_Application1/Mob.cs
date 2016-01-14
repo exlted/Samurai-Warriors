@@ -6,6 +6,7 @@ namespace Creature
 {
     internal class Mob
     {
+        private static Random random = new Random();
         public Point Coord = new Point();
         public int MaxHP;
         public int HP;
@@ -268,7 +269,6 @@ namespace Creature
         {
             for (int i = 0; i < global.mobCount; i++)
             {
-                Random random = new Random();
                 while (true)
                 {
                     global.monster[i].Coord.X = random.Next(1, 180);
