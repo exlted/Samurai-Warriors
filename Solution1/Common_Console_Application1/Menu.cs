@@ -59,5 +59,10 @@ namespace menu
                 }
             }
         }
+
+        public static void escapeMenu()
+        {
+
+        }
     }
 }
