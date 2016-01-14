@@ -45,24 +45,32 @@ namespace menu
                     case ConsoleKey.NumPad2:
                         return false;
                     case ConsoleKey.UpArrow:
-                        if (menuPos > 1)
+                        switch(menuPos)
                         {
-                            menuPos -= 1;
-                            renderMenu(menuItems, menuPos);
-                            continue;
+                            case 1:
+                                menuPos = 2;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            case 2:
+                                menuPos = 1;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            default: continue;
                         }
-                        else
-                            continue;
                     case ConsoleKey.DownArrow:
-                        if (menuPos < 2)
+                        switch (menuPos)
                         {
-                            menuPos += 1;
-                            renderMenu(menuItems, menuPos);
-                            continue;
+                            case 1:
+                                menuPos = 2;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            case 2:
+                                menuPos = 1;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            default: continue;
                         }
-                        else
-                            continue;
-                    case ConsoleKey.Enter:
+                        case ConsoleKey.Enter:
                         if (menuPos == 1)
                             return true;
                         else return false;
@@ -96,23 +104,31 @@ namespace menu
                     case ConsoleKey.NumPad2:
                         return false;
                     case ConsoleKey.UpArrow:
-                        if (menuPos > 1)
+                        switch (menuPos)
                         {
-                            menuPos -= 1;
-                            renderMenu(menuItems, menuPos);
-                            continue;
+                            case 1:
+                                menuPos = 2;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            case 2:
+                                menuPos = 1;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            default: continue;
                         }
-                        else
-                            continue;
                     case ConsoleKey.DownArrow:
-                        if (menuPos < 2)
+                        switch (menuPos)
                         {
-                            menuPos += 1;
-                            renderMenu(menuItems, menuPos);
-                            continue;
+                            case 1:
+                                menuPos = 2;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            case 2:
+                                menuPos = 1;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            default: continue;
                         }
-                        else
-                            continue;
                     case ConsoleKey.Enter:
                         if (menuPos == 1)
                         {
@@ -160,23 +176,31 @@ namespace menu
                         global.world.Clear();
                         return false;
                     case ConsoleKey.UpArrow:
-                        if (menuPos > 1)
+                        switch (menuPos)
                         {
-                            menuPos -= 1;
-                            renderMenu(menuItems, menuPos);
-                            continue;
+                            case 1:
+                                menuPos = 2;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            case 2:
+                                menuPos = 1;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            default: continue;
                         }
-                        else
-                            continue;
                     case ConsoleKey.DownArrow:
-                        if (menuPos < 2)
+                        switch (menuPos)
                         {
-                            menuPos += 1;
-                            renderMenu(menuItems, menuPos);
-                            continue;
+                            case 1:
+                                menuPos = 2;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            case 2:
+                                menuPos = 1;
+                                renderMenu(menuItems, menuPos);
+                                continue;
+                            default: continue;
                         }
-                        else
-                            continue;
                     case ConsoleKey.Enter:
                         if (menuPos == 1)
                         {
