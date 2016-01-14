@@ -52,7 +52,7 @@ namespace render
                     }
                     else if (i >= 1 && i <= 39 && j >= 1 && j <= 179)
                     {
-                        global.world[temp].renderChar = Convert.ToChar(".");
+                        global.world[temp].renderChar = Convert.ToChar("█");
                         global.world[temp].isPassable = true;
                     }
                 }
