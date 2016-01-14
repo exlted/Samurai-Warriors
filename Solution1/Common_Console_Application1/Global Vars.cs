@@ -87,5 +87,11 @@ namespace Global
         {
             Mob player = new Mob(1, 1, random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
         }
+
+        public static void print(int horizontal, int vertical, string message)
+        {
+            Console.SetCursorPosition(horizontal, vertical);
+            Console.Write(message);
+        }
     }
 }

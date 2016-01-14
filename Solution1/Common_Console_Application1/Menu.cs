@@ -13,7 +13,9 @@ namespace menu
         public static bool menu()
         {
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            Console.Write("1: Start New Game \n2: Exit Game ");
+            global.print(Console.WindowHeight / 2 - 1, Console.WindowWidth / 2 - 7, "1: Start New Game");
+            global.print(Console.WindowHeight / 2 + 1, Console.WindowWidth / 2 - 6, "2: Exit Game");
+            Console.SetCursorPosition(0, Console.WindowHeight);
             while (true)
             {
                 input = Console.ReadKey();
