@@ -1,10 +1,20 @@
-﻿using API;
+﻿/*
+Samurai Warriors by Benjamin 'exlted' King and Trevor 'fritz1and2' Lory
+
+
+It references Colorful Console by tomakita found at - https://github.com/tomakita/Colorful.Console
+
+*/
+
+using API;
 using Creature;
 using Global;
 using render;
 using System;
 using menu;
 using System.Threading;
+using Console = Colorful.Console;
+using System.Drawing;
 
 namespace Common_Console_Application1
 {
@@ -66,6 +76,8 @@ namespace Common_Console_Application1
 
         private static void Main(string[] args)
         {
+            Console.Write("test", Color.Brown);
+            Console.ReadLine();
             Console.SetWindowSize(181, 46);
             Console.SetBufferSize(181, 46);
             if (Menu.menu())

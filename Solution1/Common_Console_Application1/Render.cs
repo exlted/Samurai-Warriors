@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using World;
+using Console = Colorful.Console;
+using Colorful;
 
 namespace render
 {
@@ -25,7 +27,7 @@ namespace render
                     {
                         temp.X = j;
                         temp.Y = i;
-                        global.world.Add(temp, new world(Convert.ToChar(219), false, false, false, false, ConsoleColor.DarkGreen));
+                        global.world.Add(temp, new world(Convert.ToChar(219), false, false, false, false, Color.Brown));
                     }
                 }
             }
@@ -147,9 +149,7 @@ namespace render
                     temp.X = i;
                     temp.Y = j;
                     Console.SetCursorPosition(i, j);
-                    Console.ForegroundColor = global.world[temp].color;
-                    Console.Write(global.world[temp].renderChar);
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.Write(global.world[temp].renderChar, global.world[temp].color);
                 }
             }
         }
@@ -194,7 +194,7 @@ namespace render
                 {
                     temp.X = i;
                     temp.Y = j;
-                    room.Add(temp, new world(Convert.ToChar("."), true, false, true, true));
+                    //room.Add(temp, new world(Convert.ToChar("."), true, false, true, true));
                 }
             }
             for (int i = XCoord + 1; i <= XCoord + X - 1; i++)
@@ -299,15 +299,12 @@ namespace render
                 if (global.monster[i].isAlive)
                 {
                     Console.SetCursorPosition(global.monster[i].Coord.X, global.monster[i].Coord.Y);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("M");
+                    Console.Write("M", ConsoleColor.Red);
                 }
             }
             Console.SetCursorPosition(global.player.Coord.X, global.player.Coord.Y);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.Write("P");
+            Console.Write("P", ConsoleColor.DarkCyan);
             Console.SetCursorPosition(0, 45);
-            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         public static void renderUI()
@@ -326,47 +323,39 @@ namespace render
             //non-static stat numbers (might need to be moved / aren't updating after level up)
             Console.SetCursorPosition(35, 42);
             Console.Write(global.player.HP + " / " + global.player.MaxHP + "          ");
-            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.SetCursorPosition(15, 43);
-            Console.Write(global.player.Str);
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write(Convert.ToString(global.player.Str), ConsoleColor.Yellow);
             Console.SetCursorPosition(29, 43);
-            Console.Write(global.player.Def);
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write(Convert.ToString(global.player.Def), ConsoleColor.Cyan);
             Console.SetCursorPosition(76, 43);
-            Console.Write(global.player.Lvl);
+            Console.Write(Convert.ToString(global.player.Lvl), ConsoleColor.Blue);
             //HP bar
-            Console.ForegroundColor = ConsoleColor.DarkRed;
             int percent = (global.player.HP * 100) / global.player.MaxHP;
             Console.SetCursorPosition(14, 41);
             for (int i = 1; i <= (percent / 2); i++)
             {
-                Console.Write(global.ascii[27]);
+                Console.Write(Convert.ToString(global.ascii[27]), ConsoleColor.DarkRed);
             }
-            Console.ForegroundColor = ConsoleColor.Black;
             for (int j = (percent / 2) + 1; j <= 50; j++)
             {
-                Console.Write(global.ascii[27]);
+                Console.Write(Convert.ToString(global.ascii[27]), ConsoleColor.Black);
                 if (global.player.HP <= -5)
                 {
                     break;
                 }
             }
             //Exp Bar
-            Console.ForegroundColor = ConsoleColor.Green;
             Console.SetCursorPosition(75, 41);
             percent = (global.player.Exp * 100) / (5 * global.player.Lvl);
             for (int e = 1; e <= (percent / 2); e++)
             {
-                Console.Write(global.ascii[27]);
+                Console.Write(Convert.ToString(global.ascii[27]), ConsoleColor.Green);
             }
-            Console.ForegroundColor = ConsoleColor.DarkGray;
             for (int a = (percent / 2) + 1; a <= 50; a++)
             {
-                Console.Write(global.ascii[27]);
+                Console.Write(Convert.ToString(global.ascii[27]), ConsoleColor.DarkGray);
             }
 
-            Console.ForegroundColor = ConsoleColor.Gray;
             Console.SetCursorPosition(0, 45);
         }
 
