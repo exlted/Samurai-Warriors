@@ -50,9 +50,9 @@ namespace menu
         {
             ConsoleKeyInfo input = new ConsoleKeyInfo();
             Console.Clear();
-            global.print(Console.WindowWidth / 2, 5, global.titleArt);
-            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 - 1, "1: Start New Game");
-            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + 1, "2: Exit Game");
+            string[] menuItems = { "Start New Game", "Exit Game" };
+            int menuPos = 1;
+            renderMenu(menuItems, menuPos);
             Console.SetCursorPosition(0, 45);
             while (true)
             {
@@ -79,9 +79,9 @@ namespace menu
         {
             Console.Clear();
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            global.print(Console.WindowWidth / 2, 5, global.titleArt);
-            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 - 1, "1: Resume Game");
-            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + 1, "2: Exit Game");
+            string[] menuItems = { "Resume Game", "Exit Game" };
+            int menuPos = 1;
+            renderMenu(menuItems, menuPos);
             Console.SetCursorPosition(0, 45);
             while (true)
             {
