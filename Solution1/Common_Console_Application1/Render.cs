@@ -11,60 +11,12 @@ namespace render
     {
         private static Random random = new Random();
 
-    public static void generateWorld()
-        {
-            Point temp = new Point();
-            for (int i = 0; i < Console.WindowHeight - 5; i++)
-            {
-                for (int j = 0; j < Console.WindowWidth; j++)
-                {
-                    temp.X = j;
-                    temp.Y = i;
-                    if (i == 0 && j == 0)
-                    {
-                        global.world[temp].renderChar = global.ascii[39];
-                        global.world[temp].isPassable = false;
-                    }
-                    else if (i == 0 && j == 180)
-                    {
-                        global.world[temp].renderChar = global.ascii[12];
-                        global.world[temp].isPassable = false;
-                    }
-                    else if (i == 40 && j == 180)
-                    {
-                        global.world[temp].renderChar = global.ascii[0];
-                        global.world[temp].isPassable = false;
-                    }
-                    else if ((i == 0) && (j != 180 || j != 0))
-                    {
-                        global.world[temp].renderChar = global.ascii[17];
-                        global.world[temp].isPassable = false;
-                    }
-                    else if ((j == 0 || j == 180) && (i != 0 || i != 40))
-                    {
-                        global.world[temp].renderChar = global.ascii[0];
-                        global.world[temp].isPassable = false;
-                    }
-                    else if ((j == 0 || j == 180) && (i != 40 || i != 44))
-                    {
-                        global.world[temp].renderChar = global.ascii[0];
-                        global.world[temp].isPassable = false;
-                    }
-                    else if (i >= 1 && i <= 39 && j >= 1 && j <= 179)
-                    {
-                        global.world[temp].renderChar = Convert.ToChar(".");
-                        global.world[temp].isPassable = true;
-                    }
-                }
-            }
-        }
-
         public static void initialRender(bool fullInit = true)
         {
             if (fullInit)
             {
                 Point temp = new Point();
-                world tempW = new world(Convert.ToChar("."), true, false, true, true);
+                world tempW = new world(Convert.ToChar(219), false, false, false, false, ConsoleColor.DarkGreen);
                 Console.OutputEncoding = Encoding.GetEncoding(1252);
                 Console.SetWindowSize(181, 46);
                 Console.SetBufferSize(181, 46);
@@ -79,7 +31,6 @@ namespace render
                         global.world.Add(temp, new world(tempW.renderChar, tempW.isPassable, tempW.updateOnTick, tempW.isInside, tempW.isSeethrough));
                     }
                 }
-                generateWorld();
             }
             for (int i = 40; i < Console.WindowHeight - 1; i++)
             {
@@ -199,33 +150,40 @@ namespace render
                     temp.X = i;
                     temp.Y = j;
                     Console.SetCursorPosition(i, j);
+                    Console.ForegroundColor = global.world[temp].color;
                     Console.Write(global.world[temp].renderChar);
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
                 }
             }
         }
 
         public static void randomGen(int roomNum, int roomSize, int seed)
         {
-            int RanX, RanY, RanSizeX, RanSizeY;
-            int stopTilNxt = 0;
-            for(int i = 0; i < roomNum; i+=0)
-            {
-                RanSizeX = random.Next(roomSize - 2, roomSize + 2);
-                RanSizeY = random.Next(roomSize - 2, roomSize + 2);
-                RanX = random.Next(0, 180 - RanSizeX);
-                RanY = random.Next(0, 40 - RanSizeY);
-                if (intersects(RanX, RanY, RanSizeX, RanSizeY) == false)
-                {
-                    generateRooms(RanX, RanY, RanSizeX, RanSizeY);
-                    if(stopTilNxt == 0)
-                    {
-                        stopTilNxt++;
-                    }
-                    else corridorGen(RanX, RanY, RanSizeX, RanSizeY);
-                    i++;
-                }
-            }
-            //generateRooms(0, 0, 30, 15);
+            //int RanX, RanY, RanSizeX, RanSizeY;
+            //int[] X = new int[roomNum];
+            //int[] Y = new int[roomNum];
+            //int[] SizeX = new int[roomNum];
+            //int[] SizeY = new int[roomNum];
+            //for (int i = 0; i < roomNum; i+=0)
+            //{
+            //    RanSizeX = random.Next(roomSize - 2, roomSize + 2);
+            //    RanSizeY = random.Next(roomSize - 2, roomSize + 2);
+            //    RanX = random.Next(0, 180 - RanSizeX);
+            //    RanY = random.Next(0, 40 - RanSizeY);
+            //    if (intersects(RanX, RanY, RanSizeX, RanSizeY) == false)
+            //    {
+            //        generateRooms(RanX, RanY, RanSizeX, RanSizeY);
+            //        X[i] = RanX;
+            //        Y[i] = RanY;
+            //        SizeX[i] = RanSizeX;
+            //        SizeY[i] = RanSizeX;
+            //        i++;
+            //    }
+            //}
+            //for(int j = 0; j < roomNum; j++)
+            //{
+            //    corridorGen(X[j], Y[j], SizeX[j], SizeY[j]);
+            //}
         }
 
         public static void generateRooms(int XCoord, int YCoord, int X, int Y)
@@ -275,53 +233,37 @@ namespace render
                 {
                     temp.X = i;
                     temp.Y = j;
-                    global.world[temp] = new world(room[temp].renderChar, room[temp].isPassable, room[temp].updateOnTick, room[temp].isInside, room[temp].isSeethrough, room[temp].colorCode);
+                    global.world[temp] = new world(room[temp].renderChar, room[temp].isPassable, room[temp].updateOnTick, room[temp].isInside, room[temp].isSeethrough, room[temp].color);
                 }
             }
         }
 
-        private static void corridorGen(int X, int Y, int SizeX, int SizeY)
+        public static void corridorGen(int X, int Y, int SizeX, int SizeY)
         {
-            Point temp = new Point();
-            temp.X = (X + SizeX / 2);
-            temp.Y = (Y + SizeY / 2);
-            int dir = random.Next(0, 3);    //0 == up, 1 == left, 2 == down, 3 == right
-            switch (dir)
-            {
-                case 0:
-                    for(int i = Y + SizeY; i >= (Y + SizeY) + random.Next(5, 30); i++)
-                    {
-                        temp.Y = i;
-                        global.world[temp].renderChar = '+';
-                        global.world[temp].isPassable = true;
-                        if(i >= 39)
-                        {
-                            dir = random.Next(1,2);
-                            if (dir == 2)
-                                dir = 3;
-                            i = (Y + SizeY) + random.Next(5, 30);
-                        }
-                        else if(!global.world[temp].isPassable)
-                        {
-
-                        }
-                    }
-                    break;
-                case 1:
-
-                    break;
-                case 2:
-
-                    break;
-                case 3:
-
-                    break;
-                default:
-                    break;
-            }
-            //for(int i = X; )
+            //Point temp = new Point();
+            //temp.X = X + (SizeX / 2);
+            //temp.Y = Y + (SizeY / 2);
+            //int dir = random.Next(0, 3);
+            //switch(dir)
             //{
+            //    case 0:
+            //        for(int i = Y + SizeY; i <= 30; i++)
+            //        {
+            //            temp.Y = i;
+            //            //if(!global.world)
+            //        }
+            //        break;
+            //    case 1:
 
+            //        break;
+            //    case 2:
+
+            //        break;
+            //    case 3:
+
+            //        break;
+            //    default:
+            //        break;
             //}
         }
 
