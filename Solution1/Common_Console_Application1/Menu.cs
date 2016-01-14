@@ -13,7 +13,7 @@ namespace menu
         public static bool menu()
         {
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            Console.Write("1: Start Game \n2: Exit Game ");
+            Console.Write("1: Start New Game \n2: Exit Game ");
             while (true)
             {
                 input = Console.ReadKey();
@@ -37,7 +37,7 @@ namespace menu
         {
             ConsoleKeyInfo input = new ConsoleKeyInfo();
             Console.Clear();
-            Console.WriteLine("1: Restart Game \n2: Exit Game \n ");
+            Console.WriteLine("1: Start New Game \n2: Exit Game \n ");
             while (true)
             {
                 input = Console.ReadKey();
@@ -65,7 +65,7 @@ namespace menu
         {
             Console.Clear();
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            Console.Write("1: Resume Game \n2: Exit Game ");
+            Console.Write("1: Resume Game \n2: Exit To Menu ");
             while (true)
             {
                 input = Console.ReadKey();
