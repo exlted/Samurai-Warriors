@@ -34,11 +34,34 @@ namespace Common_Console_Application1
             }
         }
 
+        private static bool MainLoop()
+        {
+            ConsoleKeyInfo input;
+            while (true)
+            {
+                input = Console.ReadKey();
+                Render.clearMobs();
+                playerInput(input);
+                Mob.AI();
+                Render.renderMobs();
+                Render.renderUI();
+                if (!global.player.isAlive)
+                {
+                    global.print("Game Over");
+                    return true;
+                }
+                else if (global.checkWin())
+                {
+                    global.print("You Win!");
+                    return true;
+                }
+                continue;
+            }
+        }
+
         private static void Main(string[] args)
         {
             //Initializing variables
-            ConsoleKeyInfo input;
-
             for (int i = 0; i <= global.mobCount - 1; i++)
             {
                 global.monster[i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
@@ -51,26 +74,8 @@ namespace Common_Console_Application1
             Render.renderUI();
 
             //Main loop
-            while (true)
-            {
-                input = Console.ReadKey();
-                Render.clearMobs();
-                playerInput(input);
-                Mob.AI();
-                Render.renderMobs();
-                Render.renderUI();
-                if (!global.player.isAlive)
-                {
-                    global.print("Game Over");
-                    break;
-                }
-                else if (global.checkWin())
-                {
-                    global.print("You Win!");
-                    break;
-                }
-            }
-            Capi.WaitForInput();
+            if (MainLoop())
+                Capi.WaitForInput();
         }
     }
 }
