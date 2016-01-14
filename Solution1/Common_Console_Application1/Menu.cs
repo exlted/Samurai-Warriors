@@ -45,13 +45,11 @@ namespace menu
                 {
                     case ConsoleKey.D1:
                         global.reInitPlayer();
-                        global.world.Clear();
                         return true;
                     case ConsoleKey.D2:
                         return false;
                     case ConsoleKey.NumPad1:
                         global.reInitPlayer();
-                        global.world.Clear();
                         return true;
                     case ConsoleKey.NumPad2:
                         return false;

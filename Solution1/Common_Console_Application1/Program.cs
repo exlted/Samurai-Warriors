@@ -69,13 +69,13 @@ namespace Common_Console_Application1
             //Initializing variables
             if (Menu.menu())
             {
+                Render.initialRender();
                 while (true)
                 {
                     for (int i = 0; i <= global.mobCount - 1; i++)
                     {
                         global.monster[i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
                     }
-                    Render.initialRender();
                     Render.randomGen(3, 10, 0);
                     //Mob.spawnMonster();
                     Render.initRender();
