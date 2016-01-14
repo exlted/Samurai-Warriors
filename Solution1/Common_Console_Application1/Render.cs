@@ -9,7 +9,9 @@ namespace render
 {
     internal class Render
     {
-        public static void generateWorld()
+        private static Random random = new Random();
+
+    public static void generateWorld()
         {
             Point temp = new Point();
             for (int i = 0; i < Console.WindowHeight - 5; i++)
@@ -204,12 +206,26 @@ namespace render
 
         public static void randomGen(int roomNum, int roomSize, int seed)
         {
+            int RanX, RanY, RanSizeX, RanSizeY;
+            for(int i = 0; i < roomNum; i+=0)
+            {
+                RanSizeX = random.Next(roomSize - 2, roomSize + 2);
+                RanSizeY = random.Next(roomSize - 2, roomSize + 2);
+                RanX = random.Next(0, 180 - RanSizeX);
+                RanY = random.Next(0, 40 - RanSizeY);
+                if (intersects(RanX, RanY, RanSizeX, RanSizeY) == false)
+                {
+                    generateRooms(RanX, RanY, RanSizeX, RanSizeY);
+                    i++;
+                }
+            }
             //generateRooms(0, 0, 30, 15);
         }
 
         public static void generateRooms(int XCoord, int YCoord, int X, int Y)
         {
             Dictionary<Point, world> room = new Dictionary<Point, world>();
+            room.Clear();
             Point temp = new Point();
             for (int i = XCoord; i <= XCoord + X; i++)
             {
@@ -256,6 +272,30 @@ namespace render
                     global.world[temp] = new world(room[temp].renderChar, room[temp].isPassable, room[temp].updateOnTick, room[temp].isInside, room[temp].isSeethrough, room[temp].colorCode);
                 }
             }
+        }
+
+        private static bool intersects(int X, int Y, int SizeX, int SizeY)
+        {
+            Point temp = new Point();
+            for (int i = X; i <= X + SizeX; i++)
+            {
+                for(int j = Y; j <= Y + SizeY; j++)
+                {
+                    temp.X = i;
+                    temp.Y = j;
+                    if(!global.world[temp].isPassable)
+                    {
+                        return true;
+                    }
+                    for(int k = 0; k < 2; k++)
+                    {
+                        temp.X++;
+                        if (!global.world[temp].isPassable)
+                            return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public static void clearMobs()
