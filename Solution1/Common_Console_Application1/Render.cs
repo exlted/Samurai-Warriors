@@ -159,31 +159,31 @@ namespace render
 
         public static void randomGen(int roomNum, int roomSize, int seed)
         {
-            //int RanX, RanY, RanSizeX, RanSizeY;
-            //int[] X = new int[roomNum];
-            //int[] Y = new int[roomNum];
-            //int[] SizeX = new int[roomNum];
-            //int[] SizeY = new int[roomNum];
-            //for (int i = 0; i < roomNum; i+=0)
-            //{
-            //    RanSizeX = random.Next(roomSize - 2, roomSize + 2);
-            //    RanSizeY = random.Next(roomSize - 2, roomSize + 2);
-            //    RanX = random.Next(0, 180 - RanSizeX);
-            //    RanY = random.Next(0, 40 - RanSizeY);
-            //    if (intersects(RanX, RanY, RanSizeX, RanSizeY) == false)
-            //    {
-            //        generateRooms(RanX, RanY, RanSizeX, RanSizeY);
-            //        X[i] = RanX;
-            //        Y[i] = RanY;
-            //        SizeX[i] = RanSizeX;
-            //        SizeY[i] = RanSizeX;
-            //        i++;
-            //    }
-            //}
-            //for(int j = 0; j < roomNum; j++)
-            //{
-            //    corridorGen(X[j], Y[j], SizeX[j], SizeY[j]);
-            //}
+            int RanX, RanY, RanSizeX, RanSizeY;
+            int[] X = new int[roomNum];
+            int[] Y = new int[roomNum];
+            int[] SizeX = new int[roomNum];
+            int[] SizeY = new int[roomNum];
+            for (int i = 0; i < roomNum; i += 0)
+            {
+                RanSizeX = random.Next(roomSize - 2, roomSize + 2);
+                RanSizeY = random.Next(roomSize - 2, roomSize + 2);
+                RanX = random.Next(0, 180 - RanSizeX);
+                RanY = random.Next(0, 40 - RanSizeY);
+                if (intersects(RanX, RanY, RanSizeX, RanSizeY) == false)
+                {
+                    generateRooms(RanX, RanY, RanSizeX, RanSizeY);
+                    X[i] = RanX;
+                    Y[i] = RanY;
+                    SizeX[i] = RanSizeX;
+                    SizeY[i] = RanSizeX;
+                    i++;
+                }
+            }
+            for (int j = 0; j < roomNum; j++)
+            {
+                corridorGen(X[j], Y[j], SizeX[j], SizeY[j]);
+            }
         }
 
         public static void generateRooms(int XCoord, int YCoord, int X, int Y)
@@ -191,45 +191,18 @@ namespace render
             Dictionary<Point, world> room = new Dictionary<Point, world>();
             room.Clear();
             Point temp = new Point();
-            for (int i = XCoord; i <= XCoord + X; i++)
+            for (int i = XCoord + 1; i <= XCoord + X - 1; i++)
             {
-                for (int j = YCoord; j <= YCoord + Y; j++)
+                for (int j = YCoord + 1; j <= YCoord + Y - 1; j++)
                 {
                     temp.X = i;
                     temp.Y = j;
-                    if (i == XCoord && j == YCoord)
-                    {
-                        room.Add(temp, new world(global.ascii[39], false, false, false, false));
-                    }
-                    else if (i == XCoord && j == YCoord + Y)
-                    {
-                        room.Add(temp, new world(global.ascii[13], false, false, false, false));
-                    }
-                    else if (i == XCoord + X && j == YCoord)
-                    {
-                        room.Add(temp, new world(global.ascii[12], false, false, false, false));
-                    }
-                    else if (i == XCoord + X && j == YCoord + Y)
-                    {
-                        room.Add(temp, new world(global.ascii[38], false, false, false, false));
-                    }
-                    else if ((i == XCoord || i == XCoord + X) && (j != YCoord + Y || j != YCoord))
-                    {
-                        room.Add(temp, new world(global.ascii[0], false, false, false, false));
-                    }
-                    else if ((j == YCoord || j == YCoord + Y) && (i != XCoord || i != XCoord + X))
-                    {
-                        room.Add(temp, new world(global.ascii[17], false, false, false, false));
-                    }
-                    else if (i >= (XCoord + 1) && i <= (XCoord + X - 1) && j >= (YCoord + 1) && j <= (YCoord + Y - 1))
-                    {
-                        room.Add(temp, new world(Convert.ToChar("."), true, false, true, true));
-                    }
+                    room.Add(temp, new world(Convert.ToChar("."), true, false, true, true));
                 }
             }
-            for (int i = XCoord; i <= XCoord + X; i++)
+            for (int i = XCoord + 1; i <= XCoord + X - 1; i++)
             {
-                for (int j = YCoord; j <= YCoord + Y; j++)
+                for (int j = YCoord + 1; j <= YCoord + Y - 1; j++)
                 {
                     temp.X = i;
                     temp.Y = j;
@@ -239,32 +212,51 @@ namespace render
         }
 
         public static void corridorGen(int X, int Y, int SizeX, int SizeY)
-        {
-            //Point temp = new Point();
-            //temp.X = X + (SizeX / 2);
-            //temp.Y = Y + (SizeY / 2);
-            //int dir = random.Next(0, 3);
-            //switch(dir)
-            //{
-            //    case 0:
-            //        for(int i = Y + SizeY; i <= 30; i++)
-            //        {
-            //            temp.Y = i;
-            //            //if(!global.world)
-            //        }
-            //        break;
-            //    case 1:
+                        {
+            Point temp = new Point();
+            temp.X = X + (SizeX / 2);
+            temp.Y = Y + (SizeY / 2);
+            int dir = random.Next(0, 3);
+            if(X <= SizeX + 2 || X >= 178 - SizeX)
+            {
 
-            //        break;
-            //    case 2:
+            }
+            switch (dir)
+            {
+                case 0:
+                    for (int i = Y + SizeY; i <= Y + SizeY + 30; i++)
+                    {
+                        temp.Y = i;
+                        if(global.world[temp].isPassable)
+                        {
+                            i += 30;
+                        }
+                        if(i >= 38)
+                        {
+                            dir = random.Next(1,2);
+                            if (dir == 2)
+                                dir = 3;
+                            i += 30;
+                        }
+                        global.world[temp].renderChar = '.';
+                        global.world[temp].isPassable = true;
+                        global.world[temp].isInside = true;
+                        global.world[temp].isSeethrough = true;
+                        global.world[temp].updateOnTick = false;
+                    }
+                    break;
+                case 1:
 
-            //        break;
-            //    case 3:
+                    break;
+                case 2:
 
-            //        break;
-            //    default:
-            //        break;
-            //}
+                    break;
+                case 3:
+
+                    break;
+                default:
+                    break;
+            }
         }
 
         private static bool intersects(int X, int Y, int SizeX, int SizeY)
@@ -276,14 +268,14 @@ namespace render
                 {
                     temp.X = i;
                     temp.Y = j;
-                    if(!global.world[temp].isPassable)
+                    if(global.world[temp].isPassable)
                     {
                         return true;
                     }
                     for(int k = 0; k < 2; k++)
                     {
                         temp.X++;
-                        if (!global.world[temp].isPassable)
+                        if (global.world[temp].isPassable)
                             return true;
                     }
                 }
