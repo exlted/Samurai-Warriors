@@ -1,8 +1,8 @@
-﻿using Creature;
+﻿using API;
+using Creature;
 using Global;
 using render;
 using System;
-using API;
 
 namespace Common_Console_Application1
 {
@@ -45,7 +45,7 @@ namespace Common_Console_Application1
             }
 
             Render.initialRender();
-            Render.randomGen(3, 10,0);
+            Render.randomGen(3, 10, 0);
             Render.initRender();
             Render.renderMobs();
             Render.renderUI();
@@ -56,19 +56,7 @@ namespace Common_Console_Application1
                 input = Console.ReadKey();
                 Render.clearMobs();
                 playerInput(input);
-                for (int i = 0; i <= global.mobCount - 1; i++)
-                {
-                    if (global.monster[i].isAlive)
-                    {
-                        Mob.Movement(i, random.Next(1, 6), random.Next(0, 5));
-
-                        Mob.checkDamage(global.player, global.monster[i], random.Next(0, 5));
-                        if (global.player.Exp == 5 * global.player.Lvl)
-                        {
-                            Mob.LevelUp(global.player, random.Next(3, 6), random.Next(0, 4), random.Next(10, 21));
-                        }
-                    }
-                }
+                Mob.AI();
                 Render.renderMobs();
                 Render.renderUI();
                 if (!global.player.isAlive)

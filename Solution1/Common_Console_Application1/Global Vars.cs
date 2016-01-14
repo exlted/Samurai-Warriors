@@ -76,7 +76,7 @@ namespace Global
         {
             for (int i = 0; i < mobCount; i++)
             {
-                if(monster[i].isAlive)
+                if (monster[i].isAlive)
                 {
                     return false;
                 }

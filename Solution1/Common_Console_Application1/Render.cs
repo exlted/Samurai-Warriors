@@ -1,10 +1,9 @@
-﻿using Creature;
-using Global;
+﻿using Global;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using World;
-using System.Collections.Generic;
 
 namespace render
 {
@@ -202,7 +201,6 @@ namespace render
 
         public static void randomGen(int roomNum, int roomSize, int seed)
         {
-
             //generateRooms(0, 0, 30, 15);
         }
 
@@ -246,9 +244,9 @@ namespace render
                     }
                 }
             }
-            for(int i = XCoord; i <= XCoord + X; i++)
+            for (int i = XCoord; i <= XCoord + X; i++)
             {
-                for(int j = YCoord; j <= YCoord + Y; j++)
+                for (int j = YCoord; j <= YCoord + Y; j++)
                 {
                     temp.X = i;
                     temp.Y = j;
@@ -316,12 +314,12 @@ namespace render
             Console.ForegroundColor = ConsoleColor.DarkRed;
             int percent = (global.player.HP * 100) / global.player.MaxHP;
             Console.SetCursorPosition(14, 41);
-            for(int i = 1; i <= (percent / 2); i++)
+            for (int i = 1; i <= (percent / 2); i++)
             {
                 Console.Write(global.ascii[27]);
             }
             Console.ForegroundColor = ConsoleColor.Black;
-            for(int j = (percent / 2) + 1; j <= 50; j++)
+            for (int j = (percent / 2) + 1; j <= 50; j++)
             {
                 Console.Write(global.ascii[27]);
                 if (global.player.HP <= -5)
@@ -349,7 +347,6 @@ namespace render
 
         public static void renderChar()
         {
-
         }
     }
 }

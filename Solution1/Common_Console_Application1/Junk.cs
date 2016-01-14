@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Creature;
 using Global;
-using Creature;
-using Mehroz;
+using System;
 
 namespace Common_Console_Application1
 {
-    class Junk
+    internal class Junk
     {
-
         public static void spawnMonster(int Level = 1)
         {
             for (int i = 0; i < global.mobCount; i++)
@@ -39,14 +33,141 @@ namespace Common_Console_Application1
             }
         }
 
-        public static void AI()
-        {
-            Fraction slope = new Fraction();
-            for (int i = 0; i < global.mobCount; i++)
-            {
-                slope = ((global.player.Coord.X - global.monster[i].Coord.X) / (global.player.Coord.Y - global.monster[i].Coord.Y));
+        //public static void AI(int random)
+        //{
+        //    int rise, run;
+        //    for (int i = 0; i < global.mobCount; i++)
+        //    {
+        //        if (global.monster[i].isAlive)
+        //        {
+        //            rise = Math.Abs(global.player.Coord.Y - global.monster[i].Coord.Y);
+        //            run = Math.Abs(global.player.Coord.X - global.monster[i].Coord.X);
+        //            if (Math.Abs(rise) + Math.Abs(run) <= 10)
+        //            {
+        //                if (rise + run <= 10)
+        //                {
+        //                    if (run > rise)
+        //                    {
+        //                        if (run < 0)
+        //                        {
+        //                            global.monster[i].Coord.X -= 1;
+        //                            if (MCollision(i, random))
+        //                            {
+        //                                global.monster[i].Coord.X += 1;
+        //                            }
+        //                            else
+        //                            {
+        //                            }
+        //                        }
+        //                        else {
+        //                            // right
+        //                            global.monster[i].Coord.X += 1;
+        //                            if (MCollision(i, random))
+        //                            {
+        //                                global.monster[i].Coord.X -= 1;
+        //                            }
+        //                            else
+        //                            {
+        //                            }
+        //                        }
+        //                    }
+        //                    else {
+        //                        if (rise < 0)
+        //                        {
+        //                            global.monster[i].Coord.Y += 1;
+        //                            if (MCollision(i, random))
+        //                            {
+        //                                global.monster[i].Coord.Y -= 1;
+        //                            }
+        //                            else
+        //                            {
+        //                            }
+        //                        }
+        //                        else {
+        //                            // down
+        //                            global.monster[i].Coord.Y -= 1;
+        //                            if (MCollision(i, random))
+        //                            {
+        //                                global.monster[i].Coord.Y += 1;
+        //                            }
+        //                            else
+        //                            {
+        //                            }
 
-            }
-        }
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //            else
+        //            {
+        //            }
+        //        }
+        //    }
+        //}
+        //public static void AI(int random)
+        //{
+        //    int rise, run;
+        //    for (int i = 0; i < global.mobCount; i++)
+        //    {
+        //        rise = Math.Abs(global.player.Coord.Y - global.monster[i].Coord.Y);
+        //        run = Math.Abs(global.player.Coord.X - global.monster[i].Coord.X);
+        //        if (Math.Abs(rise) + Math.Abs(run) <= 10)
+        //        {
+        //            if (rise + run <= 10)
+        //            {
+        //                if (run > rise)
+        //                {
+        //                    if (run < 0)
+        //                    {
+        //                        global.monster[i].Coord.X -= 1;
+        //                        if (MCollision(i, random))
+        //                        {
+        //                            global.monster[i].Coord.X += 1;
+        //                        }
+        //                        else
+        //                        {
+        //                        }
+        //                    }
+        //                    else {
+        //                        // right
+        //                        global.monster[i].Coord.X += 1;
+        //                        if (MCollision(i, random))
+        //                        {
+        //                            global.monster[i].Coord.X -= 1;
+        //                        }
+        //                        else
+        //                        {
+        //                        }
+        //                    }
+        //                }
+        //                else {
+        //                    if (rise < 0)
+        //                    {
+        //                        global.monster[i].Coord.Y += 1;
+        //                        if (MCollision(i, random))
+        //                        {
+        //                            global.monster[i].Coord.Y -= 1;
+        //                        }
+        //                        else
+        //                        {
+        //                        }
+        //                    }
+        //                    else {
+        //                        // down
+        //                        global.monster[i].Coord.Y -= 1;
+        //                        if (MCollision(i, random))
+        //                        {
+        //                            global.monster[i].Coord.Y += 1;
+        //                        }
+        //                        else
+        //                        {
+        //                        }
+
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

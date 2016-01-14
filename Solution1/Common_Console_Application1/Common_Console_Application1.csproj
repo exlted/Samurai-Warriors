@@ -47,7 +47,6 @@
     <Compile Include="Class1.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="FractionClass.cs" />
     <Compile Include="Global Vars.cs" />
     <Compile Include="Junk.cs" />
     <Compile Include="World.cs" />

@@ -89,62 +89,86 @@ namespace Creature
             }
         }
 
-        public static bool Movement(int i, int moving, int random)
+        public static void AI()
         {
-            switch (moving)
+            Random random = new Random();
+            int rise, run;
+            for (int i = 0; i < global.mobCount; i++)
             {
-                case 1:
-                    global.monster[i].Coord.Y -= 1;
-                    if (MCollision(i, random))
+                if (global.monster[i].isAlive)
+                {
+                    rise = global.player.Coord.Y - global.monster[i].Coord.Y;
+                    run = global.player.Coord.X - global.monster[i].Coord.X;
+                    if (Math.Abs(rise) + Math.Abs(run) <= 10 && random.Next(0, 101) > 10)
                     {
-                        global.monster[i].Coord.Y += 1;
-                        return false;
+                        if (Math.Abs(run) > Math.Abs(rise))
+                        {
+                            if (run > 0)
+                            {
+                                global.monster[i].Coord.X += 1;
+                                if (MCollision(i, random.Next(0, 6)))
+                                    global.monster[i].Coord.X -= 1;
+                                continue;
+                            }
+                            else {
+                                global.monster[i].Coord.X -= 1;
+                                if (MCollision(i, random.Next(0, 6)))
+                                    global.monster[i].Coord.X+= 1;
+                                continue;
+                            }
+                        }
+                        else {
+                            if (rise > 0)
+                            {
+                                global.monster[i].Coord.Y += 1;
+                                if (MCollision(i, random.Next(0, 6)))
+                                    global.monster[i].Coord.Y -= 1;
+                                continue;
+                            }
+                            else
+                            {
+                                global.monster[i].Coord.Y -= 1;
+                                if (MCollision(i, random.Next(0, 6)))
+                                    global.monster[i].Coord.Y += 1;
+                                continue;
+                            }
+                        }
                     }
                     else
                     {
-                        return true;
-                    }
+                        switch (random.Next(1, 6))
+                        {
+                            case 1:
+                                global.monster[i].Coord.Y -= 1;
+                                if (MCollision(i, random.Next(0, 6)))
+                                    global.monster[i].Coord.Y += 1;
+                                continue;
 
-                case 2:
-                    global.monster[i].Coord.Y += 1;
-                    if (MCollision(i, random))
-                    {
-                        global.monster[i].Coord.Y -= 1;
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                case 3:
-                    global.monster[i].Coord.X -= 1;
-                    if (MCollision(i, random))
-                    {
-                        global.monster[i].Coord.X += 1;
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
+                            case 2:
+                                global.monster[i].Coord.Y += 1;
+                                if (MCollision(i, random.Next(0, 6)))
+                                    global.monster[i].Coord.Y -= 1;
+                                continue;
 
-                case 4:
-                    global.monster[i].Coord.X += 1;
-                    if (MCollision(i, random))
-                    {
-                        global.monster[i].Coord.X -= 1;
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
+                            case 3:
+                                global.monster[i].Coord.X -= 1;
+                                if (MCollision(i, random.Next(0, 6)))
+                                    global.monster[i].Coord.X += 1;
+                                continue;
 
-                default:
-                    return false;
+                            case 4:
+                                global.monster[i].Coord.X += 1;
+                                if (MCollision(i, random.Next(0, 6)))
+                                    global.monster[i].Coord.X -= 1;
+                                continue;
+
+                            default:
+                                continue;
+                        }
+                    }
+                }
             }
         }
-
         public static Mob LevelUp(Mob player, int StrRand, int DefRand, int HPRand)
         {
             Random random = new Random();
@@ -160,6 +184,7 @@ namespace Creature
 
         public static void checkDamage(Mob attacker, Mob defender, int random)
         {
+            Random random2 = new Random();
             if (attacker.Coord == defender.Coord && ((attacker.Str + (random - 2)) - defender.Def) > 0)
             {
                 defender.HP -= ((attacker.Str + (random - 2)) - defender.Def);
@@ -174,6 +199,10 @@ namespace Creature
             else if (((attacker.Coord == defender.Coord && ((attacker.Str + (random - 2)) - defender.Def) <= 0)))
             {
                 global.print("You missed...");
+            }
+            if(global.player.Exp >= global.player.Lvl * 5)
+            {
+                LevelUp(global.player, random2.Next(3, 6), random2.Next(0, 4), random2.Next(10, 20));
             }
         }
 
