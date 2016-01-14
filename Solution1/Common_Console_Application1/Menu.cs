@@ -10,12 +10,22 @@ namespace menu
 {
     class Menu
     {
+        private static void renderMenu(string[] menuItems, int menuPos)
+        {
+            int menuDrawPos = -1;
+            global.print(Console.WindowWidth / 2, 5, global.titleArt);
+            for (int i = 0; i < menuItems.Length; i++)
+            {
+                global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + menuDrawPos, (i + 1) + ": "  + menuItems[i], false);
+                menuDrawPos += 2;
+            }
+        }
         public static bool menu()
         {
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            global.print(Console.WindowWidth/2, 5, global.titleArt);
-            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 - 1, "1: Start New Game", false);
-            global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + 1, "2: Exit Game", false);
+            string[] menuItems = { "Start New Game", "Exit Game" };
+            int menuPos = 1;
+            renderMenu(menuItems, menuPos);
             Console.SetCursorPosition(0, 45);
             while (true)
             {
@@ -81,6 +91,7 @@ namespace menu
                 switch (input.Key)
                 {
                     case ConsoleKey.D1:
+                        global.world.Clear();
                         Render.initialRender(false);
                         Render.initRender();
                         Render.renderMobs();
@@ -89,6 +100,7 @@ namespace menu
                     case ConsoleKey.D2:
                         return false;
                     case ConsoleKey.NumPad1:
+                        global.world.Clear();
                         Render.initialRender(false);
                         Render.initRender();
                         Render.renderMobs();
