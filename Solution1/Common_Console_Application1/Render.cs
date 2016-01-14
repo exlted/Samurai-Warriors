@@ -89,54 +89,54 @@ namespace render
             Console.Write(global.ascii[23], Color.DarkGray);
             //ascii art in UI left
             Console.SetCursorPosition(1, 41);
-            Console.Write("/");
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(2, 41);
-            Console.Write("\\");
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(3, 41);
-            Console.Write("/");
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(4, 41);
-            Console.Write("\\");
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(1, 42);
-            Console.Write(global.ascii[0]);
+            Console.Write(global.ascii[0], Color.DarkGray);
             Console.SetCursorPosition(2, 42);
-            Console.Write("@");
+            Console.Write("@", Color.DarkGray);
             Console.SetCursorPosition(3, 42);
-            Console.Write("#");
+            Console.Write("#", Color.DarkGray);
             Console.SetCursorPosition(4, 42);
-            Console.Write(global.ascii[0]);
+            Console.Write(global.ascii[0], Color.DarkGray);
             Console.SetCursorPosition(1, 43);
-            Console.Write("\\");
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(2, 43);
-            Console.Write("/");
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(3, 43);
-            Console.Write("\\");
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(4, 43);
-            Console.Write("/");
+            Console.Write("/", Color.DarkGray);
             //ascii art of UI right
             Console.SetCursorPosition(176, 41);
-            Console.Write("/");
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(177, 41);
-            Console.Write("\\");
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(178, 41);
-            Console.Write("/");
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(179, 41);
-            Console.Write("\\");
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(176, 42);
-            Console.Write(global.ascii[0]);
+            Console.Write(global.ascii[0], Color.DarkGray);
             Console.SetCursorPosition(177, 42);
-            Console.Write("#");
+            Console.Write("#", Color.DarkGray);
             Console.SetCursorPosition(178, 42);
-            Console.Write("@");
+            Console.Write("@", Color.DarkGray);
             Console.SetCursorPosition(179, 42);
-            Console.Write(global.ascii[0]);
+            Console.Write(global.ascii[0], Color.DarkGray);
             Console.SetCursorPosition(176, 43);
-            Console.Write("\\");
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(177, 43);
-            Console.Write("/");
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(178, 43);
-            Console.Write("\\");
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(179, 43);
-            Console.Write("/");
+            Console.Write("/", Color.DarkGray);
         }
 
         public static void initRender()
@@ -223,7 +223,7 @@ namespace render
                 case 0:
                     for (int i = Y + SizeY; i <= Y + SizeY + 30; i++)
                     {
-                        if(i==41||i==0)
+                        if(i>=41||i<=0)
                         {
                             break;
                         }
@@ -316,18 +316,18 @@ namespace render
         {
             //static stat identifiers
             Console.SetCursorPosition(10, 41);
-            Console.Write("HP:");
+            Console.Write("HP:", Color.DarkGray);
             Console.SetCursorPosition(10, 43);
-            Console.Write("Str:");
+            Console.Write("Str:", Color.DarkGray);
             Console.SetCursorPosition(24, 43);
-            Console.Write("Def:");
+            Console.Write("Def:", Color.DarkGray);
             Console.SetCursorPosition(70, 41);
-            Console.Write("Exp:");
+            Console.Write("Exp:", Color.DarkGray);
             Console.SetCursorPosition(70, 43);
-            Console.Write("Lvl:");
+            Console.Write("Lvl:", Color.DarkGray);
             //non-static stat numbers (might need to be moved / aren't updating after level up)
             Console.SetCursorPosition(35, 42);
-            Console.Write(global.player.HP + " / " + global.player.MaxHP + "          ");
+            Console.Write(global.player.HP + " / " + global.player.MaxHP + "          ", Color.DarkGray);
             Console.SetCursorPosition(15, 43);
             Console.Write(Convert.ToString(global.player.Str), Color.Yellow);
             Console.SetCursorPosition(29, 43);
