@@ -76,8 +76,6 @@ namespace Common_Console_Application1
 
         private static void Main(string[] args)
         {
-            Console.Write("test", Color.Brown);
-            Console.ReadLine();
             Console.SetWindowSize(181, 46);
             Console.SetBufferSize(181, 46);
             if (Menu.menu())
@@ -104,7 +102,6 @@ namespace Common_Console_Application1
                     }
                 }
             }
-            Capi.WaitForInput();
         }
     }
 }
