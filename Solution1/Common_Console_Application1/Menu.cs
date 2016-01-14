@@ -146,7 +146,7 @@ namespace menu
         {
             Console.Clear();
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            string[] menuItems = { "Resume Game", "Exit Game" };
+            string[] menuItems = { "Resume Game", "Exit to menu" };
             int menuPos = 1;
             renderMenu(menuItems, menuPos);
             Console.SetCursorPosition(0, 45);

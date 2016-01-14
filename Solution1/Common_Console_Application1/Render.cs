@@ -207,6 +207,7 @@ namespace render
         public static void randomGen(int roomNum, int roomSize, int seed)
         {
             int RanX, RanY, RanSizeX, RanSizeY;
+            int stopTilNxt = 0;
             for(int i = 0; i < roomNum; i+=0)
             {
                 RanSizeX = random.Next(roomSize - 2, roomSize + 2);
@@ -216,6 +217,11 @@ namespace render
                 if (intersects(RanX, RanY, RanSizeX, RanSizeY) == false)
                 {
                     generateRooms(RanX, RanY, RanSizeX, RanSizeY);
+                    if(stopTilNxt == 0)
+                    {
+                        stopTilNxt++;
+                    }
+                    else corridorGen(RanX, RanY, RanSizeX, RanSizeY);
                     i++;
                 }
             }
@@ -272,6 +278,51 @@ namespace render
                     global.world[temp] = new world(room[temp].renderChar, room[temp].isPassable, room[temp].updateOnTick, room[temp].isInside, room[temp].isSeethrough, room[temp].colorCode);
                 }
             }
+        }
+
+        private static void corridorGen(int X, int Y, int SizeX, int SizeY)
+        {
+            Point temp = new Point();
+            temp.X = (X + SizeX / 2);
+            temp.Y = (Y + SizeY / 2);
+            int dir = random.Next(0, 3);    //0 == up, 1 == left, 2 == down, 3 == right
+            switch (dir)
+            {
+                case 0:
+                    for(int i = Y + SizeY; i >= (Y + SizeY) + random.Next(5, 30); i++)
+                    {
+                        temp.Y = i;
+                        global.world[temp].renderChar = '+';
+                        global.world[temp].isPassable = true;
+                        if(i >= 39)
+                        {
+                            dir = random.Next(1,2);
+                            if (dir == 2)
+                                dir = 3;
+                            i = (Y + SizeY) + random.Next(5, 30);
+                        }
+                        else if(!global.world[temp].isPassable)
+                        {
+
+                        }
+                    }
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                default:
+                    break;
+            }
+            //for(int i = X; )
+            //{
+
+            //}
         }
 
         private static bool intersects(int X, int Y, int SizeX, int SizeY)
