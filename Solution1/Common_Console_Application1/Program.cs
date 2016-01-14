@@ -67,6 +67,7 @@ namespace Common_Console_Application1
         private static void Main(string[] args)
         {
             Console.SetWindowSize(181, 46);
+            Console.SetBufferSize(181, 46);
             if (Menu.menu())
             {
                 Render.initialRender();
