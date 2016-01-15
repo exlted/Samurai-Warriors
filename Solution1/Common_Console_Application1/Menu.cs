@@ -97,14 +97,14 @@ namespace menu
                 {
                     case ConsoleKey.D1:
                         global.reInitPlayer();
-                        global.world.Clear();
+                        global.worldReInit();
                         Render.initialRender();
                         return true;
                     case ConsoleKey.D2:
                         return false;
                     case ConsoleKey.NumPad1:
                         global.reInitPlayer();
-                        global.world.Clear();
+                        global.worldReInit();
                         Render.initialRender();
                         return true;
                     case ConsoleKey.NumPad2:
@@ -139,7 +139,7 @@ namespace menu
                         if (menuPos == 1)
                         {
                             global.reInitPlayer();
-                            global.world.Clear();
+                            global.worldReInit();
                             Render.initialRender();
                             return true;
                         }

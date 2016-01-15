@@ -96,41 +96,41 @@ namespace Creature
             int rise, run;
             for (int i = 0; i < global.mobCount; i++)
             {
-                if (global.monster[i].isAlive)
+                if (global.monster[global.currentFloor, i].isAlive)
                 {
-                    rise = global.player.Coord.Y - global.monster[i].Coord.Y;
-                    run = global.player.Coord.X - global.monster[i].Coord.X;
+                    rise = global.player.Coord.Y - global.monster[global.currentFloor, i].Coord.Y;
+                    run = global.player.Coord.X - global.monster[global.currentFloor, i].Coord.X;
                     if (Math.Abs(rise) + Math.Abs(run) <= 10 && random.Next(0, 101) > 10)
                     {
                         if (Math.Abs(run) > Math.Abs(rise))
                         {
                             if (run > 0)
                             {
-                                global.monster[i].Coord.X += 1;
+                                global.monster[global.currentFloor, i].Coord.X += 1;
                                 if (MCollision(i, random.Next(0, 6)))
-                                    global.monster[i].Coord.X -= 1;
+                                    global.monster[global.currentFloor, i].Coord.X -= 1;
                                 continue;
                             }
                             else {
-                                global.monster[i].Coord.X -= 1;
+                                global.monster[global.currentFloor, i].Coord.X -= 1;
                                 if (MCollision(i, random.Next(0, 6)))
-                                    global.monster[i].Coord.X+= 1;
+                                    global.monster[global.currentFloor, i].Coord.X+= 1;
                                 continue;
                             }
                         }
                         else {
                             if (rise > 0)
                             {
-                                global.monster[i].Coord.Y += 1;
+                                global.monster[global.currentFloor, i].Coord.Y += 1;
                                 if (MCollision(i, random.Next(0, 6)))
-                                    global.monster[i].Coord.Y -= 1;
+                                    global.monster[global.currentFloor, i].Coord.Y -= 1;
                                 continue;
                             }
                             else
                             {
-                                global.monster[i].Coord.Y -= 1;
+                                global.monster[global.currentFloor, i].Coord.Y -= 1;
                                 if (MCollision(i, random.Next(0, 6)))
-                                    global.monster[i].Coord.Y += 1;
+                                    global.monster[global.currentFloor, i].Coord.Y += 1;
                                 continue;
                             }
                         }
@@ -140,27 +140,27 @@ namespace Creature
                         switch (random.Next(1, 6))
                         {
                             case 1:
-                                global.monster[i].Coord.Y -= 1;
+                                global.monster[global.currentFloor, i].Coord.Y -= 1;
                                 if (MCollision(i, random.Next(0, 6)))
-                                    global.monster[i].Coord.Y += 1;
+                                    global.monster[global.currentFloor, i].Coord.Y += 1;
                                 continue;
 
                             case 2:
-                                global.monster[i].Coord.Y += 1;
+                                global.monster[global.currentFloor, i].Coord.Y += 1;
                                 if (MCollision(i, random.Next(0, 6)))
-                                    global.monster[i].Coord.Y -= 1;
+                                    global.monster[global.currentFloor, i].Coord.Y -= 1;
                                 continue;
 
                             case 3:
-                                global.monster[i].Coord.X -= 1;
+                                global.monster[global.currentFloor, i].Coord.X -= 1;
                                 if (MCollision(i, random.Next(0, 6)))
-                                    global.monster[i].Coord.X += 1;
+                                    global.monster[global.currentFloor, i].Coord.X += 1;
                                 continue;
 
                             case 4:
-                                global.monster[i].Coord.X += 1;
+                                global.monster[global.currentFloor, i].Coord.X += 1;
                                 if (MCollision(i, random.Next(0, 6)))
-                                    global.monster[i].Coord.X -= 1;
+                                    global.monster[global.currentFloor, i].Coord.X -= 1;
                                 continue;
 
                             default:
@@ -230,13 +230,13 @@ namespace Creature
         {
             if (!(global.player.Coord.Y >= 40 || global.player.Coord.Y <= 0 || global.player.Coord.X <= 0 || global.player.Coord.X >= 180))
             {
-                if (global.world[global.player.Coord].isPassable)
+                if (global.world[global.currentFloor][global.player.Coord].isPassable)
                 {
                     for (int i = 0; i < global.mobCount; i++)
                     {
-                        if (global.player.Coord == global.monster[i].Coord && global.monster[i].isAlive)
+                        if (global.player.Coord == global.monster[global.currentFloor, i].Coord && global.monster[global.currentFloor, i].isAlive)
                         {
-                            Mob.checkDamage(global.player, global.monster[i], random);
+                            Mob.checkDamage(global.player, global.monster[global.currentFloor, i], random);
                             return true;
                         }
                     }
@@ -249,13 +249,13 @@ namespace Creature
 
         private static bool MCollision(int i, int random)
         {
-            if (!(global.monster[i].Coord.Y >= 40 || global.monster[i].Coord.Y <= 0 || global.monster[i].Coord.X <= 0 || global.monster[i].Coord.X >= 180))
+            if (!(global.monster[global.currentFloor, i].Coord.Y >= 40 || global.monster[global.currentFloor, i].Coord.Y <= 0 || global.monster[global.currentFloor, i].Coord.X <= 0 || global.monster[global.currentFloor, i].Coord.X >= 180))
             {
-                if (global.world[global.monster[i].Coord].isPassable)
+                if (global.world[global.currentFloor][global.monster[global.currentFloor, i].Coord].isPassable)
                 {
-                    if (global.monster[i].Coord == global.player.Coord && global.player.isAlive)
+                    if (global.monster[global.currentFloor, i].Coord == global.player.Coord && global.player.isAlive)
                     {
-                        Mob.checkDamage(global.monster[i], global.player, random, true);
+                        Mob.checkDamage(global.monster[global.currentFloor, i], global.player, random, true);
                         return true;
                     }
                     return false;
@@ -271,29 +271,29 @@ namespace Creature
             {
                 while (true)
                 {
-                    global.monster[i].Coord.X = random.Next(1, 180);
-                    global.monster[i].Coord.Y = random.Next(1, 40);
-                    if (global.world[global.monster[i].Coord].isInside)
+                    global.monster[global.currentFloor, i].Coord.X = random.Next(1, 180);
+                    global.monster[global.currentFloor, i].Coord.Y = random.Next(1, 40);
+                    if (global.world[global.currentFloor][global.monster[global.currentFloor, i].Coord].isInside)
                     {
                         break;
                     }
                 }
-                global.monster[i].HP = random.Next(48, 61);
-                global.monster[i].MaxHP = global.monster[i].HP;
-                global.monster[i].Str = random.Next(5, 16);
-                global.monster[i].Def = random.Next(0, 6);
-                global.monster[i].Exp = 0;
-                global.monster[i].Lvl = Level;
+                global.monster[global.currentFloor, i].HP = random.Next(48, 61);
+                global.monster[global.currentFloor, i].MaxHP = global.monster[global.currentFloor, i].HP;
+                global.monster[global.currentFloor, i].Str = random.Next(5, 16);
+                global.monster[global.currentFloor, i].Def = random.Next(0, 6);
+                global.monster[global.currentFloor, i].Exp = 0;
+                global.monster[global.currentFloor, i].Lvl = Level;
                 for (int j = 1; j < Level; j++)
                 {
-                    Mob.LevelUp(global.monster[i], random.Next(3, 6), random.Next(0, 4), random.Next(10, 21));
+                    Mob.LevelUp(global.monster[global.currentFloor, i], random.Next(3, 6), random.Next(0, 4), random.Next(10, 21));
                 }
             }
             while (true)
             {
                 global.player.Coord.X = random.Next(1, 180);
                 global.player.Coord.Y = random.Next(1, 40);
-                if (global.world[global.player.Coord].isInside)
+                if (global.world[global.currentFloor][global.player.Coord].isInside)
                 {
                     break;
                 }

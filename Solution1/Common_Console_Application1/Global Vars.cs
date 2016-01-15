@@ -11,11 +11,15 @@ namespace Global
     {
         public static int mobCount = 10;
 
+        public static int floorCount = 5;
+
+        public static int currentFloor = 0;
+
         private static Random random = new Random();
 
         public static Mob player = new Mob(1, 1, random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
 
-        public static Dictionary<Point, world> world = new Dictionary<Point, world>();
+        public static Dictionary<Point, world>[] world = new Dictionary<Point, world>[floorCount];
 
         public static string[] titleArt = { "   _____                                 _  __          __             _                ", @"  / ____|                               (_) \ \        / /            (_)               ", @" | (___   __ _ _ __ ___  _   _ _ __ __ _ _   \ \  /\  / /_ _ _ __ _ __ _  ___  _ __ ___ ", @"  \___ \ / _` | '_ ` _ \| | | | '__/ _` | |   \ \/  \/ / _` | '__| '__| |/ _ \| '__/ __|", @"  ____) | (_| | | | | | | |_| | | | (_| | |    \  /\  / (_| | |  | |  | | (_) | |  \__ \", @" |_____/ \__,_|_| |_| |_|\__,_|_|  \__,_|_|     \/  \/ \__,_|_|  |_|  |_|\___/|_|  |___/" };
 
@@ -28,7 +32,7 @@ namespace Global
 
         private static int textPos = 0;
 
-        public static Mob[] monster = new Mob[mobCount];
+        public static Mob[,] monster = new Mob [floorCount, mobCount];
 
         public static void print(string message)
         {
@@ -79,7 +83,7 @@ namespace Global
         {
             for (int i = 0; i < mobCount; i++)
             {
-                if (monster[i].isAlive)
+                if (monster[currentFloor, i].isAlive)
                 {
                     return false;
                 }
@@ -120,6 +124,22 @@ namespace Global
                     Console.SetCursorPosition(horizontal - message[i].Length / 2, vertical + i);
                     Console.Write(message[i], Color.DarkGray);
                 }
+            }
+        }
+        
+        public static void initWorld()
+        {
+            for (int i = 0; i < global.floorCount; i++)
+            {
+                world[i] = new Dictionary<Point, world>();
+            }
+        }
+
+        public static void worldReInit()
+        {
+            for (int i = 0; i < global.floorCount; i++)
+            {
+                world[i].Clear();
             }
         }
     }
