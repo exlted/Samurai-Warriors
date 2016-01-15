@@ -23,7 +23,6 @@ namespace Global
 
         public static string[] titleArt = { "   _____                                 _  __          __             _                ", @"  / ____|                               (_) \ \        / /            (_)               ", @" | (___   __ _ _ __ ___  _   _ _ __ __ _ _   \ \  /\  / /_ _ _ __ _ __ _  ___  _ __ ___ ", @"  \___ \ / _` | '_ ` _ \| | | | '__/ _` | |   \ \/  \/ / _` | '__| '__| |/ _ \| '__/ __|", @"  ____) | (_| | | | | | | |_| | | | (_| | |    \  /\  / (_| | |  | |  | | (_) | |  \__ \", @" |_____/ \__,_|_| |_| |_|\__,_|_|  \__,_|_|     \/  \/ \__,_|_|  |_|  |_|\___/|_|  |___/" };
 
-
         public static char[] ascii = { Convert.ToChar(179), Convert.ToChar(180), Convert.ToChar(181), Convert.ToChar(182), Convert.ToChar(183), Convert.ToChar(184), Convert.ToChar(185),
             Convert.ToChar(186), Convert.ToChar(187), Convert.ToChar(188), Convert.ToChar(189), Convert.ToChar(190), Convert.ToChar(191), Convert.ToChar(192), Convert.ToChar(193), Convert.ToChar(194),
             Convert.ToChar(195), Convert.ToChar(196), Convert.ToChar(197), Convert.ToChar(198), Convert.ToChar(199), Convert.ToChar(200), Convert.ToChar(201), Convert.ToChar(202), Convert.ToChar(203),
@@ -32,7 +31,7 @@ namespace Global
 
         private static int textPos = 0;
 
-        public static Mob[,] monster = new Mob [floorCount, mobCount];
+        public static Mob[,] monster = new Mob[floorCount, mobCount];
 
         public static void print(string message)
         {
@@ -98,9 +97,9 @@ namespace Global
 
         public static void print(int horizontal, int vertical, string message, bool isCentered = true)
         {
-            if(isCentered)
+            if (isCentered)
             {
-                Console.SetCursorPosition(horizontal - message.Length/2, vertical);
+                Console.SetCursorPosition(horizontal - message.Length / 2, vertical);
                 Console.Write(message, Color.DarkGray);
             }
             else
@@ -114,9 +113,9 @@ namespace Global
         {
             for (int i = 0; i < message.Length; i++)
             {
-                if(isCentered)
+                if (isCentered)
                 {
-                    Console.SetCursorPosition(horizontal - message[i].Length/2, vertical + i);
+                    Console.SetCursorPosition(horizontal - message[i].Length / 2, vertical + i);
                     Console.Write(message[i], Color.DarkGray);
                 }
                 else
@@ -126,7 +125,7 @@ namespace Global
                 }
             }
         }
-        
+
         public static void initWorld()
         {
             for (int i = 0; i < global.floorCount; i++)

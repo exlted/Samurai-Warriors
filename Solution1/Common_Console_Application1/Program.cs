@@ -1,20 +1,16 @@
 ﻿/*
 Samurai Warriors by Benjamin 'exlted' King and Trevor 'fritz1and2' Lory
 
-
 It references Colorful Console by tomakita found at - https://github.com/tomakita/Colorful.Console
 
 */
 
-using API;
 using Creature;
 using Global;
+using menu;
 using render;
 using System;
-using menu;
-using System.Threading;
 using Console = Colorful.Console;
-using System.Drawing;
 
 namespace Common_Console_Application1
 {
@@ -67,8 +63,9 @@ namespace Common_Console_Application1
                 }
                 else if (global.checkWin())
                 {
-                    global.print("You Win!");
-                    return true;
+                    global.print("You beat this floor");
+                    global.currentFloor += 1;
+                    return false;
                 }
                 continue;
             }
@@ -84,12 +81,18 @@ namespace Common_Console_Application1
                 Render.initialRender();
                 while (true)
                 {
-                    for (int i = 0; i <= global.mobCount - 1; i++)
+                    if (global.currentFloor == 0)
                     {
-                        global.monster[global.currentFloor, i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
+                        for (int h = 0; h < global.floorCount; h++)
+                        {
+                            for (int i = 0; i <= global.mobCount - 1; i++)
+                            {
+                                global.monster[h, i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
+                            }
+                        }
+                        Render.randomGen(20, 10, 0);
+                        Mob.spawnMonster();
                     }
-                    Render.randomGen(20, 10, 0);
-                    Mob.spawnMonster();
                     Render.initRender();
                     Render.renderMobs();
                     Render.renderUI();
@@ -101,6 +104,7 @@ namespace Common_Console_Application1
                         }
                         else break;
                     }
+                    else continue;
                 }
             }
         }

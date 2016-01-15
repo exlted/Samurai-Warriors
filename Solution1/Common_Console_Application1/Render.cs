@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Text;
 using World;
 using Console = Colorful.Console;
-using Colorful;
 
 namespace render
 {
@@ -34,7 +33,7 @@ namespace render
                         }
                     }
                 }
-                }
+            }
             for (int i = 40; i < Console.WindowHeight - 1; i++)
             {
                 for (int j = 0; j < Console.WindowWidth; j++)
@@ -165,28 +164,27 @@ namespace render
             int[] Y = new int[roomNum];
             int[] SizeX = new int[roomNum];
             int[] SizeY = new int[roomNum];
-            for (int i = 0; i < roomNum; i += 0)
-            {
-                RanSizeX = random.Next(roomSize - 2, roomSize + 2);
-                RanSizeY = random.Next(roomSize - 2, roomSize + 2);
-                RanX = random.Next(0, 180 - RanSizeX);
-                RanY = random.Next(0, 40 - RanSizeY);
-                if (intersects(RanX, RanY, RanSizeX, RanSizeY) == false)
+                for (int i = 0; i < roomNum; i += 0)
                 {
-                    generateRooms(RanX, RanY, RanSizeX, RanSizeY);
-                    X[i] = RanX;
-                    Y[i] = RanY;
-                    SizeX[i] = RanSizeX;
-                    SizeY[i] = RanSizeY;
-                    i++;
+                    RanSizeX = random.Next(roomSize - 2, roomSize + 2);
+                    RanSizeY = random.Next(roomSize - 2, roomSize + 2);
+                    RanX = random.Next(0, 180 - RanSizeX);
+                    RanY = random.Next(0, 40 - RanSizeY);
+                    if (intersects(RanX, RanY, RanSizeX, RanSizeY) == false)
+                    {
+                        generateRooms(RanX, RanY, RanSizeX, RanSizeY);
+                        X[i] = RanX;
+                        Y[i] = RanY;
+                        SizeX[i] = RanSizeX;
+                        SizeY[i] = RanSizeY;
+                        i++;
+                    }
                 }
-            }
             for (int h = 0; h < global.floorCount; h++)
-            {
+            { 
                 for (int i = 1; i < roomNum; i++)
                 {
                     corridorGen(X[i] + SizeX[i] / 2, Y[i] + SizeY[i] / 2, X[i - 1] + SizeX[i - 1] / 2, Y[i - 1] + SizeY[i - 1] / 2, h);
-
                 }
             }
         }
@@ -228,7 +226,7 @@ namespace render
 
         public static void corridorGen(int X1, int Y1, int X2, int Y2, int floor) //if x === x && y ==== y
         {
-            if(X1 == X2)
+            if (X1 == X2)
             {
                 yCoor(Y1, Y2, X2, floor);
             }
@@ -247,9 +245,9 @@ namespace render
         {
             Point temp = new Point();
             temp.Y = Y1;
-            if(X1 > X2)
+            if (X1 > X2)
             {
-                for(int i = X2; i <= X1; i++)
+                for (int i = X2; i <= X1; i++)
                 {
                     temp.X = i;
                     global.world[floor][temp].renderChar = '.';

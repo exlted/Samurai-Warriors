@@ -114,7 +114,7 @@ namespace Creature
                             else {
                                 global.monster[global.currentFloor, i].Coord.X -= 1;
                                 if (MCollision(i, random.Next(0, 6)))
-                                    global.monster[global.currentFloor, i].Coord.X+= 1;
+                                    global.monster[global.currentFloor, i].Coord.X += 1;
                                 continue;
                             }
                         }
@@ -170,6 +170,7 @@ namespace Creature
                 }
             }
         }
+
         public static Mob LevelUp(Mob player, int StrRand, int DefRand, int HPRand)
         {
             Random random = new Random();
@@ -201,7 +202,7 @@ namespace Creature
             {
                 global.print("You missed...");
             }
-            if(global.player.Exp >= global.player.Lvl * 5)
+            if (global.player.Exp >= global.player.Lvl * 5)
             {
                 LevelUp(global.player, random2.Next(3, 6), random2.Next(0, 4), random2.Next(10, 20));
             }
