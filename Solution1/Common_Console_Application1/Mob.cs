@@ -268,6 +268,8 @@ namespace Creature
 
         public static void spawnMonster(int Level = 1)
         {
+            if (Level == 1)
+                Level = global.currentFloor + 1;
             for (int i = 0; i < global.mobCount; i++)
             {
                 while (true)
@@ -299,12 +301,15 @@ namespace Creature
                     break;
                 }
             }
-            global.player.HP = random.Next(48, 61);
-            global.player.MaxHP = global.player.HP;
-            global.player.Str = random.Next(5, 16);
-            global.player.Def = random.Next(0, 6);
-            global.player.Exp = 0;
-            global.player.Lvl = Level;
+            if(global.currentFloor == 0)
+            {
+                global.player.HP = random.Next(48, 61);
+                global.player.MaxHP = global.player.HP;
+                global.player.Str = random.Next(5, 16);
+                global.player.Def = random.Next(0, 6);
+                global.player.Exp = 0;
+                global.player.Lvl = Level;
+            }
         }
     }
 }

@@ -180,13 +180,10 @@ namespace render
                         i++;
                     }
                 }
-            for (int h = 0; h < global.floorCount; h++)
-            { 
                 for (int i = 1; i < roomNum; i++)
                 {
-                    corridorGen(X[i] + SizeX[i] / 2, Y[i] + SizeY[i] / 2, X[i - 1] + SizeX[i - 1] / 2, Y[i - 1] + SizeY[i - 1] / 2, h);
+                    corridorGen(X[i] + SizeX[i] / 2, Y[i] + SizeY[i] / 2, X[i - 1] + SizeX[i - 1] / 2, Y[i - 1] + SizeY[i - 1] / 2);
                 }
-            }
         }
 
         public static void generateRooms(int XCoord, int YCoord, int X, int Y)
@@ -224,20 +221,20 @@ namespace render
             }
         }
 
-        public static void corridorGen(int X1, int Y1, int X2, int Y2, int floor) //if x === x && y ==== y
+        public static void corridorGen(int X1, int Y1, int X2, int Y2) //if x === x && y ==== y
         {
             if (X1 == X2)
             {
-                yCoor(Y1, Y2, X2, floor);
+                yCoor(Y1, Y2, X2, global.currentFloor);
             }
             else if (Y1 == Y2)
             {
-                xCoor(X1, X2, Y1, floor);
+                xCoor(X1, X2, Y1, global.currentFloor);
             }
             else
             {
-                xCoor(X1, X2, Y1, floor);
-                yCoor(Y1, Y2, X2, floor);
+                xCoor(X1, X2, Y1, global.currentFloor);
+                yCoor(Y1, Y2, X2, global.currentFloor);
             }
         }
 
