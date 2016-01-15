@@ -53,7 +53,7 @@ namespace Common_Console_Application1
                         continue;
                     default:
                         //return Mob.Movement(Mob.moveDirection.none, random.Next(0, 5));
-                        //global.player.HP -= 5;
+                        //global.player.isAlive = false;
                         //global.print("test");
                         break;
                 }

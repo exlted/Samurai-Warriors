@@ -156,7 +156,7 @@ namespace render
 
         public static void randomGen(int roomNum, int roomSize, int seed)
         {
-            int RanX, RanY, RanSizeX, RanSizeY;
+            int RanX = 0, RanY = 0, RanSizeX, RanSizeY;
             int[] X = new int[roomNum];
             int[] Y = new int[roomNum];
             int[] SizeX = new int[roomNum];
@@ -177,9 +177,9 @@ namespace render
                     i++;
                 }
             }
-            for (int j = 0; j < roomNum; j++)
+            for(int i = 1; i < roomNum; i++)
             {
-                corridorGen(X[j], Y[j], SizeX[j], SizeY[j]);
+                corridorGen(X[i],Y[i],X[i - 1], Y[i - 1]);
             }
         }
 
@@ -194,7 +194,7 @@ namespace render
                 {
                     temp.X = i;
                     temp.Y = j;
-                    room.Add(temp, new world(Convert.ToChar("."), true, false, true, true, Color.DarkSlateGray));
+                    room.Add(temp, new world(Convert.ToChar("."), true, false, true, true, Color.DarkGray));
                 }
             }
             for (int i = XCoord + 1; i <= XCoord + X - 1; i++)
@@ -208,52 +208,84 @@ namespace render
             }
         }
 
-        public static void corridorGen(int X, int Y, int SizeX, int SizeY)
-                        {
-            Point temp = new Point();
-            temp.X = X + (SizeX / 2);
-            temp.Y = Y + (SizeY / 2);
-            int dir = random.Next(0, 3);
-            if(X <= SizeX + 2 || X >= 178 - SizeX)
+        public static void corridorGen(int X1, int Y1, int X2, int Y2) //if x === x && y ==== y
+        {
+            if(X1 == X2)
             {
-
+                yCoor(Y1, Y2, X2);
             }
-            switch (dir)
+            else if (Y1 == Y2)
             {
-                case 0:
-                    for (int i = Y + SizeY; i <= Y + SizeY + 30; i++)
-                    {
-                        temp.Y = i;
-                        if(global.world[temp].isPassable)
-                        {
-                            i += 30;
-                        }
-                        if(i >= 38)
-                        {
-                            dir = random.Next(1,2);
-                            if (dir == 2)
-                                dir = 3;
-                            i += 30;
-                        }
-                        global.world[temp].renderChar = '.';
-                        global.world[temp].isPassable = true;
-                        global.world[temp].isInside = true;
-                        global.world[temp].isSeethrough = true;
-                        global.world[temp].updateOnTick = false;
-                        global.world[temp].color = Color.DarkSlateGray;
-                    }
-                    break;
-                case 1:
+                xCoor(X1, X2, Y1);
+            }
+            else
+            {
+                xCoor(X1, X2, Y1);
+                yCoor(Y1, Y2, X2);
+            }
+        }
 
-                    break;
-                case 2:
+        private static void xCoor(int X1, int X2, int Y1)
+        {
+            Point temp = new Point();
+            temp.Y = Y1;
+            if(X1 > X2)
+            {
+                for(int i = X2; i <= X1; i++)
+                {
+                    temp.X = i;
+                    global.world[temp].renderChar = '.';
+                    global.world[temp].isPassable = true;
+                    global.world[temp].isSeethrough = true;
+                    global.world[temp].isInside = true;
+                    global.world[temp].updateOnTick = false;
+                    global.world[temp].color = Color.DarkGray;
+                }
+            }
+            else if (X1 < X2)
+            {
+                for (int i = X1; i <= X2; i++)
+                {
+                    temp.X = i;
+                    global.world[temp].renderChar = '.';
+                    global.world[temp].isPassable = true;
+                    global.world[temp].isSeethrough = true;
+                    global.world[temp].isInside = true;
+                    global.world[temp].updateOnTick = false;
+                    global.world[temp].color = Color.DarkGray;
+                }
+            }
+        }
 
-                    break;
-                case 3:
-
-                    break;
-                default:
-                    break;
+        private static void yCoor(int Y1, int Y2, int X2)
+        {
+            Point temp = new Point();
+            temp.X = X2;
+            if (Y1 > Y2)
+            {
+                for (int i = Y2; i <= Y1; i++)
+                {
+                    temp.Y = i;
+                    global.world[temp].renderChar = '.';
+                    global.world[temp].isPassable = true;
+                    global.world[temp].isSeethrough = true;
+                    global.world[temp].isInside = true;
+                    global.world[temp].updateOnTick = false;
+                    global.world[temp].color = Color.DarkGray;
+                }
+            }
+            else if (Y1 < Y2)
+            {
+                for (int i = Y1; i <= Y2; i++)
+                {
+                    temp.Y = i;
+                    global.world[temp].renderChar = '.';
+                    global.world[temp].isPassable = true;
+                    global.world[temp].isSeethrough = true;
+                    global.world[temp].isInside = true;
+                    global.world[temp].updateOnTick = false;
+                    global.world[temp].color = Color.DarkGray;
+                }
             }
         }
 
@@ -270,12 +302,6 @@ namespace render
                     {
                         return true;
                     }
-                    //for(int k = 0; k < 2; k++)
-                    //{
-                    //    temp.X++;
-                    //    if (global.world[temp].isPassable)
-                    //        return true;
-                    //}
                 }
             }
             return false;
@@ -284,12 +310,12 @@ namespace render
         public static void clearMobs()
         {
             Console.SetCursorPosition(global.player.Coord.X, global.player.Coord.Y);
-            Console.Write(".", Color.DarkSlateGray);
+            Console.Write(".", Color.DarkGray);
 
             for (int i = 0; i <= global.mobCount - 1; i++)
             {
                 Console.SetCursorPosition(global.monster[i].Coord.X, global.monster[i].Coord.Y);
-                Console.Write(".", Color.DarkSlateGray);
+                Console.Write(".", Color.DarkGray);
             }
         }
 
