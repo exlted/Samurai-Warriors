@@ -192,7 +192,6 @@ namespace render
             for (int i = 0; i < global.floorCount; i++)
             {
                 room[i] = new Dictionary<Point, world>();
-                room[i].Clear();
             }
             Point temp = new Point();
             for (int h = 0; h < global.floorCount; h++)
