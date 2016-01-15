@@ -179,7 +179,7 @@ namespace render
             }
             for(int i = 1; i < roomNum; i++)
             {
-                corridorGen(X[i],Y[i],X[i - 1], Y[i - 1]);
+                corridorGen(X[i] + SizeX[i] / 2,Y[i] + SizeY[i] / 2, X[i - 1] + SizeX[i - 1] / 2, Y[i - 1] + SizeY[i - 1] / 2);
             }
         }
 
