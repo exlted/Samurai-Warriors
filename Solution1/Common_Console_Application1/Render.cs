@@ -173,7 +173,7 @@ namespace render
                     X[i] = RanX;
                     Y[i] = RanY;
                     SizeX[i] = RanSizeX;
-                    SizeY[i] = RanSizeX;
+                    SizeY[i] = RanSizeY;
                     i++;
                 }
             }
@@ -223,10 +223,6 @@ namespace render
                 case 0:
                     for (int i = Y + SizeY; i <= Y + SizeY + 30; i++)
                     {
-                        if(i>=41||i<=0)
-                        {
-                            break;
-                        }
                         temp.Y = i;
                         if(global.world[temp].isPassable)
                         {
@@ -274,12 +270,12 @@ namespace render
                     {
                         return true;
                     }
-                    for(int k = 0; k < 2; k++)
-                    {
-                        temp.X++;
-                        if (global.world[temp].isPassable)
-                            return true;
-                    }
+                    //for(int k = 0; k < 2; k++)
+                    //{
+                    //    temp.X++;
+                    //    if (global.world[temp].isPassable)
+                    //        return true;
+                    //}
                 }
             }
             return false;
@@ -329,11 +325,11 @@ namespace render
             Console.SetCursorPosition(35, 42);
             Console.Write(global.player.HP + " / " + global.player.MaxHP + "          ", Color.DarkGray);
             Console.SetCursorPosition(15, 43);
-            Console.Write(Convert.ToString(global.player.Str), Color.Yellow);
+            Console.Write(Convert.ToString(global.player.Str), Color.DarkGray);
             Console.SetCursorPosition(29, 43);
-            Console.Write(Convert.ToString(global.player.Def), Color.Cyan);
+            Console.Write(Convert.ToString(global.player.Def), Color.DarkGray);
             Console.SetCursorPosition(76, 43);
-            Console.Write(Convert.ToString(global.player.Lvl), Color.Blue);
+            Console.Write(Convert.ToString(global.player.Lvl), Color.DarkGray);
             //HP bar
             int percent = (global.player.HP * 100) / global.player.MaxHP;
             int healthPos = 14;
