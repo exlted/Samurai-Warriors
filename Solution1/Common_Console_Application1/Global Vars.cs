@@ -49,7 +49,7 @@ namespace Global
                     Console.SetCursorPosition(129, 43);
                     break;
             }
-            Console.Write(message, Color.DarkGray);
+            Console.Write(message, ConsoleColor.DarkGray);
             for (int i = message.Length; i < 46; i++)
             {
                 Console.Write(" ");
@@ -96,12 +96,12 @@ namespace Global
             if(isCentered)
             {
                 Console.SetCursorPosition(horizontal - message.Length/2, vertical);
-                Console.Write(message, Color.DarkGray);
+                Console.Write(message, ConsoleColor.DarkGray);
             }
             else
             {
                 Console.SetCursorPosition(horizontal, vertical);
-                Console.Write(message, Color.DarkGray);
+                Console.Write(message, ConsoleColor.DarkGray);
             }
         }
 
@@ -112,12 +112,12 @@ namespace Global
                 if(isCentered)
                 {
                     Console.SetCursorPosition(horizontal - message[i].Length/2, vertical + i);
-                    Console.Write(message[i], Color.DarkGray);
+                    Console.Write(message[i], ConsoleColor.DarkGray);
                 }
                 else
                 {
                     Console.SetCursorPosition(horizontal - message[i].Length / 2, vertical + i);
-                    Console.Write(message[i], Color.DarkGray);
+                    Console.Write(message[i], ConsoleColor.DarkGray);
                 }
             }
         }

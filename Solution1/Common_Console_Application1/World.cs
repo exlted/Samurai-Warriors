@@ -11,9 +11,9 @@ namespace World
         public bool isInside;
         public bool isSeethrough;
         public char renderChar;
-        public Color color;
+        public ConsoleColor color;
 
-        public world(char render, bool passable, bool update, bool inside, bool seethrough,  Color colorIs)
+        public world(char render, bool passable, bool update, bool inside, bool seethrough,  ConsoleColor colorIs)
         {
             isPassable = passable;
             updateOnTick = update;
