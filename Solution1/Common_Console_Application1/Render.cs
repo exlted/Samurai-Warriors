@@ -21,24 +21,6 @@ namespace render
                 Console.OutputEncoding = Encoding.GetEncoding(1252);
                 Console.SetWindowSize(181, 46);
                 Console.SetBufferSize(181, 46);
-                ColorMapper cM = new ColorMapper();
-                cM.MapColor(ConsoleColor.Yellow, Color.SaddleBrown);
-                cM.MapColor(ConsoleColor.DarkGray, Color.DarkGray);
-                cM.MapColor(ConsoleColor.Red, Color.Red);
-                cM.MapColor(ConsoleColor.Black, Color.Black);
-                cM.MapColor(ConsoleColor.DarkCyan, Color.DarkCyan);
-                cM.MapColor(ConsoleColor.Green, Color.Green);
-                cM.MapColor(ConsoleColor.Black, Color.Black);
-                cM.MapColor(ConsoleColor.Cyan, Color.Cyan);
-                cM.MapColor(ConsoleColor.DarkBlue, Color.DarkBlue);
-                cM.MapColor(ConsoleColor.DarkGreen, Color.DarkGreen);
-                cM.MapColor(ConsoleColor.DarkMagenta, Color.DarkMagenta);
-                cM.MapColor(ConsoleColor.DarkRed, Color.DarkRed);
-                cM.MapColor(ConsoleColor.DarkYellow, Color.LightYellow);
-                cM.MapColor(ConsoleColor.Gray, Color.Gray);
-                cM.MapColor(ConsoleColor.Magenta, Color.Magenta);
-                cM.MapColor(ConsoleColor.White, Color.White);
-                cM.MapColor(ConsoleColor.Blue, Color.Blue);
 
                 for (int i = 0; i < 41; i++)
                 {
@@ -46,7 +28,7 @@ namespace render
                     {
                         temp.X = j;
                         temp.Y = i;
-                        global.world.Add(temp, new world(Convert.ToChar(219), false, false, false, false, ConsoleColor.Yellow));
+                        global.world.Add(temp, new world(Convert.ToChar(219), false, false, false, false, Color.SaddleBrown));
                     }
                 }
             }
@@ -56,106 +38,106 @@ namespace render
                 {
                     Console.SetCursorPosition(j, i);
                     if ((j == 180 && (i == 40 || i == 44)))
-                        Console.Write(Convert.ToString(global.ascii[2]), ConsoleColor.DarkGray);
+                        Console.Write(Convert.ToString(global.ascii[2]), Color.DarkGray);
                     else if ((j == 0 && (i == 40 || i == 44)))
-                        Console.Write(Convert.ToString(global.ascii[19]), ConsoleColor.DarkGray);
+                        Console.Write(Convert.ToString(global.ascii[19]), Color.DarkGray);
                     else if (j == 0 || j == 180)
-                        Console.Write(Convert.ToString(global.ascii[19]), ConsoleColor.DarkGray);
+                        Console.Write(Convert.ToString(global.ascii[19]), Color.DarkGray);
                     else if ((i == 40 || i == 44) && (j != 0 || j != 180))
-                        Console.Write(Convert.ToString(global.ascii[26]), ConsoleColor.DarkGray);
+                        Console.Write(Convert.ToString(global.ascii[26]), Color.DarkGray);
                 }
             }
             //UI lines
             Console.SetCursorPosition(5, 40);
-            Console.Write(Convert.ToString(global.ascii[24]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[24]), Color.DarkGray);
             Console.SetCursorPosition(5, 41);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(5, 42);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(5, 43);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(5, 44);
-            Console.Write(Convert.ToString(global.ascii[23]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[23]), Color.DarkGray);
             Console.SetCursorPosition(66, 40);
-            Console.Write(Convert.ToString(global.ascii[24]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[24]), Color.DarkGray);
             Console.SetCursorPosition(66, 41);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(66, 42);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(66, 43);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(66, 44);
-            Console.Write(Convert.ToString(global.ascii[23]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[23]), Color.DarkGray);
             Console.SetCursorPosition(127, 40);
-            Console.Write(Convert.ToString(global.ascii[24]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[24]), Color.DarkGray);
             Console.SetCursorPosition(127, 41);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(127, 42);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(127, 43);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(127, 44);
-            Console.Write(Convert.ToString(global.ascii[23]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[23]), Color.DarkGray);
             Console.SetCursorPosition(175, 40);
-            Console.Write(Convert.ToString(global.ascii[24]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[24]), Color.DarkGray);
             Console.SetCursorPosition(175, 41);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(175, 42);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(175, 43);
-            Console.Write(Convert.ToString(global.ascii[7]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[7]), Color.DarkGray);
             Console.SetCursorPosition(175, 44);
-            Console.Write(Convert.ToString(global.ascii[23]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[23]), Color.DarkGray);
             //ascii art in UI left
             Console.SetCursorPosition(1, 41);
-            Console.Write("/", ConsoleColor.DarkGray);
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(2, 41);
-            Console.Write("\\", ConsoleColor.DarkGray);
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(3, 41);
-            Console.Write("/", ConsoleColor.DarkGray);
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(4, 41);
-            Console.Write("\\", ConsoleColor.DarkGray);
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(1, 42);
-            Console.Write(Convert.ToString(global.ascii[0]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[0]), Color.DarkGray);
             Console.SetCursorPosition(2, 42);
-            Console.Write("@", ConsoleColor.DarkGray);
+            Console.Write("@", Color.DarkGray);
             Console.SetCursorPosition(3, 42);
-            Console.Write("#", ConsoleColor.DarkGray);
+            Console.Write("#", Color.DarkGray);
             Console.SetCursorPosition(4, 42);
-            Console.Write(Convert.ToString(global.ascii[0]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[0]), Color.DarkGray);
             Console.SetCursorPosition(1, 43);
-            Console.Write("\\", ConsoleColor.DarkGray);
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(2, 43);
-            Console.Write("/", ConsoleColor.DarkGray);
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(3, 43);
-            Console.Write("\\", ConsoleColor.DarkGray);
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(4, 43);
-            Console.Write("/", ConsoleColor.DarkGray);
+            Console.Write("/", Color.DarkGray);
             //ascii art of UI right
             Console.SetCursorPosition(176, 41);
-            Console.Write("/", ConsoleColor.DarkGray);
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(177, 41);
-            Console.Write("\\", ConsoleColor.DarkGray);
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(178, 41);
-            Console.Write("/", ConsoleColor.DarkGray);
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(179, 41);
-            Console.Write("\\", ConsoleColor.DarkGray);
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(176, 42);
-            Console.Write(Convert.ToString(global.ascii[0]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[0]), Color.DarkGray);
             Console.SetCursorPosition(177, 42);
-            Console.Write("#", ConsoleColor.DarkGray);
+            Console.Write("#", Color.DarkGray);
             Console.SetCursorPosition(178, 42);
-            Console.Write("@", ConsoleColor.DarkGray);
+            Console.Write("@", Color.DarkGray);
             Console.SetCursorPosition(179, 42);
-            Console.Write(Convert.ToString(global.ascii[0]), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.ascii[0]), Color.DarkGray);
             Console.SetCursorPosition(176, 43);
-            Console.Write("\\", ConsoleColor.DarkGray);
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(177, 43);
-            Console.Write("/", ConsoleColor.DarkGray);
+            Console.Write("/", Color.DarkGray);
             Console.SetCursorPosition(178, 43);
-            Console.Write("\\", ConsoleColor.DarkGray);
+            Console.Write("\\", Color.DarkGray);
             Console.SetCursorPosition(179, 43);
-            Console.Write("/", ConsoleColor.DarkGray);
+            Console.Write("/", Color.DarkGray);
         }
 
         public static void initRender()
@@ -213,7 +195,7 @@ namespace render
                 {
                     temp.X = i;
                     temp.Y = j;
-                    room.Add(temp, new world(Convert.ToChar("."), true, false, true, true, ConsoleColor.DarkGray));
+                    room.Add(temp, new world(Convert.ToChar("."), true, false, true, true, Color.DarkGray));
                 }
             }
             for (int i = XCoord + 1; i <= XCoord + X - 1; i++)
@@ -258,7 +240,7 @@ namespace render
                     global.world[temp].isSeethrough = true;
                     global.world[temp].isInside = true;
                     global.world[temp].updateOnTick = false;
-                    global.world[temp].color = ConsoleColor.DarkGray;
+                    global.world[temp].color = Color.DarkGray;
                 }
             }
             else if (X1 < X2)
@@ -271,7 +253,7 @@ namespace render
                     global.world[temp].isSeethrough = true;
                     global.world[temp].isInside = true;
                     global.world[temp].updateOnTick = false;
-                    global.world[temp].color = ConsoleColor.DarkGray;
+                    global.world[temp].color = Color.DarkGray;
                 }
             }
         }
@@ -290,7 +272,7 @@ namespace render
                     global.world[temp].isSeethrough = true;
                     global.world[temp].isInside = true;
                     global.world[temp].updateOnTick = false;
-                    global.world[temp].color = ConsoleColor.DarkGray;
+                    global.world[temp].color = Color.DarkGray;
                 }
             }
             else if (Y1 < Y2)
@@ -303,7 +285,7 @@ namespace render
                     global.world[temp].isSeethrough = true;
                     global.world[temp].isInside = true;
                     global.world[temp].updateOnTick = false;
-                    global.world[temp].color = ConsoleColor.DarkGray;
+                    global.world[temp].color = Color.DarkGray;
                 }
             }
         }
@@ -329,12 +311,12 @@ namespace render
         public static void clearMobs()
         {
             Console.SetCursorPosition(global.player.Coord.X, global.player.Coord.Y);
-            Console.Write(".", ConsoleColor.DarkGray);
+            Console.Write(".", Color.DarkGray);
 
             for (int i = 0; i <= global.mobCount - 1; i++)
             {
                 Console.SetCursorPosition(global.monster[i].Coord.X, global.monster[i].Coord.Y);
-                Console.Write(".", ConsoleColor.DarkGray);
+                Console.Write(".", Color.DarkGray);
             }
         }
 
@@ -345,11 +327,11 @@ namespace render
                 if (global.monster[i].isAlive)
                 {
                     Console.SetCursorPosition(global.monster[i].Coord.X, global.monster[i].Coord.Y);
-                    Console.Write("M", ConsoleColor.Red);
+                    Console.Write("M", Color.Red);
                 }
             }
             Console.SetCursorPosition(global.player.Coord.X, global.player.Coord.Y);
-            Console.Write("P", ConsoleColor.DarkCyan);
+            Console.Write("P", Color.DarkCyan);
             Console.SetCursorPosition(0, 45);
         }
 
@@ -357,36 +339,36 @@ namespace render
         {
             //static stat identifiers
             Console.SetCursorPosition(10, 41);
-            Console.Write("HP:", ConsoleColor.DarkGray);
+            Console.Write("HP:", Color.DarkGray);
             Console.SetCursorPosition(10, 43);
-            Console.Write("Str:", ConsoleColor.DarkGray);
+            Console.Write("Str:", Color.DarkGray);
             Console.SetCursorPosition(24, 43);
-            Console.Write("Def:", ConsoleColor.DarkGray);
+            Console.Write("Def:", Color.DarkGray);
             Console.SetCursorPosition(70, 41);
-            Console.Write("Exp:", ConsoleColor.DarkGray);
+            Console.Write("Exp:", Color.DarkGray);
             Console.SetCursorPosition(70, 43);
-            Console.Write("Lvl:", ConsoleColor.DarkGray);
+            Console.Write("Lvl:", Color.DarkGray);
             //non-static stat numbers (might need to be moved / aren't updating after level up)
             Console.SetCursorPosition(35, 42);
-            Console.Write(global.player.HP + " / " + global.player.MaxHP + "          ", ConsoleColor.DarkGray);
+            Console.Write(global.player.HP + " / " + global.player.MaxHP + "          ", Color.DarkGray);
             Console.SetCursorPosition(15, 43);
-            Console.Write(Convert.ToString(global.player.Str), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.player.Str), Color.DarkGray);
             Console.SetCursorPosition(29, 43);
-            Console.Write(Convert.ToString(global.player.Def), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.player.Def), Color.DarkGray);
             Console.SetCursorPosition(76, 43);
-            Console.Write(Convert.ToString(global.player.Lvl), ConsoleColor.DarkGray);
+            Console.Write(Convert.ToString(global.player.Lvl), Color.DarkGray);
             //HP bar
             int percent = (global.player.HP * 100) / global.player.MaxHP;
             int healthPos = 14;
             for (int i = 1; i <= (percent / 2); i++)
             {
                 Console.SetCursorPosition(healthPos++, 41);
-                Console.Write(Convert.ToString(global.ascii[27]), ConsoleColor.DarkRed);
+                Console.Write(Convert.ToString(global.ascii[27]), Color.DarkRed);
             }
             for (int j = (percent / 2) + 1; j <= 50; j++)
             {
                 Console.SetCursorPosition(healthPos++, 41);
-                Console.Write(Convert.ToString(global.ascii[27]), ConsoleColor.Black);
+                Console.Write(Convert.ToString(global.ascii[27]), Color.Black);
                 if (global.player.HP <= -5)
                 {
                     break;
@@ -398,12 +380,12 @@ namespace render
             for (int e = 1; e <= (percent / 2); e++)
             {
                 Console.SetCursorPosition(expPos++, 41);
-                Console.Write(Convert.ToString(global.ascii[27]), ConsoleColor.Green);
+                Console.Write(Convert.ToString(global.ascii[27]), Color.Green);
             }
             for (int a = (percent / 2) + 1; a <= 50; a++)
             {
                 Console.SetCursorPosition(expPos++, 41);
-                Console.Write(Convert.ToString(global.ascii[27]), ConsoleColor.DarkGray);
+                Console.Write(Convert.ToString(global.ascii[27]), Color.DarkGray);
             }
 
             Console.SetCursorPosition(0, 45);

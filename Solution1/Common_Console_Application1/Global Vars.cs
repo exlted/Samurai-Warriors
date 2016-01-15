@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using World;
+using Console = Colorful.Console;
 
 namespace Global
 {
@@ -49,7 +50,7 @@ namespace Global
                     Console.SetCursorPosition(129, 43);
                     break;
             }
-            Console.Write(message, ConsoleColor.DarkGray);
+            Console.Write(message, Color.DarkGray);
             for (int i = message.Length; i < 46; i++)
             {
                 Console.Write(" ");
@@ -88,7 +89,7 @@ namespace Global
 
         public static void reInitPlayer()
         {
-            Mob player = new Mob(1, 1, random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
+            player = new Mob(1, 1, random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
         }
 
         public static void print(int horizontal, int vertical, string message, bool isCentered = true)
@@ -96,12 +97,12 @@ namespace Global
             if(isCentered)
             {
                 Console.SetCursorPosition(horizontal - message.Length/2, vertical);
-                Console.Write(message, ConsoleColor.DarkGray);
+                Console.Write(message, Color.DarkGray);
             }
             else
             {
                 Console.SetCursorPosition(horizontal, vertical);
-                Console.Write(message, ConsoleColor.DarkGray);
+                Console.Write(message, Color.DarkGray);
             }
         }
 
@@ -112,12 +113,12 @@ namespace Global
                 if(isCentered)
                 {
                     Console.SetCursorPosition(horizontal - message[i].Length/2, vertical + i);
-                    Console.Write(message[i], ConsoleColor.DarkGray);
+                    Console.Write(message[i], Color.DarkGray);
                 }
                 else
                 {
                     Console.SetCursorPosition(horizontal - message[i].Length / 2, vertical + i);
-                    Console.Write(message[i], ConsoleColor.DarkGray);
+                    Console.Write(message[i], Color.DarkGray);
                 }
             }
         }

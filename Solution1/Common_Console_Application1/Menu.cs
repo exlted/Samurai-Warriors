@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Global;
 using render;
+using System.Drawing;
+using Console = Colorful.Console;
 
 namespace menu
 {
@@ -17,11 +19,11 @@ namespace menu
             for (int i = 0; i < menuItems.Length; i++)
             {
                 if (i + 1 == menuPos)
-                    Console.BackgroundColor = ConsoleColor.DarkBlue;
+                    Console.BackgroundColor = Color.DarkBlue;
 
                 global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + menuDrawPos, (i + 1) + ": "  + menuItems[i], false);
                 menuDrawPos += 2;
-                Console.BackgroundColor = ConsoleColor.Black;
+                Console.BackgroundColor = Color.Black;
             }
         }
         public static bool menu()
