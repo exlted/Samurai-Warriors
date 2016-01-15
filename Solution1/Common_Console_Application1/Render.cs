@@ -146,17 +146,14 @@ namespace render
         public static void initRender()
         {
             Point temp = new Point();
-            for (int h = 0; h < global.floorCount; h++)
+            for (int i = 0; i < 181; i++)
             {
-                for (int i = 0; i < 181; i++)
+                for (int j = 0; j < 40; j++)
                 {
-                    for (int j = 0; j < 40; j++)
-                    {
-                        temp.X = i;
-                        temp.Y = j;
-                        Console.SetCursorPosition(i, j);
-                        Console.Write(Convert.ToString(global.world[h][temp].renderChar), global.world[h][temp].color);
-                    }
+                    temp.X = i;
+                    temp.Y = j;
+                    Console.SetCursorPosition(i, j);
+                    Console.Write(Convert.ToString(global.world[global.currentFloor][temp].renderChar), global.world[global.currentFloor][temp].color);
                 }
             }
         }
