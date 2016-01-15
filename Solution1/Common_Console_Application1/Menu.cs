@@ -86,7 +86,7 @@ namespace menu
             Console.Clear();
             string[] menuItems = { "Start New Game", "Exit Game" };
             int menuPos = 1;
-            renderMenu(menuItems, menuPos);
+              renderMenu(menuItems, menuPos);
             Console.SetCursorPosition(0, 45);
             while (true)
             {
@@ -94,11 +94,15 @@ namespace menu
                 switch (input.Key)
                 {
                     case ConsoleKey.D1:
+                        global.reInitPlayer();
+                        global.world.Clear();
                         Render.initialRender();
                         return true;
                     case ConsoleKey.D2:
                         return false;
                     case ConsoleKey.NumPad1:
+                        global.reInitPlayer();
+                        global.world.Clear();
                         Render.initialRender();
                         return true;
                     case ConsoleKey.NumPad2:
@@ -132,6 +136,8 @@ namespace menu
                     case ConsoleKey.Enter:
                         if (menuPos == 1)
                         {
+                            global.reInitPlayer();
+                            global.world.Clear();
                             Render.initialRender();
                             return true;
                         }
@@ -162,8 +168,6 @@ namespace menu
                         Render.renderUI();
                         return true;
                     case ConsoleKey.D2:
-                        global.reInitPlayer();
-                        global.world.Clear();
                         return false;
                     case ConsoleKey.NumPad1:
                         Render.initialRender(false);
@@ -172,8 +176,6 @@ namespace menu
                         Render.renderUI();
                         return true;
                     case ConsoleKey.NumPad2:
-                        global.reInitPlayer();
-                        global.world.Clear();
                         return false;
                     case ConsoleKey.UpArrow:
                         switch (menuPos)
@@ -212,8 +214,6 @@ namespace menu
                         }
                         else
                         {
-                            global.reInitPlayer();
-                            global.world.Clear();
                             return false;
                         }
                     default:

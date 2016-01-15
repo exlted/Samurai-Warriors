@@ -289,6 +289,21 @@ namespace Creature
                     Mob.LevelUp(global.monster[i], random.Next(3, 6), random.Next(0, 4), random.Next(10, 21));
                 }
             }
+            while (true)
+            {
+                global.player.Coord.X = random.Next(1, 180);
+                global.player.Coord.Y = random.Next(1, 40);
+                if (global.world[global.player.Coord].isInside)
+                {
+                    break;
+                }
+            }
+            global.player.HP = random.Next(48, 61);
+            global.player.MaxHP = global.player.HP;
+            global.player.Str = random.Next(5, 16);
+            global.player.Def = random.Next(0, 6);
+            global.player.Exp = 0;
+            global.player.Lvl = Level;
         }
     }
 }
