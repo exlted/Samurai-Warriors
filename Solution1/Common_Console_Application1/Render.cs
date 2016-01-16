@@ -216,7 +216,7 @@ namespace render
             }
         }
 
-        public static void corridorGen(int X1, int Y1, int X2, int Y2, int floor) //if x === x && y ==== y
+        public static void corridorGen(int X1, int Y1, int X2, int Y2, int floor)
         {
             if (X1 == X2)
             {
@@ -317,62 +317,7 @@ namespace render
 
         private static void ladderGen(int floor)
         {
-            Point temp = new Point();
-            if(floor == global.floorCount - 1)
-            {
-                while (true)
-                {
-                    temp.X = random.Next(0, 180);
-                    temp.Y = random.Next(0, 40);
-                    if (global.world[floor][temp].isPassable)
-                    {
-                        global.world[floor][temp].renderChar = '#';
-                        global.world[floor][temp].color = Color.Yellow;
-                        global.world[floor][temp].isUpLadder = true;
-                        break;
-                    }
-                }
-            }
-            else if(floor == 0)
-            {
-                while (true)
-                {
-                    temp.X = random.Next(0, 180);
-                    temp.Y = random.Next(0, 40);
-                    if (global.world[floor][temp].isPassable /*&& global.world[floor + 1][temp].isPassable*/)
-                    {
-                        global.world[floor][temp].renderChar = 'O';
-                        global.world[floor][temp].isDownLadder = true;
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                while (true)
-                {
-                    temp.X = random.Next(0, 180);
-                    temp.Y = random.Next(0, 40);
-                    if (global.world[floor][temp].isPassable /*&& global.world[floor + 1][temp].isPassable*/)
-                    {
-                        global.world[floor][temp].renderChar = 'O';
-                        global.world[floor][temp].isDownLadder = true;
-                        break;
-                    }
-                }
-                while (true)
-                {
-                    temp.X = random.Next(0, 180);
-                    temp.Y = random.Next(0, 40);
-                    if (global.world[floor][temp].isPassable /*&& global.world[floor + 1][temp].isPassable*/)
-                    {
-                        global.world[floor][temp].renderChar = '#';
-                        global.world[floor][temp].color = Color.Yellow;
-                        global.world[floor][temp].isUpLadder = true;
-                        break;
-                    }
-                }
-            }
+            
         }
 
         private static void textureGen(int floor)
