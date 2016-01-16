@@ -315,5 +315,23 @@ namespace Creature
             }
             global.usedLadder = false;
         }
+
+        public static bool checkWin()
+        {
+            for (int i = 0; i < global.mobCount; i++)
+            {
+                if (global.monster[global.currentFloor, i].isAlive)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static void reInitPlayer()
+        {
+            global.player = new Mob(1, 1, random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
+        }
+
     }
 }

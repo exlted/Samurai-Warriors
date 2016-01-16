@@ -53,5 +53,37 @@ namespace print
                 }
             }
         }
+
+        public static void print(int horizontal, int vertical, string message, bool isCentered = true)
+        {
+            if (isCentered)
+            {
+                Console.SetCursorPosition(horizontal - message.Length / 2, vertical);
+                Console.Write(message, Color.DarkGray);
+            }
+            else
+            {
+                Console.SetCursorPosition(horizontal, vertical);
+                Console.Write(message, Color.DarkGray);
+            }
+        }
+
+        public static void print(int horizontal, int vertical, string[] message, bool isCentered = true)
+        {
+            for (int i = 0; i < message.Length; i++)
+            {
+                if (isCentered)
+                {
+                    Console.SetCursorPosition(horizontal - message[i].Length / 2, vertical + i);
+                    Console.Write(message[i], Color.DarkGray);
+                }
+                else
+                {
+                    Console.SetCursorPosition(horizontal - message[i].Length / 2, vertical + i);
+                    Console.Write(message[i], Color.DarkGray);
+                }
+            }
+        }
+
     }
 }

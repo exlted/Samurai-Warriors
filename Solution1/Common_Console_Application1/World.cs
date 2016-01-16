@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using Global;
+using System.Collections.Generic;
 
 namespace World
 {
@@ -23,6 +25,22 @@ namespace World
             isInside = inside;
             isUpLadder = false;
             isDownLadder = false;
+        }
+
+        public static void initWorld()
+        {
+            for (int i = 0; i < global.floorCount; i++)
+            {
+                global.world[i] = new Dictionary<Point, world>();
+            }
+        }
+
+        public static void worldReInit()
+        {
+            for (int i = 0; i < global.floorCount; i++)
+            {
+                global.world[i].Clear();
+            }
         }
     }
 }
