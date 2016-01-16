@@ -8,6 +8,8 @@ namespace World
         public bool updateOnTick;
         public bool isInside;
         public bool isSeethrough;
+        public bool isUpLadder;
+        public bool isDownLadder;
         public char renderChar;
         public Color color;
 
@@ -19,6 +21,8 @@ namespace World
             color = colorIs;
             isSeethrough = seethrough;
             isInside = inside;
+            isUpLadder = false;
+            isDownLadder = false;
         }
     }
 }
