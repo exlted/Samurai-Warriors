@@ -3,6 +3,9 @@ using render;
 using System;
 using System.Drawing;
 using Console = Colorful.Console;
+using print;
+using Creature;
+using World;
 
 namespace menu
 {
@@ -11,13 +14,13 @@ namespace menu
         private static void renderMenu(string[] menuItems, int menuPos)
         {
             int menuDrawPos = -1;
-            global.print(Console.WindowWidth / 2, 5, global.titleArt);
+            Write.print(Console.WindowWidth / 2, 5, global.titleArt);
             for (int i = 0; i < menuItems.Length; i++)
             {
                 if (i + 1 == menuPos)
                     Console.BackgroundColor = Color.DarkBlue;
 
-                global.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + menuDrawPos, (i + 1) + ": " + menuItems[i], false);
+                Write.print(Console.WindowWidth / 2 - 6, Console.WindowHeight / 2 + menuDrawPos, (i + 1) + ": " + menuItems[i], false);
                 menuDrawPos += 2;
                 Console.BackgroundColor = Color.Black;
             }
@@ -97,8 +100,8 @@ namespace menu
                 switch (input.Key)
                 {
                     case ConsoleKey.D1:
-                        global.reInitPlayer();
-                        global.worldReInit();
+                        Mob.reInitPlayer();
+                        world.worldReInit();
                         Render.initialRender();
                         return true;
 
@@ -106,8 +109,8 @@ namespace menu
                         return false;
 
                     case ConsoleKey.NumPad1:
-                        global.reInitPlayer();
-                        global.worldReInit();
+                        Mob.reInitPlayer();
+                        world.worldReInit();
                         Render.initialRender();
                         return true;
 
@@ -143,8 +146,8 @@ namespace menu
                     case ConsoleKey.Enter:
                         if (menuPos == 1)
                         {
-                            global.reInitPlayer();
-                            global.worldReInit();
+                            Mob.reInitPlayer();
+                            world.worldReInit();
                             Render.initialRender();
                             return true;
                         }

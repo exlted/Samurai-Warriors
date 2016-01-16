@@ -8,6 +8,7 @@ It references Colorful Console by tomakita found at - https://github.com/tomakit
 using Creature;
 using Global;
 using menu;
+using print;
 using render;
 using System;
 using Console = Colorful.Console;
@@ -72,20 +73,20 @@ namespace Common_Console_Application1
                 Render.renderUI();
                 if (!global.player.isAlive)
                 {
-                    global.print("Game Over");
+                    Write.print("Game Over");
                     return true;
                 }
-                else if (global.checkWin())
+                else if (Mob.checkWin())
                 {
                     if (global.currentFloor != global.floorCount - 1)
                     {
-                        global.print("You beat this floor");
+                        Write.print("You beat this floor");
                         global.currentFloor += 1;
                         return false;
                     }
                     else
                     {
-                        global.print("You win!");
+                        Write.print("You win!");
                         return true;
                     }
                 }
@@ -99,7 +100,7 @@ namespace Common_Console_Application1
             Console.SetBufferSize(181, 46);
             if (Menu.menu())
             {
-                global.initWorld();
+                World.world.initWorld();
                 Render.initialRender();
                 while (true)
                 {
