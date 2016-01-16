@@ -98,7 +98,7 @@ namespace Common_Console_Application1
         {
             Console.SetWindowSize(181, 46);
             Console.SetBufferSize(181, 46);
-            if (Menu.menu())
+            if (Menu.menu() == 1)
             {
                 World.world.initWorld();
                 Render.initialRender();
