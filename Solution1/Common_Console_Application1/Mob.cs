@@ -267,7 +267,7 @@ namespace Creature
             return true;
         }
 
-        public static void spawnMonster(int Level = 1)
+        public static void spawnMonster(int h, int Level = 1)
         {
             if (Level == 1)
                 Level = global.currentFloor + 1;
@@ -275,25 +275,29 @@ namespace Creature
             {
                 while (true)
                 {
-                    global.monster[global.currentFloor, i].Coord.X = random.Next(1, 180);
-                    global.monster[global.currentFloor, i].Coord.Y = random.Next(1, 40);
-                    if (global.world[global.currentFloor][global.monster[global.currentFloor, i].Coord].isInside)
+                    global.monster[h, i].Coord.X = random.Next(1, 180);
+                    global.monster[h, i].Coord.Y = random.Next(1, 40);
+                    if (global.world[h][global.monster[h, i].Coord].isInside)
                     {
                         break;
                     }
                 }
-                global.monster[global.currentFloor, i].HP = random.Next(48, 61);
-                global.monster[global.currentFloor, i].MaxHP = global.monster[global.currentFloor, i].HP;
-                global.monster[global.currentFloor, i].Str = random.Next(5, 16);
-                global.monster[global.currentFloor, i].Def = random.Next(0, 6);
-                global.monster[global.currentFloor, i].Exp = 0;
-                global.monster[global.currentFloor, i].Lvl = Level;
+                global.monster[h, i].HP = random.Next(48, 61);
+                global.monster[h, i].MaxHP = global.monster[h, i].HP;
+                global.monster[h, i].Str = random.Next(5, 16);
+                global.monster[h, i].Def = random.Next(0, 6);
+                global.monster[h, i].Exp = 0;
+                global.monster[h, i].Lvl = Level;
                 for (int j = 1; j < Level; j++)
                 {
-                    Mob.LevelUp(global.monster[global.currentFloor, i], random.Next(3, 6), random.Next(0, 4), random.Next(10, 21));
+                    Mob.LevelUp(global.monster[h, i], random.Next(3, 6), random.Next(0, 4), random.Next(10, 21));
                 }
             }
-            if(!global.usedLadder)
+        }
+
+        public static void initPlayer()
+        {
+            if (!global.usedLadder)
             {
                 while (true)
                 {
@@ -305,14 +309,14 @@ namespace Creature
                     }
                 }
             }
-            if(global.currentFloor == 0)
+            if (global.currentFloor == 0)
             {
                 global.player.HP = random.Next(48, 61);
                 global.player.MaxHP = global.player.HP;
                 global.player.Str = random.Next(5, 16);
                 global.player.Def = random.Next(0, 6);
                 global.player.Exp = 0;
-                global.player.Lvl = Level;
+                global.player.Lvl = 1;
             }
             global.usedLadder = false;
         }

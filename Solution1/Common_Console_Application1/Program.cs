@@ -107,14 +107,14 @@ namespace Common_Console_Application1
                                 global.monster[h, i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
                             }
                             Render.randomGen(20, 10, 0, h);
-                            if(h>0)
+                            Mob.spawnMonster(h);
+                            if (h>0)
                             {
                                 Render.ladderGen(h - 1);
                             }
                         }
                     }
-
-                    Mob.spawnMonster();
+                    Mob.initPlayer();
                     Render.initRender();
                     Render.renderMobs();
                     Render.renderUI();
