@@ -164,26 +164,28 @@ namespace render
             int[] Y = new int[roomNum];
             int[] SizeX = new int[roomNum];
             int[] SizeY = new int[roomNum];
-                for (int i = 0; i < roomNum; i += 0)
+            for (int i = 0; i < roomNum; i += 0)
+            {
+                RanSizeX = random.Next(roomSize - 2, roomSize + 2);
+                RanSizeY = random.Next(roomSize - 2, roomSize + 2);
+                RanX = random.Next(0, 180 - RanSizeX);
+                RanY = random.Next(0, 40 - RanSizeY);
+                if (intersects(RanX, RanY, RanSizeX, RanSizeY, floor) == false)
                 {
-                    RanSizeX = random.Next(roomSize - 2, roomSize + 2);
-                    RanSizeY = random.Next(roomSize - 2, roomSize + 2);
-                    RanX = random.Next(0, 180 - RanSizeX);
-                    RanY = random.Next(0, 40 - RanSizeY);
-                    if (intersects(RanX, RanY, RanSizeX, RanSizeY, floor) == false)
-                    {
-                        generateRooms(RanX, RanY, RanSizeX, RanSizeY, floor);
-                        X[i] = RanX;
-                        Y[i] = RanY;
-                        SizeX[i] = RanSizeX;
-                        SizeY[i] = RanSizeY;
-                        i++;
-                    }
+                    generateRooms(RanX, RanY, RanSizeX, RanSizeY, floor);
+                    X[i] = RanX;
+                    Y[i] = RanY;
+                    SizeX[i] = RanSizeX;
+                    SizeY[i] = RanSizeY;
+                    i++;
                 }
-                for (int i = 1; i < roomNum; i++)
-                {
-                    corridorGen(X[i] + SizeX[i] / 2, Y[i] + SizeY[i] / 2, X[i - 1] + SizeX[i - 1] / 2, Y[i - 1] + SizeY[i - 1] / 2, floor);
-                }
+            }
+            for (int i = 1; i < roomNum; i++)
+            {
+                corridorGen(X[i] + SizeX[i] / 2, Y[i] + SizeY[i] / 2, X[i - 1] + SizeX[i - 1] / 2, Y[i - 1] + SizeY[i - 1] / 2, floor);
+            }
+            textureGen(floor);
+            ladderGen(floor);
         }
 
         public static void generateRooms(int XCoord, int YCoord, int X, int Y, int floor)
@@ -313,15 +315,110 @@ namespace render
             return false;
         }
 
+        private static void ladderGen(int floor)
+        {
+            Point temp = new Point();
+            if(floor == global.floorCount - 1)
+            {
+                while (true)
+                {
+                    temp.X = random.Next(0, 180);
+                    temp.Y = random.Next(0, 40);
+                    if (global.world[floor][temp].isPassable)
+                    {
+                        global.world[floor][temp].renderChar = '#';
+                        global.world[floor][temp].color = Color.Yellow;
+                        global.world[floor][temp].isUpLadder = true;
+                        break;
+                    }
+                }
+            }
+            else if(floor == 0)
+            {
+                while (true)
+                {
+                    temp.X = random.Next(0, 180);
+                    temp.Y = random.Next(0, 40);
+                    if (global.world[floor][temp].isPassable)
+                    {
+                        global.world[floor][temp].renderChar = 'O';
+                        global.world[floor][temp].isDownLadder = true;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                while (true)
+                {
+                    temp.X = random.Next(0, 180);
+                    temp.Y = random.Next(0, 40);
+                    if (global.world[floor][temp].isPassable)
+                    {
+                        global.world[floor][temp].renderChar = 'O';
+                        global.world[floor][temp].isDownLadder = true;
+                        break;
+                    }
+                }
+                while (true)
+                {
+                    temp.X = random.Next(0, 180);
+                    temp.Y = random.Next(0, 40);
+                    if (global.world[floor][temp].isPassable)
+                    {
+                        global.world[floor][temp].renderChar = '#';
+                        global.world[floor][temp].color = Color.Yellow;
+                        global.world[floor][temp].isUpLadder = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        private static void textureGen(int floor)
+        {
+            Point temp = new Point();
+            int amt = random.Next(5, 200);
+            for(int i = 0; i < amt; i++)
+            {
+                while(true)
+                {
+                    temp.X = random.Next(0, 180);
+                    temp.Y = random.Next(0, 40);
+                    if (global.world[floor][temp].isPassable)
+                    {
+                        global.world[floor][temp].renderChar = '*';
+                        global.world[floor][temp].color = Color.DarkKhaki;
+                        break;
+                    }
+                }
+            }
+            int amt2 = random.Next(5, 50);
+            for (int i = 0; i < amt2; i++)
+            {
+                while (true)
+                {
+                    temp.X = random.Next(0, 180);
+                    temp.Y = random.Next(0, 40);
+                    if (global.world[floor][temp].isPassable)
+                    {
+                        global.world[floor][temp].renderChar = '%';
+                        global.world[floor][temp].color = Color.DarkGreen;
+                        break;
+                    }
+                }
+            }
+        }
+
         public static void clearMobs()
         {
             Console.SetCursorPosition(global.player.Coord.X, global.player.Coord.Y);
-            Console.Write(".", Color.DarkGray);
+            Console.Write(global.world[global.currentFloor][global.player.Coord].renderChar, global.world[global.currentFloor][global.player.Coord].color);
 
             for (int i = 0; i <= global.mobCount - 1; i++)
             {
                 Console.SetCursorPosition(global.monster[global.currentFloor, i].Coord.X, global.monster[global.currentFloor, i].Coord.Y);
-                Console.Write(".", Color.DarkGray);
+                Console.Write(global.world[global.currentFloor][global.monster[global.currentFloor,i].Coord].renderChar, global.world[global.currentFloor][global.monster[global.currentFloor, i].Coord].color);
             }
         }
 
@@ -353,6 +450,8 @@ namespace render
             Console.Write("Exp:", Color.DarkGray);
             Console.SetCursorPosition(70, 43);
             Console.Write("Lvl:", Color.DarkGray);
+            Console.SetCursorPosition(84, 43);
+            Console.Write("Flr:", Color.DarkGray);
             //non-static stat numbers (might need to be moved / aren't updating after level up)
             Console.SetCursorPosition(35, 42);
             Console.Write(global.player.HP + " / " + global.player.MaxHP + "          ", Color.DarkGray);
@@ -362,6 +461,8 @@ namespace render
             Console.Write(Convert.ToString(global.player.Def), Color.Cyan);
             Console.SetCursorPosition(76, 43);
             Console.Write(Convert.ToString(global.player.Lvl), Color.Blue);
+            Console.SetCursorPosition(89, 43);
+            Console.Write(Convert.ToString(global.currentFloor + 1), Color.Orange);
             //HP bar
             int percent = (global.player.HP * 100) / global.player.MaxHP;
             int healthPos = 14;
