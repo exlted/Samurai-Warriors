@@ -357,11 +357,11 @@ namespace render
             Console.SetCursorPosition(35, 42);
             Console.Write(global.player.HP + " / " + global.player.MaxHP + "          ", Color.DarkGray);
             Console.SetCursorPosition(15, 43);
-            Console.Write(Convert.ToString(global.player.Str), Color.DarkGray);
+            Console.Write(Convert.ToString(global.player.Str), Color.Yellow);
             Console.SetCursorPosition(29, 43);
-            Console.Write(Convert.ToString(global.player.Def), Color.DarkGray);
+            Console.Write(Convert.ToString(global.player.Def), Color.Cyan);
             Console.SetCursorPosition(76, 43);
-            Console.Write(Convert.ToString(global.player.Lvl), Color.DarkGray);
+            Console.Write(Convert.ToString(global.player.Lvl), Color.Blue);
             //HP bar
             int percent = (global.player.HP * 100) / global.player.MaxHP;
             int healthPos = 14;
