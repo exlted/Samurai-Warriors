@@ -157,7 +157,7 @@ namespace render
             }
         }
 
-        public static void randomGen(int roomNum, int roomSize, int seed)
+        public static void randomGen(int roomNum, int roomSize, int seed, int floor)
         {
             int RanX = 0, RanY = 0, RanSizeX, RanSizeY;
             int[] X = new int[roomNum];
@@ -170,9 +170,9 @@ namespace render
                     RanSizeY = random.Next(roomSize - 2, roomSize + 2);
                     RanX = random.Next(0, 180 - RanSizeX);
                     RanY = random.Next(0, 40 - RanSizeY);
-                    if (intersects(RanX, RanY, RanSizeX, RanSizeY) == false)
+                    if (intersects(RanX, RanY, RanSizeX, RanSizeY, floor) == false)
                     {
-                        generateRooms(RanX, RanY, RanSizeX, RanSizeY);
+                        generateRooms(RanX, RanY, RanSizeX, RanSizeY, floor);
                         X[i] = RanX;
                         Y[i] = RanY;
                         SizeX[i] = RanSizeX;
@@ -182,11 +182,11 @@ namespace render
                 }
                 for (int i = 1; i < roomNum; i++)
                 {
-                    corridorGen(X[i] + SizeX[i] / 2, Y[i] + SizeY[i] / 2, X[i - 1] + SizeX[i - 1] / 2, Y[i - 1] + SizeY[i - 1] / 2);
+                    corridorGen(X[i] + SizeX[i] / 2, Y[i] + SizeY[i] / 2, X[i - 1] + SizeX[i - 1] / 2, Y[i - 1] + SizeY[i - 1] / 2, floor);
                 }
         }
 
-        public static void generateRooms(int XCoord, int YCoord, int X, int Y)
+        public static void generateRooms(int XCoord, int YCoord, int X, int Y, int floor)
         {
             Dictionary<Point, world>[] room = new Dictionary<Point, world>[global.floorCount];
             for (int i = 0; i < global.floorCount; i++)
@@ -194,46 +194,40 @@ namespace render
                 room[i] = new Dictionary<Point, world>();
             }
             Point temp = new Point();
-            for (int h = 0; h < global.floorCount; h++)
+            for (int i = XCoord + 1; i <= XCoord + X - 1; i++)
             {
-                for (int i = XCoord + 1; i <= XCoord + X - 1; i++)
+                for (int j = YCoord + 1; j <= YCoord + Y - 1; j++)
                 {
-                    for (int j = YCoord + 1; j <= YCoord + Y - 1; j++)
-                    {
-                        temp.X = i;
-                        temp.Y = j;
-                        room[h].Add(temp, new world(Convert.ToChar("."), true, false, true, true, Color.DarkGray));
-                    }
+                    temp.X = i;
+                    temp.Y = j;
+                    room[floor].Add(temp, new world(Convert.ToChar("."), true, false, true, true, Color.DarkGray));
                 }
             }
-            for (int h = 0; h < global.floorCount; h++)
+            for (int i = XCoord + 1; i <= XCoord + X - 1; i++)
             {
-                for (int i = XCoord + 1; i <= XCoord + X - 1; i++)
+                for (int j = YCoord + 1; j <= YCoord + Y - 1; j++)
                 {
-                    for (int j = YCoord + 1; j <= YCoord + Y - 1; j++)
-                    {
-                        temp.X = i;
-                        temp.Y = j;
-                        global.world[h][temp] = new world(room[h][temp].renderChar, room[h][temp].isPassable, room[h][temp].updateOnTick, room[h][temp].isInside, room[h][temp].isSeethrough, room[h][temp].color);
-                    }
+                    temp.X = i;
+                    temp.Y = j;
+                    global.world[floor][temp] = new world(room[floor][temp].renderChar, room[floor][temp].isPassable, room[floor][temp].updateOnTick, room[floor][temp].isInside, room[floor][temp].isSeethrough, room[floor][temp].color);
                 }
             }
         }
 
-        public static void corridorGen(int X1, int Y1, int X2, int Y2) //if x === x && y ==== y
+        public static void corridorGen(int X1, int Y1, int X2, int Y2, int floor) //if x === x && y ==== y
         {
             if (X1 == X2)
             {
-                yCoor(Y1, Y2, X2, global.currentFloor);
+                yCoor(Y1, Y2, X2, floor);
             }
             else if (Y1 == Y2)
             {
-                xCoor(X1, X2, Y1, global.currentFloor);
+                xCoor(X1, X2, Y1, floor);
             }
             else
             {
-                xCoor(X1, X2, Y1, global.currentFloor);
-                yCoor(Y1, Y2, X2, global.currentFloor);
+                xCoor(X1, X2, Y1, floor);
+                yCoor(Y1, Y2, X2, floor);
             }
         }
 
@@ -301,21 +295,18 @@ namespace render
             }
         }
 
-        private static bool intersects(int X, int Y, int SizeX, int SizeY)
+        private static bool intersects(int X, int Y, int SizeX, int SizeY, int floor)
         {
             Point temp = new Point();
-            for (int h = 0; h < global.floorCount; h++)
+            for (int i = X; i <= X + SizeX; i++)
             {
-                for (int i = X; i <= X + SizeX; i++)
+                for (int j = Y; j <= Y + SizeY; j++)
                 {
-                    for (int j = Y; j <= Y + SizeY; j++)
-                    {
-                        temp.X = i;
-                        temp.Y = j;
-                        if (global.world[h][temp].isPassable)
-                        {
-                            return true;
-                        }
+                    temp.X = i;
+                    temp.Y = j;
+                    if (global.world[floor][temp].isPassable)
+                     {
+                        return true;
                     }
                 }
             }

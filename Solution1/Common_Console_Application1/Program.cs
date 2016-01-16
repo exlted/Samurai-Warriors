@@ -63,9 +63,17 @@ namespace Common_Console_Application1
                 }
                 else if (global.checkWin())
                 {
-                    global.print("You beat this floor");
-                    global.currentFloor += 1;
-                    return false;
+                    if (global.currentFloor != 4)
+                    {
+                        global.print("You beat this floor");
+                        global.currentFloor += 1;
+                        return false;
+                    }
+                    else
+                    {
+                        global.print("You win!");
+                        return true;
+                    }
                 }
                 continue;
             }
@@ -89,9 +97,9 @@ namespace Common_Console_Application1
                             {
                                 global.monster[h, i] = new Mob(random.Next(1, 180), random.Next(1, 40), random.Next(48, 61), random.Next(5, 16), random.Next(0, 6));
                             }
+                            Render.randomGen(20, 10, 0, h);
                         }
                     }
-                    Render.randomGen(20, 10, 0);
                     Mob.spawnMonster();
                     Render.initRender();
                     Render.renderMobs();
