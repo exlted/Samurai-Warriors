@@ -333,9 +333,9 @@ namespace render
                 global.world[floor + 1][global.firstRooms[floor + 1]].color = Color.Yellow;
                 if(floor == global.floorCount - 2)
                 {
-                    global.world[floor][global.lastRooms[floor]].renderChar = 'O';
-                    global.world[floor][global.lastRooms[floor]].isDownLadder = true;
-                    global.world[floor][global.lastRooms[floor]].color = Color.DarkGray;
+                    global.world[floor + 1][global.lastRooms[floor + 1]].renderChar = 'O';
+                    global.world[floor + 1][global.lastRooms[floor + 1]].isDownLadder = true;
+                    global.world[floor + 1][global.lastRooms[floor + 1]].color = Color.DarkGray;
                 }
             }
         }
