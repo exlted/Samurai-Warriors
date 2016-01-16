@@ -64,12 +64,12 @@ namespace menu
             }
         }
 
-        public static bool endMenu()
+        public static int endMenu()
         {
-            ConsoleKeyInfo input = new ConsoleKeyInfo();
             Console.Clear();
-            string[] menuItems = { "Start New Game", "Exit Game" };
-            int menuPos = 1;
+            ConsoleKeyInfo input = new ConsoleKeyInfo();
+            string[] menuItems = { "Start New Game", "View Credits", "Exit Game" };
+            int menuPos = 0;
             renderMenu(menuItems, menuPos);
             Console.SetCursorPosition(0, 45);
             while (true)
@@ -77,59 +77,26 @@ namespace menu
                 input = Console.ReadKey();
                 switch (input.Key)
                 {
-                    case ConsoleKey.D1:
-                        Mob.reInitPlayer();
-                        world.worldReInit();
-                        Render.initialRender();
-                        return true;
-
-                    case ConsoleKey.D2:
-                        return false;
-
-                    case ConsoleKey.NumPad1:
-                        Mob.reInitPlayer();
-                        world.worldReInit();
-                        Render.initialRender();
-                        return true;
-
-                    case ConsoleKey.NumPad2:
-                        return false;
-
                     case ConsoleKey.UpArrow:
-                        switch (menuPos)
-                        {
-                            case 1:
-                                menuPos = 2;
-                                renderMenu(menuItems, menuPos);
-                                continue;
-                            case 2:
-                                menuPos = 1;
-                                renderMenu(menuItems, menuPos);
-                                continue;
-                            default: continue;
-                        }
+                        menuPos -= 1;
+                        renderMenu(menuItems, menuPos % menuItems.Length);
+                        continue;
                     case ConsoleKey.DownArrow:
-                        switch (menuPos)
+                        menuPos += 1;
+                        renderMenu(menuItems, menuPos % menuItems.Length);
+                        continue;
+                    case ConsoleKey.Enter:
+                        switch (menuPos % menuItems.Length)
                         {
+                            case 0:
+                                return 0;
                             case 1:
-                                menuPos = 2;
-                                renderMenu(menuItems, menuPos);
+                                credits();
                                 continue;
                             case 2:
-                                menuPos = 1;
-                                renderMenu(menuItems, menuPos);
-                                continue;
+                                return 2;
                             default: continue;
                         }
-                    case ConsoleKey.Enter:
-                        if (menuPos == 1)
-                        {
-                            Mob.reInitPlayer();
-                            world.worldReInit();
-                            Render.initialRender();
-                            return true;
-                        }
-                        else return false;
                     default:
                         continue;
                 }
@@ -141,7 +108,7 @@ namespace menu
             Console.Clear();
             ConsoleKeyInfo input = new ConsoleKeyInfo();
             string[] menuItems = { "Resume Game", "Exit to menu" };
-            int menuPos = 1;
+            int menuPos = 0;
             renderMenu(menuItems, menuPos);
             Console.SetCursorPosition(0, 45);
             while (true)

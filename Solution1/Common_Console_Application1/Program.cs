@@ -12,6 +12,7 @@ using print;
 using render;
 using System;
 using Console = Colorful.Console;
+using World;
 
 namespace Common_Console_Application1
 {
@@ -98,7 +99,7 @@ namespace Common_Console_Application1
         {
             Console.SetWindowSize(181, 46);
             Console.SetBufferSize(181, 46);
-            if (Menu.menu() == 1)
+            if (Menu.menu() == 0)
             {
                 World.world.initWorld();
                 Render.initialRender();
@@ -124,8 +125,11 @@ namespace Common_Console_Application1
                     {
                         if(!global.usedLadder)
                         {
-                            if (Menu.endMenu())
+                            if (Menu.endMenu() == 0)
                             {
+                                Mob.reInitPlayer();
+                                world.worldReInit();
+                                Render.initialRender();
                                 continue;
                             }
                             else break;
