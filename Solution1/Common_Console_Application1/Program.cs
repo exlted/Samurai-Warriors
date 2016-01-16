@@ -52,7 +52,7 @@ namespace Common_Console_Application1
                     case ConsoleKey.Enter:
                         if(global.world[global.currentFloor][global.player.Coord].isDownLadder)
                         {
-                            if(global.currentFloor == global.floorCount)
+                            if(global.currentFloor == global.floorCount - 1)
                             {
                                 Write.print("You Win!");
                                 return false;
@@ -113,7 +113,7 @@ namespace Common_Console_Application1
                             }
                         }
                     }
-            
+
                     Mob.spawnMonster();
                     Render.initRender();
                     Render.renderMobs();
