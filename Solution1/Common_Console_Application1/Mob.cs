@@ -317,17 +317,17 @@ namespace Creature
             global.usedLadder = false;
         }
 
-        public static bool checkWin()
-        {
-            for (int i = 0; i < global.mobCount; i++)
-            {
-                if (global.monster[global.currentFloor, i].isAlive)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        //public static bool checkWin()
+        //{
+        //    for (int i = 0; i < global.mobCount; i++)
+        //    {
+        //        if (global.monster[global.currentFloor, i].isAlive)
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return true;
+        //}
 
         public static void reInitPlayer()
         {

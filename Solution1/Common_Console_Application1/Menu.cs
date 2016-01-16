@@ -107,7 +107,7 @@ namespace menu
         {
             Console.Clear();
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            string[] menuItems = { "Start New Game", "View Credits", "Exit Game" };
+            string[] menuItems = { "Start New Game", "Exit Game" };
             int menuPos = 0;
             renderMenu(menuItems, menuPos);
             Console.SetCursorPosition(0, 45);

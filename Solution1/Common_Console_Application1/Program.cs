@@ -52,14 +52,21 @@ namespace Common_Console_Application1
                     case ConsoleKey.Enter:
                         if(global.world[global.currentFloor][global.player.Coord].isDownLadder)
                         {
+                            if(global.currentFloor == global.floorCount)
+                            {
+                                Write.print("You Win!");
+                                return false;
+                            }
                             global.currentFloor += 1;
                             global.usedLadder = true;
+                            global.player.Coord = global.firstRooms[global.currentFloor];
                             return true;
                         }
                         else if(global.world[global.currentFloor][global.player.Coord].isUpLadder)
                         {
                             global.currentFloor -= 1;
                             global.usedLadder = true;
+                            global.player.Coord = global.lastRooms[global.currentFloor];
                             return true;
                         }
                         continue;
@@ -77,20 +84,6 @@ namespace Common_Console_Application1
                     Write.print("Game Over");
                     return true;
                 }
-                else if (Mob.checkWin())
-                {
-                    if (global.currentFloor != global.floorCount - 1)
-                    {
-                        Write.print("You beat this floor");
-                        global.currentFloor += 1;
-                        return false;
-                    }
-                    else
-                    {
-                        Write.print("You win!");
-                        return true;
-                    }
-                }
                 continue;
             }
         }
@@ -105,7 +98,7 @@ namespace Common_Console_Application1
                 Render.initialRender();
                 while (true)
                 {
-                    if (global.currentFloor == 0)
+                    if (!global.usedLadder)
                     {
                         for (int h = 0; h < global.floorCount; h++)
                         {

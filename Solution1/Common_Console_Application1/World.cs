@@ -37,6 +37,7 @@ namespace World
 
         public static void worldReInit()
         {
+            global.currentFloor = 0;
             for (int i = 0; i < global.floorCount; i++)
             {
                 global.world[i].Clear();
