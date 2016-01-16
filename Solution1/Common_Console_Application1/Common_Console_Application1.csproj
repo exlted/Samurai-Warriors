@@ -53,6 +53,7 @@
     </Compile>
     <Compile Include="Global Vars.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="print.cs" />
     <Compile Include="World.cs" />
     <Compile Include="Render.cs" />
     <Compile Include="Mob.cs" />
