@@ -194,7 +194,7 @@ namespace Creature
                 {
                     defender.isAlive = false;
                     global.print("You defeated the enemy!");
-                    attacker.Exp += 5;
+                    attacker.Exp += 5 * defender.Lvl;
                 }
                 else global.print("Dealt " + ((attacker.Str + (random - 2)) - defender.Def) + " damage");
             }
