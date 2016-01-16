@@ -15,6 +15,8 @@ namespace Global
 
         public static int currentFloor = 0;
 
+        public static Point[] firstRooms = new Point[floorCount];
+
         public static Point[] lastRooms = new Point[floorCount];
 
         public static bool usedLadder = false;

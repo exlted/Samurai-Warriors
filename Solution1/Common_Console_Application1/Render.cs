@@ -164,6 +164,7 @@ namespace render
             int[] Y = new int[roomNum];
             int[] SizeX = new int[roomNum];
             int[] SizeY = new int[roomNum];
+            Point temp = new Point();
             for (int i = 0; i < roomNum; i += 0)
             {
                 RanSizeX = random.Next(roomSize - 2, roomSize + 2);
@@ -184,8 +185,13 @@ namespace render
             {
                 corridorGen(X[i] + SizeX[i] / 2, Y[i] + SizeY[i] / 2, X[i - 1] + SizeX[i - 1] / 2, Y[i - 1] + SizeY[i - 1] / 2, floor);
             }
+            temp.X = X[0] + (SizeX[0] / 2);
+            temp.Y = Y[0] + (SizeY[0] / 2);
+            global.firstRooms[floor] = temp;
+            temp.X = X[roomNum - 1] + (SizeX[roomNum - 1] / 2);
+            temp.Y = Y[roomNum - 1] + (SizeY[roomNum - 1] / 2);
+            global.lastRooms[floor] = temp;
             textureGen(floor);
-            ladderGen(floor);
         }
 
         public static void generateRooms(int XCoord, int YCoord, int X, int Y, int floor)
@@ -315,9 +321,17 @@ namespace render
             return false;
         }
 
-        private static void ladderGen(int floor)
+        public static void ladderGen(int floor)
         {
-            
+            if(!(floor == global.floorCount - 1))
+            {
+                global.world[floor][global.lastRooms[floor]].renderChar = 'O';
+                global.world[floor][global.lastRooms[floor]].isDownLadder = true;
+                global.world[floor][global.lastRooms[floor]].color = Color.DarkGray;
+                global.world[floor + 1][global.firstRooms[floor + 1]].renderChar = '#';
+                global.world[floor + 1][global.firstRooms[floor + 1]].isUpLadder = true;
+                global.world[floor + 1][global.firstRooms[floor + 1]].color = Color.Yellow;
+            }
         }
 
         private static void textureGen(int floor)
