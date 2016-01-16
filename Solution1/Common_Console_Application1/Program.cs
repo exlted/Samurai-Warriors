@@ -63,7 +63,7 @@ namespace Common_Console_Application1
                 }
                 else if (global.checkWin())
                 {
-                    if (global.currentFloor != 4)
+                    if (global.currentFloor != global.floorCount - 1)
                     {
                         global.print("You beat this floor");
                         global.currentFloor += 1;
