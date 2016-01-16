@@ -29,52 +29,49 @@ namespace Global
             Convert.ToChar(204), Convert.ToChar(205), Convert.ToChar(206), Convert.ToChar(207), Convert.ToChar(208), Convert.ToChar(209), Convert.ToChar(210), Convert.ToChar(211), Convert.ToChar(212),
             Convert.ToChar(213), Convert.ToChar(214), Convert.ToChar(215), Convert.ToChar(216), Convert.ToChar(217), Convert.ToChar(218)};
 
-        private static int textPos = 0;
-
         public static Mob[,] monster = new Mob[floorCount, mobCount];
+
+        private static string[] lastMessages = { "", "", "" };
 
         public static void print(string message)
         {
-            switch (textPos)
+            lastMessages[2] = lastMessages[1];
+            lastMessages[1] = lastMessages[0];
+            lastMessages[0] = message;
+            for (int h = 0; h < 3; h++)
             {
-                case 0:
-                    Console.SetCursorPosition(129, 41);
-                    break;
+                switch (h)
+                {
+                    case 2:
+                        Console.SetCursorPosition(129, 41);
+                        Console.Write(lastMessages[h], Color.DarkGray);
+                        for (int i = lastMessages[h].Length; i < 44; i++)
+                        {
+                            Console.Write(" ");
+                        }
+                        continue;
 
-                case 1:
-                    Console.SetCursorPosition(129, 42);
-                    break;
+                    case 1:
+                        Console.SetCursorPosition(129, 42);
+                        Console.Write(lastMessages[h], Color.DarkGray);
+                        for (int i = lastMessages[h].Length; i < 44; i++)
+                        {
+                            Console.Write(" ");
+                        }
+                        continue;
 
-                case 2:
-                    Console.SetCursorPosition(129, 43);
-                    break;
+                    case 0:
+                        Console.SetCursorPosition(129, 43);
+                        Console.Write(lastMessages[h], Color.DarkGray);
+                        for (int i = lastMessages[h].Length; i < 44; i++)
+                        {
+                            Console.Write(" ");
+                        }
+                        continue;
 
-                default:
-                    Console.SetCursorPosition(129, 43);
-                    break;
-            }
-            Console.Write(message, Color.DarkGray);
-            for (int i = message.Length; i < 46; i++)
-            {
-                Console.Write(" ");
-            }
-            switch (textPos)
-            {
-                case 0:
-                    textPos = 1;
-                    break;
-
-                case 1:
-                    textPos = 2;
-                    break;
-
-                case 2:
-                    textPos = 0;
-                    break;
-
-                default:
-                    textPos = 0;
-                    break;
+                    default:
+                        break;
+                }
             }
         }
 
