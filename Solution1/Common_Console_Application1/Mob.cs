@@ -292,13 +292,16 @@ namespace Creature
                     Mob.LevelUp(global.monster[global.currentFloor, i], random.Next(3, 6), random.Next(0, 4), random.Next(10, 21));
                 }
             }
-            while (true)
+            if(!global.usedLadder)
             {
-                global.player.Coord.X = random.Next(1, 180);
-                global.player.Coord.Y = random.Next(1, 40);
-                if (global.world[global.currentFloor][global.player.Coord].isInside)
+                while (true)
                 {
-                    break;
+                    global.player.Coord.X = random.Next(1, 180);
+                    global.player.Coord.Y = random.Next(1, 40);
+                    if (global.world[global.currentFloor][global.player.Coord].isInside)
+                    {
+                        break;
+                    }
                 }
             }
             if(global.currentFloor == 0)
@@ -310,6 +313,7 @@ namespace Creature
                 global.player.Exp = 0;
                 global.player.Lvl = Level;
             }
+            global.usedLadder = false;
         }
     }
 }

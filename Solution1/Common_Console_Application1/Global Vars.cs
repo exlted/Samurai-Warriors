@@ -11,9 +11,11 @@ namespace Global
     {
         public static int mobCount = 10;
 
-        public static int floorCount = 1000;
+        public static int floorCount = 5;
 
         public static int currentFloor = 0;
+
+        public static bool usedLadder = false;
 
         private static Random random = new Random();
 

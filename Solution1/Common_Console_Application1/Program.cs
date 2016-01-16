@@ -47,6 +47,20 @@ namespace Common_Console_Application1
                         if (!Menu.escapeMenu())
                             return true;
                         continue;
+                    case ConsoleKey.Enter:
+                        if(global.world[global.currentFloor][global.player.Coord].isDownLadder)
+                        {
+                            global.currentFloor += 1;
+                            global.usedLadder = true;
+                            return true;
+                        }
+                        else if(global.world[global.currentFloor][global.player.Coord].isUpLadder)
+                        {
+                            global.currentFloor -= 1;
+                            global.usedLadder = true;
+                            return true;
+                        }
+                        continue;
                     default:
                         //return Mob.Movement(Mob.moveDirection.none, random.Next(0, 5));
                         //global.player.isAlive = false;
@@ -100,17 +114,21 @@ namespace Common_Console_Application1
                             Render.randomGen(20, 10, 0, h);
                         }
                     }
+
                     Mob.spawnMonster();
                     Render.initRender();
                     Render.renderMobs();
                     Render.renderUI();
                     if (MainLoop())
                     {
-                        if (Menu.endMenu())
+                        if(!global.usedLadder)
                         {
-                            continue;
+                            if (Menu.endMenu())
+                            {
+                                continue;
+                            }
+                            else break;
                         }
-                        else break;
                     }
                     else continue;
                 }
