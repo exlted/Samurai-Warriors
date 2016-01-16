@@ -331,12 +331,12 @@ namespace render
                 global.world[floor + 1][global.firstRooms[floor + 1]].renderChar = '#';
                 global.world[floor + 1][global.firstRooms[floor + 1]].isUpLadder = true;
                 global.world[floor + 1][global.firstRooms[floor + 1]].color = Color.Yellow;
-            }
-            else
-            {
-                global.world[floor][global.lastRooms[floor]].renderChar = 'O';
-                global.world[floor][global.lastRooms[floor]].isDownLadder = true;
-                global.world[floor][global.lastRooms[floor]].color = Color.DarkGray;
+                if(floor == global.floorCount - 2)
+                {
+                    global.world[floor][global.lastRooms[floor]].renderChar = 'O';
+                    global.world[floor][global.lastRooms[floor]].isDownLadder = true;
+                    global.world[floor][global.lastRooms[floor]].color = Color.DarkGray;
+                }
             }
         }
 
