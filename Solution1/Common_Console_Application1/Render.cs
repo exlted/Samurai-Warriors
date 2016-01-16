@@ -339,7 +339,7 @@ namespace render
                 {
                     temp.X = random.Next(0, 180);
                     temp.Y = random.Next(0, 40);
-                    if (global.world[floor][temp].isPassable)
+                    if (global.world[floor][temp].isPassable && global.world[floor + 1][temp].isPassable)
                     {
                         global.world[floor][temp].renderChar = 'O';
                         global.world[floor][temp].isDownLadder = true;
@@ -353,7 +353,7 @@ namespace render
                 {
                     temp.X = random.Next(0, 180);
                     temp.Y = random.Next(0, 40);
-                    if (global.world[floor][temp].isPassable)
+                    if (global.world[floor][temp].isPassable && global.world[floor + 1][temp].isPassable)
                     {
                         global.world[floor][temp].renderChar = 'O';
                         global.world[floor][temp].isDownLadder = true;
@@ -364,7 +364,7 @@ namespace render
                 {
                     temp.X = random.Next(0, 180);
                     temp.Y = random.Next(0, 40);
-                    if (global.world[floor][temp].isPassable)
+                    if (global.world[floor][temp].isPassable && global.world[floor + 1][temp].isPassable)
                     {
                         global.world[floor][temp].renderChar = '#';
                         global.world[floor][temp].color = Color.Yellow;
