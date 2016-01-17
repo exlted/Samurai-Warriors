@@ -35,7 +35,7 @@ namespace menu
             Console.SetCursorPosition(0, 45);
             while (true)
             {
-                renderMenu(menuItems, menuPos % menuItems.Length);
+                renderMenu(menuItems, Math.Abs(menuPos % menuItems.Length));
                 input = Console.ReadKey();
                 switch (input.Key)
                 {
@@ -46,7 +46,7 @@ namespace menu
                         menuPos += 1;
                         continue;
                     case ConsoleKey.Enter:
-                        switch(menuPos % menuItems.Length)
+                        switch(Math.Abs(menuPos % menuItems.Length))
                         {
                             case 0:
                                 return 0;
@@ -73,7 +73,7 @@ namespace menu
             Console.SetCursorPosition(0, 45);
             while (true)
             {
-                renderMenu(menuItems, menuPos % menuItems.Length);
+                renderMenu(menuItems, Math.Abs(menuPos % menuItems.Length));
                 input = Console.ReadKey();
                 switch (input.Key)
                 {
@@ -84,7 +84,7 @@ namespace menu
                         menuPos += 1;
                         continue;
                     case ConsoleKey.Enter:
-                        switch (menuPos % menuItems.Length)
+                        switch (Math.Abs(menuPos % menuItems.Length))
                         {
                             case 0:
                                 return 0;
@@ -122,7 +122,7 @@ namespace menu
                         menuPos += 1;
                         continue;
                     case ConsoleKey.Enter:
-                        switch (menuPos % menuItems.Length)
+                        switch (Math.Abs(menuPos % menuItems.Length))
                         {
                             case 0:
                                 Render.initialRender(false);
