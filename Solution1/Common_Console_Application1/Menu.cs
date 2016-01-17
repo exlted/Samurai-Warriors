@@ -145,7 +145,7 @@ namespace menu
 
         public static void credits()
         {
-            Write.rollCredits(global.titleArt);
+            Write.rollCredits(global.credits);
         }
 
     }

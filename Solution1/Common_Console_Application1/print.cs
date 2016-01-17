@@ -88,7 +88,7 @@ namespace print
 
         public static void rollCredits(string[] message)
         {
-            for (int h = Console.WindowHeight; h > 0; h--)
+            for (int h = Console.WindowHeight; h > 0 - message.Length - 1; h--)
             {
                 Console.Clear();
                 for (int i = 0; i < message.Length; i++)
@@ -103,7 +103,7 @@ namespace print
                         continue;
                     }
                 }
-                Thread.Sleep(500);
+                Thread.Sleep(250);
             }
         }
     }
