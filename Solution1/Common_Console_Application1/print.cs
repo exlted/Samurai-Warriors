@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using Console = Colorful.Console;
+using System.Threading;
 
 namespace print
 {
@@ -85,5 +86,25 @@ namespace print
             }
         }
 
+        public static void rollCredits(string[] message)
+        {
+            for (int h = Console.WindowHeight; h > 0; h--)
+            {
+                Console.Clear();
+                for (int i = 0; i < message.Length; i++)
+                {
+                    try
+                    {
+                        Console.SetCursorPosition((Console.WindowWidth / 2) - message[i].Length / 2, h + i);
+                        Console.Write(message[i], Color.DarkGray);
+                    }
+                    catch(Exception)
+                    {
+                        continue;
+                    }
+                }
+                Thread.Sleep(500);
+            }
+        }
     }
 }

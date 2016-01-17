@@ -55,7 +55,8 @@ namespace Common_Console_Application1
                             if(global.currentFloor == global.floorCount - 1)
                             {
                                 Write.print("You Win!");
-                                return false;
+                                Menu.credits();
+                                return true;
                             }
                             global.currentFloor += 1;
                             global.usedLadder = true;
