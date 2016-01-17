@@ -104,6 +104,8 @@ namespace print
                     }
                 }
                 Thread.Sleep(250);
+                if (h == 0)
+                    Thread.Sleep(2500);
             }
         }
     }

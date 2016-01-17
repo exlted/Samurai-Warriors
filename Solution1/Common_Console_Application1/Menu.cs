@@ -35,16 +35,15 @@ namespace menu
             Console.SetCursorPosition(0, 45);
             while (true)
             {
+                renderMenu(menuItems, menuPos % menuItems.Length);
                 input = Console.ReadKey();
                 switch (input.Key)
                 {
                     case ConsoleKey.UpArrow:
                         menuPos -= 1;
-                        renderMenu(menuItems, menuPos % menuItems.Length);
                         continue;
                     case ConsoleKey.DownArrow:
                         menuPos += 1;
-                        renderMenu(menuItems, menuPos % menuItems.Length);
                         continue;
                     case ConsoleKey.Enter:
                         switch(menuPos % menuItems.Length)
@@ -52,7 +51,7 @@ namespace menu
                             case 0:
                                 return 0;
                             case 1:
-                                credits();
+                                Write.rollCredits(global.credits);
                                 continue;
                             case 2:
                                 return 2;
@@ -74,16 +73,15 @@ namespace menu
             Console.SetCursorPosition(0, 45);
             while (true)
             {
+                renderMenu(menuItems, menuPos % menuItems.Length);
                 input = Console.ReadKey();
                 switch (input.Key)
                 {
                     case ConsoleKey.UpArrow:
                         menuPos -= 1;
-                        renderMenu(menuItems, menuPos % menuItems.Length);
                         continue;
                     case ConsoleKey.DownArrow:
                         menuPos += 1;
-                        renderMenu(menuItems, menuPos % menuItems.Length);
                         continue;
                     case ConsoleKey.Enter:
                         switch (menuPos % menuItems.Length)
@@ -91,7 +89,7 @@ namespace menu
                             case 0:
                                 return 0;
                             case 1:
-                                credits();
+                                Write.rollCredits(global.credits);
                                 continue;
                             case 2:
                                 return 2;
@@ -113,16 +111,15 @@ namespace menu
             Console.SetCursorPosition(0, 45);
             while (true)
             {
+                renderMenu(menuItems, menuPos % menuItems.Length);
                 input = Console.ReadKey();
                 switch (input.Key)
                 {
                     case ConsoleKey.UpArrow:
                         menuPos -= 1;
-                        renderMenu(menuItems, menuPos % menuItems.Length);
                         continue;
                     case ConsoleKey.DownArrow:
                         menuPos += 1;
-                        renderMenu(menuItems, menuPos % menuItems.Length);
                         continue;
                     case ConsoleKey.Enter:
                         switch (menuPos % menuItems.Length)
@@ -142,11 +139,5 @@ namespace menu
                 }
             }
         }
-
-        public static void credits()
-        {
-            Write.rollCredits(global.credits);
-        }
-
     }
 }
