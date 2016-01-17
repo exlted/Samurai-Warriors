@@ -200,6 +200,8 @@ namespace render
             Console.Write("Lvl:", Color.DarkGray);
             Console.SetCursorPosition(84, 43);
             Console.Write("Flr:", Color.DarkGray);
+            Console.SetCursorPosition(1, 45);
+            Console.Write("Dooooom Counter : ", Color.DarkGray);
             //non-static stat numbers (might need to be moved / aren't updating after level up)
             Console.SetCursorPosition(35, 42);
             Console.Write(global.player.HP + " / " + global.player.MaxHP + "          ", Color.DarkGray);
@@ -211,6 +213,8 @@ namespace render
             Console.Write(Convert.ToString(global.player.Lvl), Color.Blue);
             Console.SetCursorPosition(89, 43);
             Console.Write(Convert.ToString(global.currentFloor + 1), Color.Orange);
+            Console.SetCursorPosition(19, 45);
+            Console.Write(Convert.ToString(global.Doooooom), Color.Red);
             //HP bar
             int percent = (global.player.HP * 100) / global.player.MaxHP;
             int healthPos = 14;

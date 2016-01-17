@@ -25,6 +25,7 @@ namespace Common_Console_Application1
             ConsoleKeyInfo input;
             while (true)
             {
+                global.Doooooom--;
                 input = Console.ReadKey();
                 Render.clearMobs();
                 switch (input.Key)
