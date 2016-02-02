@@ -11,8 +11,8 @@ using menu;
 using print;
 using render;
 using System;
-using Console = Colorful.Console;
 using World;
+using Console = Colorful.Console;
 
 namespace Common_Console_Application1
 {
@@ -51,9 +51,9 @@ namespace Common_Console_Application1
                             return true;
                         continue;
                     case ConsoleKey.Enter:
-                        if(global.world[global.currentFloor][global.player.Coord].isDownLadder)
+                        if (global.world[global.currentFloor][global.player.Coord].isDownLadder)
                         {
-                            if(global.currentFloor == global.floorCount - 1)
+                            if (global.currentFloor == global.floorCount - 1)
                             {
                                 Write.print("You Win!");
                                 Write.rollCredits(global.credits);
@@ -64,7 +64,7 @@ namespace Common_Console_Application1
                             global.player.Coord = global.firstRooms[global.currentFloor];
                             return true;
                         }
-                        else if(global.world[global.currentFloor][global.player.Coord].isUpLadder)
+                        else if (global.world[global.currentFloor][global.player.Coord].isUpLadder)
                         {
                             global.currentFloor -= 1;
                             global.usedLadder = true;
@@ -110,7 +110,7 @@ namespace Common_Console_Application1
                             }
                             world.randomGen(20, 10, 0, h);
                             Mob.spawnMonster(h);
-                            if (h>0)
+                            if (h > 0)
                             {
                                 world.ladderGen(h - 1);
                             }
@@ -122,7 +122,7 @@ namespace Common_Console_Application1
                     Render.renderUI();
                     if (MainLoop())
                     {
-                        if(!global.usedLadder)
+                        if (!global.usedLadder)
                         {
                             if (Menu.endMenu() == 0)
                             {

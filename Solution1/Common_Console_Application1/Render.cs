@@ -1,6 +1,5 @@
 ﻿using Global;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using World;
@@ -157,7 +156,6 @@ namespace render
             }
         }
 
-
         public static void clearMobs()
         {
             Console.SetCursorPosition(global.player.Coord.X, global.player.Coord.Y);
@@ -166,7 +164,7 @@ namespace render
             for (int i = 0; i <= global.mobCount - 1; i++)
             {
                 Console.SetCursorPosition(global.monster[global.currentFloor, i].Coord.X, global.monster[global.currentFloor, i].Coord.Y);
-                Console.Write(global.world[global.currentFloor][global.monster[global.currentFloor,i].Coord].renderChar, global.world[global.currentFloor][global.monster[global.currentFloor, i].Coord].color);
+                Console.Write(global.world[global.currentFloor][global.monster[global.currentFloor, i].Coord].renderChar, global.world[global.currentFloor][global.monster[global.currentFloor, i].Coord].color);
             }
         }
 

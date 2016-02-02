@@ -1,11 +1,9 @@
 ﻿using Global;
+using print;
 using render;
 using System;
 using System.Drawing;
 using Console = Colorful.Console;
-using print;
-using Creature;
-using World;
 
 namespace menu
 {
@@ -29,7 +27,7 @@ namespace menu
         public static int menu()
         {
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            string[] menuItems = { "Start New Game", "View Credits",  "Exit Game" };
+            string[] menuItems = { "Start New Game", "View Credits", "Exit Game" };
             int menuPos = 0;
             renderMenu(menuItems, menuPos);
             Console.SetCursorPosition(0, 45);
@@ -46,15 +44,17 @@ namespace menu
                         menuPos += 1;
                         continue;
                     case ConsoleKey.Enter:
-                        switch(Math.Abs(menuPos % menuItems.Length))
+                        switch (Math.Abs(menuPos % menuItems.Length))
                         {
                             case 0:
                                 return 0;
+
                             case 1:
                                 Write.rollCredits(global.credits);
                                 continue;
                             case 2:
                                 return 2;
+
                             default: continue;
                         }
                     default:
@@ -88,11 +88,13 @@ namespace menu
                         {
                             case 0:
                                 return 0;
+
                             case 1:
                                 Write.rollCredits(global.credits);
                                 continue;
                             case 2:
                                 return 2;
+
                             default: continue;
                         }
                     default:
@@ -130,8 +132,10 @@ namespace menu
                                 Render.renderMobs();
                                 Render.renderUI();
                                 return true;
+
                             case 1:
                                 return false;
+
                             default: continue;
                         }
                     default:

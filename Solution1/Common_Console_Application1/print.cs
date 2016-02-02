@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
-using Console = Colorful.Console;
 using System.Threading;
+using Console = Colorful.Console;
 
 namespace print
 {
-    class Write
+    internal class Write
     {
         private static string[] lastMessages = { "", "", "" };
 
@@ -98,7 +94,7 @@ namespace print
                         Console.SetCursorPosition((Console.WindowWidth / 2) - message[i].Length / 2, h + i);
                         Console.Write(message[i], Color.DarkGray);
                     }
-                    catch(Exception)
+                    catch (Exception)
                     {
                         continue;
                     }

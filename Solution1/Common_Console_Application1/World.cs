@@ -1,7 +1,7 @@
-﻿using System.Drawing;
+﻿using Global;
 using System;
-using Global;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace World
 {
@@ -83,7 +83,7 @@ namespace World
             textureGen(floor);
         }
 
-        static void generateRooms(int XCoord, int YCoord, int X, int Y, int floor)
+        private static void generateRooms(int XCoord, int YCoord, int X, int Y, int floor)
         {
             Dictionary<Point, world>[] room = new Dictionary<Point, world>[global.floorCount];
             for (int i = 0; i < global.floorCount; i++)
@@ -111,7 +111,7 @@ namespace World
             }
         }
 
-        static void corridorGen(int X1, int Y1, int X2, int Y2, int floor)
+        private static void corridorGen(int X1, int Y1, int X2, int Y2, int floor)
         {
             if (X1 == X2)
             {
@@ -128,7 +128,7 @@ namespace World
             }
         }
 
-        static void xCoor(int X1, int X2, int Y1, int floor)
+        private static void xCoor(int X1, int X2, int Y1, int floor)
         {
             Point temp = new Point();
             temp.Y = Y1;
@@ -160,7 +160,7 @@ namespace World
             }
         }
 
-        static void yCoor(int Y1, int Y2, int X2, int floor)
+        private static void yCoor(int Y1, int Y2, int X2, int floor)
         {
             Point temp = new Point();
             temp.X = X2;
@@ -192,7 +192,7 @@ namespace World
             }
         }
 
-        static bool intersects(int X, int Y, int SizeX, int SizeY, int floor)
+        private static bool intersects(int X, int Y, int SizeX, int SizeY, int floor)
         {
             Point temp = new Point();
             for (int i = X; i <= X + SizeX; i++)
@@ -263,6 +263,5 @@ namespace World
                 }
             }
         }
-
     }
 }

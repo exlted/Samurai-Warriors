@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using World;
-using Console = Colorful.Console;
 
 namespace Global
 {
